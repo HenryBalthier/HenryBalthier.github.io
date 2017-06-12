@@ -182,23 +182,21 @@
 <li><a href="http://www.jianshu.com/p/465830080ea9" target="_blank" rel="external">HEXO+Github,搭建属于自己的博客</a></li>
 <li><a href="https://segmentfault.com/a/1190000005133715" target="_blank" rel="external">如何使用 hexo＋github 搭建个人博客</a></li>
 </ul>
-<h4 id="流程简化："><a href="#流程简化：" class="headerlink" title="流程简化："></a>流程简化：</h4><p><strong>安装软件清单：</strong><br>    1、安装Node<br>    2、安装本地Git：Git bash或者别的将配置提交到Github上的软件<br>    3、申请Github，创建github page，创建blog的一个git仓库，建议生成一个ssh key<br>    4、安装Hexo：</p>
-<p><strong>配置Hexo：</strong><br>    所需的配置文件都是在git仓库中的_config.yml文件中，直接在git bash下用vim打开即可；然后在_config.yml最下面添加连接github的仓库地址（此处建议使用ssh地址）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">	<span class="built_in">type</span>: git</div><div class="line">	repository: git@github.com:[yourGithubAccount]/[yourGithubAccount].github.io.git			</div><div class="line">	branch: master</div></pre></td></tr></table></figure></p>
-<p><strong>上传部署：</strong><br>    本地localhost:4000预览：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s</div></pre></td></tr></table></figure></p>
+<h4 id="流程简化："><a href="#流程简化：" class="headerlink" title="流程简化："></a>流程简化：</h4><p><strong>安装软件清单：</strong><br>1、安装Node<br>2、安装本地Git：Git bash或者别的将配置提交到Github上的软件<br>3、申请Github，创建github page，创建blog的一个git仓库，建议生成一个ssh key<br>4、安装Hexo：</p>
+<p><strong>配置Hexo：</strong><br>所需的配置文件都是在git仓库中的_config.yml文件中，直接在git bash下用vim打开即可；然后在_config.yml最下面添加连接github的仓库地址（此处建议使用ssh地址）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">	<span class="built_in">type</span>: git</div><div class="line">	repository: git@github.com:[yourGithubAccount]/[yourGithubAccount].github.io.git			</div><div class="line">	branch: master</div></pre></td></tr></table></figure></p>
+<p><strong>上传部署：</strong><br>本地localhost:4000预览：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s</div></pre></td></tr></table></figure></p>
 <p>Hexo修改后需要部署到网页可执行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo d -g</div></pre></td></tr></table></figure></p>
 <hr>
 <h2 id="2、如何设置主题"><a href="#2、如何设置主题" class="headerlink" title="2、如何设置主题"></a>2、如何设置主题</h2><h4 id="参考网站：-1"><a href="#参考网站：-1" class="headerlink" title="参考网站："></a>参考网站：</h4><ul>
 <li><a href="http://blog.csdn.net/u011904605/article/details/53792068" target="_blank" rel="external">大道至简——Hexo简洁主题推荐</a></li>
 </ul>
-<p><strong>设置：</strong><br>    1、下载主题：可以直接git clone到本地，并拷贝到blog仓库的theme目录<br>    2、在仓库主要配置文件_config.yml中将默认主题改为下载的主题目录名<br>    3、更改theme中主题的_config.yml文件，配置个人blog主题</p>
+<p><strong>设置：</strong><br>1、下载主题：可以直接git clone到本地，并拷贝到blog仓库的theme目录<br>2、在仓库主要配置文件_config.yml中将默认主题改为下载的主题目录名<br>3、更改theme中主题的_config.yml文件，配置个人blog主题</p>
 <hr>
 <h2 id="3、如何上传文章"><a href="#3、如何上传文章" class="headerlink" title="3、如何上传文章"></a>3、如何上传文章</h2><h4 id="参考网站：-2"><a href="#参考网站：-2" class="headerlink" title="参考网站："></a>参考网站：</h4><ul>
 <li><a href="http://www.jianshu.com/p/1e402922ee32/" target="_blank" rel="external">Markdown——入门指南</a></li>
-<li><p><a href="http://www.appinn.com/markdown/" target="_blank" rel="external">Markdown 语法说明 (简体中文版)</a></p>
-<p>  文章采用md语法，储存在目录source下，通过</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new post <span class="string">'title'</span></div></pre></td></tr></table></figure>
-</li>
+<li><a href="http://www.appinn.com/markdown/" target="_blank" rel="external">Markdown 语法说明 (简体中文版)</a></li>
 </ul>
+<p>文章采用md语法，储存在目录source下，通过<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new post <span class="string">'title'</span></div></pre></td></tr></table></figure></p>
 <p>创建新的文章(默认为post类型)，通过<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new page <span class="string">'title'</span></div></pre></td></tr></table></figure></p>
 <p>创建新的页面，通过<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo d -g</div></pre></td></tr></table></figure></p>
 <p>进行上传部署。</p>
