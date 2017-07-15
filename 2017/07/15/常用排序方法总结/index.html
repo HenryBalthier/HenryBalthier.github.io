@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>常用排序方法总结 | 方糖~</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="方糖~">
+    <meta name="author" content="Yu Fangheng">
+    <meta name="description" content="Henry's Blog~" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/HenryBalthier.github.io/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="方糖~" type="application/atom+xml">
+    <link rel="stylesheet" href="/HenryBalthier.github.io/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/HenryBalthier.github.io/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/HenryBalthier.github.io/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/HenryBalthier.github.io/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/HenryBalthier.github.io/js/html5shiv.min.js"></script>
+    <script src="/HenryBalthier.github.io/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/HenryBalthier.github.io/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/HenryBalthier.github.io/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/HenryBalthier.github.io/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="/" target="_BLANK" class="animsition-link">AAA</a></li>
+                    
+                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">BBB</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            <li><a href="/HenryBalthier.github.io/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/HenryBalthier.github.io/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">方糖~</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                            
+                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                            
+                            
+                            <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2017-07-15T12:29:45.000Z" itemprop="datePublished">
+          2017-07-15
+      </time>
+    
+    
+    | 
+    <a href='/HenryBalthier.github.io/tags/算法/'>算法</a>
+    
+    
+</span>
+                <h1>常用排序方法总结</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h4 id="主要内容："><a href="#主要内容：" class="headerlink" title="主要内容："></a>主要内容：</h4><ul>
+<li><h4 id="状态："><a href="#状态：" class="headerlink" title="状态："></a>状态：</h4><p>待施工：待续</p>
+<a id="more"></a>
+</li>
+</ul>
+<hr>
+<p><a href="http://www.cnblogs.com/eniac12/p/5329396.html" target="_blank" rel="external">常用排序算法总结</a></p>
+<p>我们通常所说的排序算法往往指的是内部排序算法，即数据记录在内存中进行排序。</p>
+<p>排序算法大体可分为两种：</p>
+<p>一种是比较排序，时间复杂度O(nlogn) ~ O(n^2)，主要有：<strong>冒泡排序，选择排序，插入排序，归并排序，堆排序，快速排序</strong>等。</p>
+<p>另一种是非比较排序，时间复杂度可以达到O(n)，主要有：<strong>计数排序，基数排序，桶排序</strong>等。</p>
+<p>这里我们来探讨一下常用的比较排序算法，非比较排序算法将在后续文章中介绍。下表给出了常见比较排序算法的性能：</p>
+<p><img src="../img/739525-20160503202729044-614991035.jpg" alt="739525-20160503202729044-614991035.jpg"></p>
+<p>这里有一点我们很容易忽略的是排序算法的稳定性(腾讯校招2016笔试题曾考过)。</p>
+<p>　　排序算法稳定性的简单形式化定义为：如果Ai = Aj，排序前Ai在Aj之前，排序后Ai还在Aj之前，则称这种排序算法是稳定的。通俗地讲就是保证排序前后两个相等的数的相对顺序不变。</p>
+<p>　　对于不稳定的排序算法，只要举出一个实例，即可说明它的不稳定性；而对于稳定的排序算法，必须对算法进行分析从而得到稳定的特性。需要注意的是，排序算法是否为稳定的是由具体算法决定的，不稳定的算法在某种条件下可以变为稳定的算法，而稳定的算法在某种条件下也可以变为不稳定的算法。</p>
+<p>　　例如，对于冒泡排序，原本是稳定的排序算法，如果将记录交换的条件改成A[i] &gt;= A[i + 1]，则两个相等的记录就会交换位置，从而变成不稳定的排序算法。</p>
+<p>　　其次，说一下排序算法稳定性的好处。排序算法如果是稳定的，那么从一个键上排序，然后再从另一个键上排序，第一个键排序的结果可以为第二个键排序所用。基数排序就是这样，先按低位排序，逐次按高位排序，低位排序后元素的顺序在高位也相同时是不会改变的。</p>
+<hr>
+<h4 id="1、冒泡排序"><a href="#1、冒泡排序" class="headerlink" title="1、冒泡排序"></a>1、冒泡排序</h4><p>冒泡排序是一种极其简单的排序算法，也是我所学的第一个排序算法。它重复地走访过要排序的元素，一次比较相邻两个元素，如果他们的顺序错误就把他们调换过来，直到没有元素再需要交换，排序完成。这个算法的名字由来是因为越小(或越大)的元素会经由交换慢慢“浮”到数列的顶端。</p>
+<p>冒泡排序算法的运作如下：</p>
+<ul>
+<li>比较相邻的元素，如果前一个比后一个大，就把它们两个调换位置。</li>
+<li>对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。这步做完后，最后的元素会是最大的数。</li>
+<li>针对所有的元素重复以上的步骤，除了最后一个。</li>
+<li>持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。</li>
+</ul>
+<p><img src="../img/冒泡.gif" alt="冒泡.gif"></p>
+<hr>
+<h4 id="1-1、鸡尾酒排序"><a href="#1-1、鸡尾酒排序" class="headerlink" title="1.1、鸡尾酒排序　　"></a>1.1、鸡尾酒排序　　</h4><p>鸡尾酒排序，也叫定向冒泡排序，是冒泡排序的一种改进。此算法与冒泡排序的不同处在于从低到高然后从高到低，而冒泡排序则仅从低到高去比较序列里的每个元素。他可以得到比冒泡排序稍微好一点的效能。</p>
+<p><img src="../img/鸡尾酒.gif" alt="鸡尾酒.gif"></p>
+<hr>
+<h4 id="2、选择排序"><a href="#2、选择排序" class="headerlink" title="2、选择排序"></a>2、选择排序</h4><p>选择排序也是一种简单直观的排序算法。它的工作原理很容易理解：首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置；然后，再从剩余未排序元素中继续寻找最小（大）元素，放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。</p>
+<p><img src="../img/选择1.gif" alt="选择1.gif"></p>
+<p><img src="../img/选择2.gif" alt="选择2.gif"></p>
+<p><strong>选择排序是不稳定的排序算法，不稳定发生在最小元素与A[i]交换的时刻。</strong></p>
+<p>比如序列：{ 5, 8, 5, 2, 9 }，一次选择的最小元素是2，然后把2和第一个5进行交换，从而改变了两个元素5的相对次序。</p>
+<hr>
+<h4 id="3、插入排序"><a href="#3、插入排序" class="headerlink" title="3、插入排序"></a>3、插入排序</h4><p>插入排序是一种简单直观的排序算法。它的工作原理非常类似于我们抓扑克牌</p>
+<p>对于未排序数据(右手抓到的牌)，在已排序序列(左手已经排好序的手牌)中从后向前扫描，找到相应位置并插入。</p>
+<p>　　插入排序在实现上，通常采用in-place排序（即只需用到O(1)的额外空间的排序），因而在从后向前扫描过程中，需要反复把已排序元素逐步向后挪位，为最新元素提供插入空间。</p>
+<p>　　具体算法描述如下：</p>
+<ul>
+<li>从第一个元素开始，该元素可以认为已经被排序</li>
+<li>取出下一个元素，在已经排序的元素序列中从后向前扫描</li>
+<li>如果该元素（已排序）大于新元素，将该元素移到下一位置</li>
+<li>重复步骤3，直到找到已排序的元素小于或者等于新元素的位置</li>
+<li>将新元素插入到该位置后</li>
+<li>重复步骤2~5</li>
+</ul>
+<p><img src="../img/插排1.gif" alt="插排1.gif"></p>
+<p><img src="../img/插排2.gif" alt="插排2.gif"></p>
+<p>插入排序不适合对于数据量比较大的排序应用。但是，如果需要排序的数据量很小，比如量级小于千，那么插入排序还是一个不错的选择。 插入排序在工业级库中也有着广泛的应用，在STL的sort算法和stdlib的qsort算法中，都将插入排序作为快速排序的补充，用于少量元素的排序（通常为8个或以下）。</p>
+<hr>
+<h4 id="3-1、二分插入排序"><a href="#3-1、二分插入排序" class="headerlink" title="3.1、二分插入排序　　"></a>3.1、二分插入排序　　</h4><p>对于插入排序，如果比较操作的代价比交换操作大的话，可以采用二分查找法来减少比较操作的数目，我们称为二分插入排序</p>
+<p>当n较大时，二分插入排序的比较次数比直接插入排序的最差情况好得多，但比直接插入排序的最好情况要差，所当以元素初始序列已经接近升序时，直接插入排序比二分插入排序比较次数少。二分插入排序元素移动次数与直接插入排序相同，依赖于元素初始序列。</p>
+<hr>
+<h4 id="3-2、希尔排序"><a href="#3-2、希尔排序" class="headerlink" title="3.2、希尔排序　　"></a>3.2、希尔排序　　</h4><p>希尔排序，也叫递减增量排序，是插入排序的一种更高效的改进版本。希尔排序是不稳定的排序算法。</p>
+<p>希尔排序是基于插入排序的以下两点性质而提出改进方法的：</p>
+<ul>
+<li>插入排序在对几乎已经排好序的数据操作时，效率高，即可以达到线性排序的效率</li>
+<li>但插入排序一般来说是低效的，因为插入排序每次只能将数据移动一位</li>
+</ul>
+<p>希尔排序通过将比较的全部元素分为几个区域来提升插入排序的性能。<strong>这样可以让一个元素可以一次性地朝最终位置前进一大步。</strong>然后算法再取越来越小的步长进行排序，算法的最后一步就是普通的插入排序，但是到了这步，需排序的数据几乎是已排好的了（此时插入排序较快）。</p>
+<p>假设有一个很小的数据在一个已按升序排好序的数组的末端。如果用复杂度为O(n^2 )的排序（冒泡排序或直接插入排序），可能会进行n次的比较和交换才能将该数据移至正确位置。而希尔排序会用较大的步长移动数据，所以小数据只需进行少数比较和交换即可到正确位置。</p>
+<p>以23, 10, 4, 1的步长序列进行希尔排序：<img src="../img/希尔.gif" alt="希尔.gif"></p>
+<p><strong>希尔排序是不稳定的排序算法，虽然一次插入排序是稳定的，不会改变相同元素的相对顺序，但在不同的插入排序过程中，相同的元素可能在各自的插入排序中移动，最后其稳定性就会被打乱。</strong></p>
+<p>比如序列：{ 3, 5, 10, 8, 7, 2, 8, 1, 20, 6 }，h=2时分成两个子序列 { 3, 10, 7, 8, 20 } 和  { 5, 8, 2, 1, 6 } ，未排序之前第二个子序列中的8在前面，现在对两个子序列进行插入排序，得到 { 3, 7, 8, 10, 20 } 和 { 1, 2, 5, 6, 8 } ，即 { 3, 1, 7, 2, 8, 5, 10, 6, 20, 8 } ，两个8的相对次序发生了改变。</p>
+<hr>
+<h4 id="4、归并排序"><a href="#4、归并排序" class="headerlink" title="4、归并排序"></a>4、归并排序</h4><p>归并排序是创建在归并操作上的一种有效的排序算法，效率为O(nlogn)，1945年由冯·诺伊曼首次提出。</p>
+<p>　　归并排序的实现分为递归实现与非递归(迭代)实现。递归实现的归并排序是算法设计中分治策略的典型应用，我们将一个大问题分割成小问题分别解决，然后用所有小问题的答案来解决整个大问题。非递归(迭代)实现的归并排序首先进行是两两归并，然后四四归并，然后是八八归并，一直下去直到归并了整个数组。</p>
+<p>　　归并排序算法主要依赖归并(Merge)操作。归并操作指的是将两个已经排序的序列合并成一个序列的操作,归并操作步骤如下：</p>
+<ul>
+<li>申请空间，使其大小为两个已经排序序列之和，该空间用来存放合并后的序列</li>
+<li>设定两个指针，最初位置分别为两个已经排序序列的起始位置</li>
+<li>比较两个指针所指向的元素，选择相对小的元素放入到合并空间，并移动指针到下一位置</li>
+<li>重复步骤3直到某一指针到达序列尾</li>
+<li>将另一序列剩下的所有元素直接复制到合并序列尾</li>
+</ul>
+<p><img src="../img/归并1.gif" alt="归并1.gif"></p>
+<p><img src="../img/归并2.gif" alt="归并2.gif"></p>
+<hr>
+<h4 id="5、堆排序"><a href="#5、堆排序" class="headerlink" title="5、堆排序"></a>5、堆排序</h4><p>堆排序是指利用堆这种数据结构所设计的一种排序算法。堆是一个近似完全二叉树的结构（通常堆是通过一维数组来实现的），并同时满足堆的性质：即子结点的键值总是小于（或者大于）它的父节点。</p>
+<p>　　我们可以很容易的定义堆排序的过程：</p>
+<ul>
+<li>创建一个堆</li>
+<li>把堆顶元素(最大值)和堆尾元素互换</li>
+<li>把堆的尺寸缩小1，并调用heapify(A, 0)从新的堆顶元素开始进行堆调整</li>
+<li>重复步骤2，直到堆的尺寸为1</li>
+</ul>
+<p><img src="../img/堆排.gif" alt="堆排.gif"></p>
+<p>动画中在排序过程之前简单的表现了创建堆的过程以及堆的逻辑结构。</p>
+<p>　　堆排序是不稳定的排序算法，不稳定发生在堆顶元素与A[i]交换的时刻。</p>
+<p>　　比如序列：{ 9, 5, 7, 5 }，堆顶元素是9，堆排序下一步将9和第二个5进行交换，得到序列 { 5, 5, 7, 9 }，再进行堆调整得到{ 7, 5, 5, 9 }，重复之前的操作最后得到{ 5, 5, 7, 9 }从而改变了两个5的相对次序。</p>
+<hr>
+<h4 id="6、快速排序"><a href="#6、快速排序" class="headerlink" title="6、快速排序"></a>6、快速排序</h4><p>快速排序是由东尼·霍尔所发展的一种排序算法。在平均状况下，排序n个元素要O(nlogn)次比较。在最坏状况下则需要O(n^2)次比较，但这种状况并不常见。事实上，快速排序通常明显比其他O(nlogn)算法更快，因为它的内部循环可以在大部分的架构上很有效率地被实现出来。</p>
+<p>　　快速排序使用分治策略(Divide and Conquer)来把一个序列分为两个子序列。步骤为：</p>
+<ul>
+<li>从序列中挑出一个元素，作为”基准”(pivot).</li>
+<li>把所有比基准值小的元素放在基准前面，所有比基准值大的元素放在基准的后面（相同的数可以到任一边），这个称为分区(partition)操作。</li>
+<li>对每个分区递归地进行步骤1~3，递归的结束条件是序列的大小是0或1，这时整体已经被排好序了。</li>
+</ul>
+<p><img src="../img/快排.gif" alt="快排.gif"></p>
+<p>　快速排序是不稳定的排序算法，不稳定发生在基准元素与A[tail+1]交换的时刻。</p>
+<p>　　比如序列：{ 1, 3, 4, 2, 8, 9, 8, 7, 5 }，基准元素是5，一次划分操作后5要和第一个8进行交换，从而改变了两个元素8的相对次序。</p>
+<hr>
+<h4 id="7、计数排序"><a href="#7、计数排序" class="headerlink" title="7、计数排序"></a>7、计数排序</h4><p>计数排序用到一个额外的计数数组C，根据数组C来将原数组A中的元素排到正确的位置。</p>
+<p>　　通俗地理解，例如有10个年龄不同的人，假如统计出有8个人的年龄不比小明大（即小于等于小明的年龄，这里也包括了小明），那么小明的年龄就排在第8位，通过这种思想可以确定每个人的位置，也就排好了序。当然，年龄一样时需要特殊处理（保证稳定性），通过反向填充目标数组，填充完毕后将对应的数字统计递减，可以确保计数排序的稳定性。算法的步骤如下：</p>
+<ul>
+<li>统计数组A中每个值A[i]出现的次数，存入C[A[i]]</li>
+<li>从前向后，使数组C中的每个值等于其与前一项相加，这样数组C[A[i]]就代表了数组A中小于等于A[i]的元素个数</li>
+<li>反向填充目标数组B：将数组元素A[i]放在数组B的第C[A[i]]项（即B[C[A[i]] - 1]），每放一个元素就将C[A[i]]递减</li>
+</ul>
+<p><img src="../img/计数.gif" alt="计数.gif"></p>
+<p>计数排序的时间复杂度和空间复杂度取决于数组A的数据范围(等于A中元素的最大值与最小值的差加上1)，因此对于数据范围很大的数组，计数排序需要大量时间和内存。</p>
+<p>　　例如：对0到99之间的数字进行排序，计数排序是最好的算法，然而计数排序并不适合按字母顺序排序人名，将计数排序用在基数排序算法中，能够更有效的排序数据范围很大的数组。</p>
+<hr>
+<h4 id="8、基数排序"><a href="#8、基数排序" class="headerlink" title="8、基数排序"></a>8、基数排序</h4><p>　基数排序的发明可以追溯到1887年赫尔曼·何乐礼在打孔卡片制表机上的贡献。它是这样实现的：将所有待比较正整数统一为同样的数位长度，数位较短的数前面补零。然后，从最低位开始进行基数为10的计数排序，一直到最高位计数排序完后，数列就变成一个有序序列（利用了计数排序的稳定性）。</p>
+<p><img src="../img/基数.jpg" alt="基数.jpg"></p>
+<p>基数排序的时间复杂度是O(n * dn)，其中n是排序元素个数，dn是数字位数。这个时间复杂度不一定优于O(n log n)，dn的大小取决于数字位的选择（比如比特位数），和待排序数据所属数据类型的全集的大小；dn决定了进行多少轮处理，而n是每轮处理的操作数目。</p>
+<p>　　如果考虑和比较排序进行对照，基数排序的形式复杂度虽然不一定更小，但由于不进行比较，因此其基本操作的代价较小，而且如果适当的选择基数，dn一般不大于log n，所以基数排序一般要快过基于比较的排序，比如快速排序。由于整数也可以表达字符串（比如名字或日期）和特定格式的浮点数，所以基数排序并不是只能用于整数排序。</p>
+<hr>
+<h4 id="9、桶排序"><a href="#9、桶排序" class="headerlink" title="9、桶排序"></a>9、桶排序</h4><p>桶排序也叫箱排序。工作的原理是将数组元素映射到有限数量个桶里，利用计数排序可以定位桶的边界，每个桶再各自进行桶内排序（使用其它排序算法或以递归方式继续使用桶排序）。</p>
+<p>桶排序不是比较排序，不受到O(nlogn)下限的影响，它是鸽巢排序的一种归纳结果，当所要排序的数组值分散均匀的时候，桶排序拥有线性的时间复杂度</p>
+<p><img src="../img/桶排.jpg" alt="桶排.jpg"></p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/HenryBalthier.github.io/2017/07/15/各种各样的编程语言特点/">
+        各种各样的编程语言特点 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+
+
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By Yu Fangheng. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/HenryBalthier.github.io/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/HenryBalthier.github.io/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/HenryBalthier.github.io/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/HenryBalthier.github.io/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/HenryBalthier.github.io/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      (function(){
+        console.log('font');
+        var getCss = function(path) {
+          var head = document.getElementsByTagName('head')[0];
+          link = document.createElement('link');
+          link.href = path;
+          link.rel = 'stylesheet';
+          link.type = 'text/css';
+          head.appendChild(link);
+        };
+        getCss('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+        getCss('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
+      })();
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+</body>
+</html>

@@ -177,7 +177,8 @@
         <div class="col-md-8 col-md-offset-2">
       		<h4 id="主要内容："><a href="#主要内容：" class="headerlink" title="主要内容："></a>主要内容：</h4><a id="more"></a>
 <hr>
-<h2 id="2、网络"><a href="#2、网络" class="headerlink" title="2、网络"></a>2、网络</h2><h4 id="2-1、Iptables"><a href="#2-1、Iptables" class="headerlink" title="2.1、Iptables"></a>2.1、Iptables</h4><p>　　设置网络地址：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /etc/sysconfig/network-scripts/ifcfg-eth0</div></pre></td></tr></table></figure></p>
+<h2 id="2、网络"><a href="#2、网络" class="headerlink" title="2、网络"></a>2、网络</h2><h4 id="2-1、Iptables和IP设置"><a href="#2-1、Iptables和IP设置" class="headerlink" title="2.1、Iptables和IP设置"></a>2.1、Iptables和IP设置</h4><p>Iptables是什么?这是一个应用框架，它允许用户自己为系统建立一个强大的防火墙。因此，要提升安全防护能力，就要学习怎样一个好的防火墙以及怎样使用Iptables框架。</p>
+<p>　　设置网络地址：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /etc/sysconfig/network-scripts/ifcfg-eth0</div></pre></td></tr></table></figure></p>
 <p>　　你将会看到：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">DEVICE=eth0</div><div class="line">BOOTPROTO=statics</div><div class="line">HWADDR=00:0C:29:13:D1:6F</div><div class="line">ONBOOT=yes</div><div class="line">TYPE=Ethernet</div><div class="line">IPADDR=192.168.0.212</div><div class="line">NETMASK=255.255.255.0</div></pre></td></tr></table></figure>
 <p>BOOTPROTO=statics :表示使用静太IP地址。</p>

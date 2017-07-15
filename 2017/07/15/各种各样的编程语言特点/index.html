@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>各种各样的编程语言特点 | 方糖~</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="方糖~">
+    <meta name="author" content="Yu Fangheng">
+    <meta name="description" content="Henry's Blog~" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/HenryBalthier.github.io/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="方糖~" type="application/atom+xml">
+    <link rel="stylesheet" href="/HenryBalthier.github.io/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/HenryBalthier.github.io/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/HenryBalthier.github.io/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/HenryBalthier.github.io/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/HenryBalthier.github.io/js/html5shiv.min.js"></script>
+    <script src="/HenryBalthier.github.io/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/HenryBalthier.github.io/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/HenryBalthier.github.io/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/HenryBalthier.github.io/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="/" target="_BLANK" class="animsition-link">AAA</a></li>
+                    
+                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">BBB</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            <li><a href="/HenryBalthier.github.io/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/HenryBalthier.github.io/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">方糖~</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                            
+                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                            
+                            
+                            <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2017-07-15T12:29:26.000Z" itemprop="datePublished">
+          2017-07-15
+      </time>
+    
+    
+    | 
+    <a href='/HenryBalthier.github.io/tags/Python/'>Python</a>
+    
+    
+</span>
+                <h1>各种各样的编程语言特点</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h4 id="主要内容："><a href="#主要内容：" class="headerlink" title="主要内容："></a>主要内容：</h4><ul>
+<li>脚本语言</li>
+<li>解释器</li>
+<li>动态语言</li>
+<li>面向对象</li>
+</ul>
+<a id="more"></a>
+<hr>
+<h4 id="1、脚本语言"><a href="#1、脚本语言" class="headerlink" title="1、脚本语言"></a>1、脚本语言</h4><p>1、脚本语言(JavaScript，VBscript等)介于HTML和C,C++,Java,C#等编程语言之间。HTML通常用于格式化和链接文本。而编程语言通常用于向机器发出一系列复杂的指令。</p>
+<p>2、脚本语言与编程语言也有很多相似地方，其函数与编程语言比较相像一些,其也涉及到变量。与编程语言之间最大的区别是编程语言的语法和规则更为严格和复杂一些.</p>
+<p>3、与程序代码的关系：脚本也是一种语言，其同样由程序代码组成。</p>
+<p>4、<strong>脚本语言是一种解释性的语言</strong>,例如Python、vbscript,javascript,installshield script,ActionScript等等,它不象c\c++等可以编译成二进制代码,以可执行文件的形式存在，脚本语言不需要编译，可以直接用，由<strong>解释器</strong>来负责解释。</p>
+<p>5、脚本语言一般都是以文本形式存在,类似于一种命令。</p>
+<p>举个例子说：如果建立了一个程序,叫aaa.exe，可以打开.aa为扩展名的文件，为.aa文件的编写指定了一套规则(语法)，当别人编写了.aa文件后，自己的程序用这种规则来理解编写人的意图，并作出回应，<strong>那么，这一套规则就是脚本语言</strong>。</p>
+<p>6、相对于编译型计算机编程语言：用脚本语言开发的程序在执行时，由其所对应的解释器（或称虚拟机）解释执行。系统程序设计语言是被预先编译成机器语言而执行的。脚本语言的主要特征是：程序代码即是脚本程序，亦是最终可执行文件。脚本语言可分为独立型和嵌入型，独立型脚本语言在其执行时完全依赖于解释器，而嵌入型脚本语言通常在编程语言中（如C，C++，VB，Java等）被嵌入使用。</p>
+<p>7、和系统程序设计语言相比：<strong>不同是脚本语言是被解释而系统程序设计语言是被编译</strong>。被解释的语言由于没有编译时间而提供快速的转换，通过允许用户运行时编写应用程序，而不需要耗时的编译/打包过程。解释器使应用程序更加灵活，脚本语言的代码能够被实时生成和执行。脚本语言通常都有简单、易学、易用的特性，目的就是希望能让程序设计师快速完成程序的编写工作。</p>
+<hr>
+<h4 id="2、解释器"><a href="#2、解释器" class="headerlink" title="2、解释器"></a>2、解释器</h4><p>解释器（英语：Interpreter），又译为直译器，是一种电脑程序，能够把高级编程语言一行一行直接转译运行。解释器不会一次把整个程序转译出来，只像一位“中间人”，每次运行程序时都要先转成另一种语言再作运行，因此解释器的程序运行速度比较缓慢。它每转译一行程序叙述就立刻运行，然后再转译下一行，再运行，如此不停地进行下去。</p>
+<p>解释器运行程序的方法有：</p>
+<p>1.直接运行高级编程语言 （如 Shell 自带的解释器）</p>
+<p>2.转换高级编程语言码到一些有效率的字节码 (Bytecode)，并运行这些字节码</p>
+<p>3.以解释器包含的编译器对高级语言编译，并指示处理器运行编译后的程序 (例如:JIT)</p>
+<p>Perl，Python，MATLAB，与Ruby是属于第二种方法，而UCSD Pascal则是属于第三种方式。在转译的过程中，这组高级语言所写成的程序仍然维持在源代码的格式（或某种中继语言的格式），而程序本身所指涉的动作或行为则由解释器来表现。</p>
+<p>使用解释器来运行程序会比直接运行编译过的机器码来得慢，但是相对的这个直译的行为会比编译再运行来得快。这在程序开发的雏型化阶段和只是撰写试验性的代码时尤其来得重要，因为这个“编辑-直译-除错”的循环通常比“编辑-编译-运行-除错”的循环来得省时许多。</p>
+<p>在解释器上运行程序比直接运行编译过的代码来得慢，是因为解释器每次都必须去分析并转译它所运行到的程序行，而编译过的程序就只是直接运行。这个在运行时的分析被称为”直译式的成本”。在解释器中，变量的访问也是比较慢的，因为每次要访问变量的时候它都必须找出该变量实际存储的位置，而不像编译过的程序在编译的时候就决定好了变量的位置了。</p>
+<p><strong>解释器是一条一条的解释执行源语言。比如php，postscritp，javascript就是典型的解释性语言。</strong></p>
+<p><strong>编译器是把源代码整个编译成目标代码，执行时不在需要编译器，直接在支持目标代码的平台上运行，这样执行效率比解释执行快很多。比如C语言代码被编译成二进制代码（exe程序），在windows平台上执行。</strong></p>
+<hr>
+<h4 id="静态语言和动态语言"><a href="#静态语言和动态语言" class="headerlink" title="静态语言和动态语言"></a>静态语言和动态语言</h4><p>动态语言，是指程序在运行时可以改变其结构：新的函数可以被引进，已有的函数可以被删除等在结构上的变化，类型的检查是在运行时做的，优点为方便阅读，清晰明了，缺点为不方便调试。</p>
+<p>有三个名词容易混淆：</p>
+<ul>
+<li>Dynamic Programming Language (动态语言或动态编程语言)</li>
+<li>Dynamically Typed Language (动态类型语言)</li>
+<li>Statically Typed Language (静态类型语言)</li>
+</ul>
+<p>而静态类型语言的类型判断是在运行前判断（如编译阶段），比如C#、java就是静态类型语言，静态类型语言为了达到多态会采取一些类型鉴别手段，如继承、接口，而动态类型语言却不需要，所以一般动态语言都会采用dynamic typing，常出现于脚本语言中.需要明确说明一点，那就是，是不是动态类型语言与这门语言是不是类型安全的完全不相干的，不要将它们联系在一起！</p>
+<p><strong>优缺点</strong></p>
+<p>静态类型语言的主要优点在于其结构非常规范，便于调试，方便类型安全；缺点是为此需要写更多的类型相关代码，导致不便于阅读、不清晰明了。动态类型语言的优点在于方便阅读，不需要写非常多的类型相关的代码；缺点自然就是不方便调试，命名不规范时会造成读不懂，不利于理解等。顺便说一下，现在有这样一种趋势，那就是合并动态类型与静态类型在一种语言中，这样可以在必要的时候取长补短，Boo就是一个很好的试验性例子.</p>
+<p><strong>静态语言（强类型语言）</strong></p>
+<p>静态语言是在编译时变量的数据类型即可确定的语言，多数静态类型语言要求在使用变量之前必须声明数据类型。<br>例如：C++、Java、Delphi、C#等。</p>
+<p><strong>动态语言（弱类型语言）</strong></p>
+<p>动态语言是在运行时确定数据类型的语言。变量使用之前不需要类型声明，通常变量的类型是被赋值的那个值的类型。<br>例如PHP/ASP/Ruby/Python/Perl/ABAP/SQL/JavaScript/Unix Shell等等。</p>
+<p><strong>强类型定义语言</strong></p>
+<p>强制数据类型定义的语言。也就是说，一旦一个变量被指定了某个数据类型，如果不经过强制转换，那么它就永远是这个数据类型了。举个例子：如果你定义了一个整型变量a,那么程序根本不可能将a当作字符串类型处理。强类型定义语言是类型安全的语言。</p>
+<p><strong>弱类型定义语言</strong></p>
+<p>数据类型可以被忽略的语言。它与强类型定义语言相反, 一个变量可以赋不同数据类型的值。强类型定义语言在速度上可能略逊色于弱类型定义语言，但是强类型定义语言带来的严谨性能够有效的避免许多错误。</p>
+<hr>
+<h4 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h4><p>面向对象编程——Object Oriented Programming，简称OOP，是一种程序设计思想。OOP把对象作为程序的基本单元，一个对象包含了数据和操作数据的函数。</p>
+<p>面向过程的程序设计把计算机程序视为一系列的命令集合，即一组函数的顺序执行。为了简化程序设计，面向过程把函数继续切分为子函数，即把大块函数通过切割成小块函数来降低系统的复杂度。</p>
+<p>而面向对象的程序设计把计算机程序视为一组对象的集合，而每个对象都可以接收其他对象发过来的消息，并处理这些消息，计算机程序的执行就是一系列消息在各个对象之间传递。</p>
+<p>在Python中，所有数据类型都可以视为对象，当然也可以自定义对象。自定义的对象数据类型就是面向对象中的类（Class）的概念。</p>
+<p>我们以一个例子来说明面向过程和面向对象在程序流程上的不同之处。</p>
+<p>假设我们要处理学生的成绩表，为了表示一个学生的成绩，面向过程的程序可以用一个dict表示：</p>
+<pre><code>std1 = { &apos;name&apos;: &apos;Michael&apos;, &apos;score&apos;: 98 }
+std2 = { &apos;name&apos;: &apos;Bob&apos;, &apos;score&apos;: 81 }
+</code></pre><p>而处理学生成绩可以通过函数实现，比如打印学生的成绩：</p>
+<pre><code>def print_score(std):
+    print(&apos;%s: %s&apos; % (std[&apos;name&apos;], std[&apos;score&apos;]))
+</code></pre><p>如果采用面向对象的程序设计思想，我们首选思考的不是程序的执行流程，而是Student这种数据类型应该被视为一个对象，这个对象拥有name和score这两个属性（Property）。如果要打印一个学生的成绩，首先必须创建出这个学生对应的对象，然后，给对象发一个print_score消息，让对象自己把自己的数据打印出来。</p>
+<p>面向对象的三大特点<strong>（封装，继承，多态）</strong>缺一不可。通常“基于对象”是使用对象，但是无法<strong>利用现有的对象模板产生新的对象类型</strong>，继而产生新的对象，也就是说“基于对象”没有继承的特点。而<strong>“多态”</strong>表示为父类类型的子类对象实例，没有了继承的概念也就无从谈论“多态”。很多流行技术都是基于对象的，它们使用一些<strong>封装</strong>好的对象，调用对象的方法，设置对象的属性。但是它们无法让程序员派生新对象类型。他们只能使用现有对象的方法和属性。所以当你判断一个新的技术是否是面向对象的时候，通常可以使用后两个特性来加以判断。“面向对象”和“基于对象”都实现了“封装”的概念，但是面向对象实现了“继承和多态”，而“基于对象”没有实现这些，的确很饶口。</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/HenryBalthier.github.io/2017/07/15/常用排序方法总结/" style="float: left;">
+        ← 常用排序方法总结
+    </a>
+    
+    
+    <a class="pull-right" href="/HenryBalthier.github.io/2017/07/15/Linux：7、安装/">
+        Linux：7、安装 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+
+
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By Yu Fangheng. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/HenryBalthier.github.io/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/HenryBalthier.github.io/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/HenryBalthier.github.io/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/HenryBalthier.github.io/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/HenryBalthier.github.io/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      (function(){
+        console.log('font');
+        var getCss = function(path) {
+          var head = document.getElementsByTagName('head')[0];
+          link = document.createElement('link');
+          link.href = path;
+          link.rel = 'stylesheet';
+          link.type = 'text/css';
+          head.appendChild(link);
+        };
+        getCss('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+        getCss('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
+      })();
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+</body>
+</html>
