@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Linux 1 | 方糖~</title>
+  <title>Linux：1、基础操作 | 方糖~</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -165,12 +165,65 @@
           2017-07-15
       </time>
     
+    
+    | 
+    <a href='/HenryBalthier.github.io/tags/Linux/'>Linux</a>
+    
+    
 </span>
-                <h1>Linux 1</h1>
+                <h1>Linux：1、基础操作</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		
+      		<h4 id="主要内容："><a href="#主要内容：" class="headerlink" title="主要内容："></a>主要内容：</h4><ul>
+<li>1.1、权限修改</li>
+<li>1.2、查看日志</li>
+<li>1.3、make</li>
+<li>etc</li>
+</ul>
+<h4 id="状态："><a href="#状态：" class="headerlink" title="状态："></a>状态：</h4><p>待施工：待续<br><a id="more"></a></p>
+<h2 id="1、基础操作"><a href="#1、基础操作" class="headerlink" title="1、基础操作"></a>1、基础操作</h2><h5 id="1-1、权限修改"><a href="#1-1、权限修改" class="headerlink" title="1.1、权限修改"></a>1.1、权限修改</h5><p>三种指令：</p>
+<ul>
+<li>chmod</li>
+<li>chgrp</li>
+<li>chown</li>
+</ul>
+<p>权限类型：</p>
+<ul>
+<li>r = 4</li>
+<li>w = 2</li>
+<li>x = 1</li>
+</ul>
+<p>文件类型：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">drwxr-xr-x 1 Dell 197608      0 6月   2 19:24 node_modules/</div></pre></td></tr></table></figure></p>
+<p>[dir]　[owner]　[group]　[others]</p>
+<h5 id="1-2、查看日志"><a href="#1-2、查看日志" class="headerlink" title="1.2、查看日志"></a>1.2、查看日志</h5><p>　　<a href="http://blog.csdn.net/shandianling/article/details/8112611" target="_blank" rel="external">如何实时查看linux下的日志</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div></pre></td><td class="code"><pre><div class="line">watch -d -n 1 cat /var/<span class="built_in">log</span>/messages</div><div class="line">``` </div><div class="line">　　-d表示高亮不同的地方，-n表示多少秒刷新一次。</div><div class="line"></div><div class="line">　　该指令，不会直接返回命令行，而是实时打印日志文件中新增加的内容，这一特性，对于查看日志是非常有效的。如果想终止输出，按 Ctrl+C 即可。</div><div class="line"></div><div class="line">　　在Linux系统中，有三个主要的日志子系统：</div><div class="line"></div><div class="line">　　**连接时间日志**--由多个程序执行，把纪录写入到/var/<span class="built_in">log</span>/wtmp和/var/run/utmp，login等程序更新wtmp和utmp文件，使系统管理员能够跟踪谁在何时登录到系统。</div><div class="line"></div><div class="line">　　**进程统计**--由系统内核执行。当一个进程终止时，为每个进程往进程统计文件（pacct或acct）中写一个纪录。进程统计的目的是为系统中的基本服务提供命令使用统计。</div><div class="line"></div><div class="line">　　**错误日志**--由syslogd（8）执行。各种系统守护进程、用户程序和内核通过syslog（3）向文件/var/<span class="built_in">log</span>/messages报告值得注意的事件。另外有许多UNIX程序创建日志。像HTTP和FTP这样提供网络服务的服务器也保持详细的日志。</div><div class="line"><span class="comment">##### 1.3、make</span></div><div class="line"></div><div class="line">　　在开发一个系统时，一般是将一个系统分成几个模块，这样做提高了系统的可维护性，但由于各个模块间不可避免存在关联，所以当一个模块改动后，其他模块也许会有所更新，当然对小系统来说，手工编译连接是没问题，但是如果是一个大系统，存在很多个模块，那么手工编译的方法就不适用了。为此，在Linux系统中，专门提供了一个make命令来自动维护目标文件，与手工编译和连接相比，make命令的优点在于他只更新修改过的文件（在linux中，一个文件被创建或更新后有一个最后修改时间，make命令就是通过这个最后修改时间来判断此文件是否被修改），而对没修改的文件则置之不理，并且make命令不会漏掉一个需要更新的文件。</div><div class="line"></div><div class="line">　　文件和文件间或模块或模块间有可能存在倚赖关系，make命令也是依据这种依赖关系来进行维护的，所以我们有必要了解什么是依赖关系；make命令当然不会自己知道这些依赖关系，而需要程序员将这些依赖关系写入一个叫makefile的文件中。Makefile文件中包含着一些目标，通常目标就是文件名，对每一个目标，提供了实现这个目标的一组命令以及和这个目标有依赖关系的其他目标或文件名。</div><div class="line"></div><div class="line">　　即make和makefile的关系是：make是一个命令工具，是一个解释makefile中指令的命令工具，一般来说，大多数的IDE都有这个命令。</div><div class="line"></div><div class="line">**make**</div><div class="line"></div><div class="line">　　根据Makefile文件编译源代码、连接、生成目标文件、可执行文件。 </div><div class="line"></div><div class="line">**make clean** </div><div class="line"></div><div class="line">　　清除上次的make命令所产生的object文件（后缀为“.o”的文件）及可执行文件。 </div><div class="line"></div><div class="line">**make install** </div><div class="line"></div><div class="line">　　将编译成功的可执行文件安装到系统目录中，一般为/usr/<span class="built_in">local</span>/bin目录。 </div><div class="line"></div><div class="line">**make dist** </div><div class="line"></div><div class="line">　　产生发布软件包文件（即distribution package）。这个命令将会将可执行文件及相关文件打包成一个tar.gz压缩的文件用来作为发布软件的软件包。 它会在当前目录下生成一个名字类似“PACKAGE-VERSION.tar.gz”的文件。PACKAGE和VERSION,是我们在configure.in中定义的AM_INIT_AUTOMAKE（PACKAGE, VERSION）。 </div><div class="line"></div><div class="line">**make distcheck**</div><div class="line"></div><div class="line"></div><div class="line">　　生成发布软件包并对其进行测试检查，以确定发布包的正确性。这个操作将自动把压缩包文件解开，然后执行configure命令，并且执行make,来确认编译不出现错误，最后提示你软件包已经准备好，可以发布了。 </div><div class="line"></div><div class="line">**make distclean**</div><div class="line"></div><div class="line">　　类似make clean,但同时也将configure生成的文件全部删除掉，包括Makefile文件。 </div><div class="line"></div><div class="line">**makefile** </div><div class="line"></div><div class="line">　　makefile定义了一系列的规则来指定，哪些文件需要先编译，哪些文件需要后编译，哪些文件需要重新编译，甚至于进行更复杂的功能操作，因为 makefile就像一个Shell脚本一样，其中也可以执行操作系统的命令。makefile带来的好处就是--“自动化编译”,一旦写好，只需要一个make命令，整个工程完全自动编译，极大的提高了软件开发的效率。</div><div class="line"></div><div class="line"><span class="comment">##### 1.4、awk</span></div><div class="line">　　awk是一个强大的文本分析工具，相对于grep的查找，sed的编辑，awk在其对数据分析并生成报告时，显得尤为强大。简单来说awk就是把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理。</div><div class="line"></div><div class="line">　　awk有3个不同版本: awk、nawk和gawk，未作特别说明，一般指gawk，gawk 是 AWK 的 GNU 版本。</div><div class="line"></div><div class="line">``` bash</div><div class="line">awk <span class="string">'&#123;pattern + action&#125;'</span> &#123;filenames&#125;</div><div class="line">``` </div><div class="line">　　awk语言的最基本功能是在文件或者字符串中基于指定规则浏览和抽取信息，awk抽取信息后，才能进行其他文本操作。完整的awk脚本通常用来格式化文本文件中的信息。通常，awk是以文件的一行为处理单位的。awk每接收文件的一行，然后执行相应的命令，来处理文本。</div><div class="line"></div><div class="line">　　有三种方式调用awk：</div><div class="line"></div><div class="line">``` bash</div><div class="line">1.命令行方式</div><div class="line">awk [-F  field-separator]  <span class="string">'commands'</span>  input-file(s)</div><div class="line">其中，commands 是真正awk命令，[-F域分隔符]是可选的。 input-file(s) 是待处理的文件。</div><div class="line">在awk中，文件的每一行中，由域分隔符分开的每一项称为一个域。通常，在不指名-F域分隔符的情况下，默认的域分隔符是空格。</div><div class="line"></div><div class="line">2.shell脚本方式</div><div class="line">将所有的awk命令插入一个文件，并使awk程序可执行，然后awk命令解释器作为脚本的首行，一遍通过键入脚本名称来调用。</div><div class="line">相当于shell脚本首行的：<span class="comment">#!/bin/sh</span></div><div class="line">可以换成：<span class="comment">#!/bin/awk</span></div><div class="line"></div><div class="line">3.将所有的awk命令插入一个单独文件，然后调用：</div><div class="line">awk -f awk-script-file input-file(s)</div><div class="line">其中，-f选项加载awk-script-file中的awk脚本，input-file(s)跟上面的是一样的。</div><div class="line">``` </div><div class="line"></div><div class="line">　　awk是行处理器: 相比较屏幕处理的优点，在处理庞大文件时不会出现内存溢出或是处理缓慢的问题，通常用来格式化文本信息</div><div class="line">　　awk处理过程: 依次对每一行进行处理，然后输出</div><div class="line"></div><div class="line"><span class="comment">##### 1.5、sed</span></div><div class="line"></div><div class="line">　　sed是一个很好的文件处理工具，本身是一个管道命令，主要是以行为单位进行处理，可以将数据行进行替换、删除、新增、选取等特定工作，下面先了解一下sed的用法</div><div class="line">　　sed命令行格式为：</div><div class="line">``` bash</div><div class="line">sed [-nefri] ‘<span class="built_in">command</span>’ 输入文本</div></pre></td></tr></table></figure></p>
+<p><strong>常用选项：</strong></p>
+<p>　　-n∶使用安静(silent)模式。在一般 sed 的用法中，所有来自 STDIN的资料一般都会被列出到萤幕上。但如果加上 -n 参数后，则只有经过sed 特殊处理的那一行(或者动作)才会被列出来。</p>
+<p>　　-e∶直接在指令列模式上进行 sed 的动作编辑；</p>
+<p>　　-f∶直接将 sed 的动作写在一个档案内， -f filename 则可以执行 filename 内的sed 动作；</p>
+<p>　　-r∶sed 的动作支援的是延伸型正规表示法的语法。(预设是基础正规表示法语法)</p>
+<p>　　-i∶直接修改读取的档案内容，而不是由萤幕输出。</p>
+<p><strong>常用命令：</strong><br>　　a∶新增，a 的后面可以接字串，而这些字串会在新的一行出现(目前的下一行)；</p>
+<p>　　c∶取代，c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行！</p>
+<p>　　d∶删除，因为是删除啊，所以d 后面通常不接任何咚咚；</p>
+<p>　　i∶插入，i 的后面可以接字串，而这些字串会在新的一行出现(目前的上一行)；</p>
+<p>　　p∶列印，亦即将某个选择的资料印出。通常p 会与参数 sed -n 一起运作；</p>
+<p>　　s∶取代，可以直接进行取代的工作哩！通常这个s 的动作可以搭配正规表示法！例如 1,20s/old/new/g 就是啦！</p>
+<h5 id="1-6、ftp"><a href="#1-6、ftp" class="headerlink" title="1.6、ftp"></a>1.6、ftp</h5><p><a href="http://www.cnblogs.com/thinksasa/archive/2013/02/28/2937066.html" target="_blank" rel="external">linux下vsftpd的安装与配置说明</a><br><strong>使用 FTP 下载文件</strong></p>
+<p>　　在下载一个文件之前，我们首先需要使用lcd命令设定本地接受目录位置。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt; lcd /home/user/yourdirectoryname</div><div class="line">``` </div><div class="line">　　如果你不指定下载目录，文件将会下载到你登录 FTP 时候的工作目录。</div><div class="line"></div><div class="line">　　现在，我们可以使用命令 get 来下载文件，比如：</div><div class="line">``` bash</div><div class="line">&gt; get file</div></pre></td></tr></table></figure></p>
+<p>　　文件会保存在使用lcd命令设置的目录位置。</p>
+<p><strong>使用 FTP 上传文件</strong></p>
+<p>　　使用 put命令上传文件：</p>
+<pre><code class="bash">&gt; put file
+</code></pre>
+<p>　　当文件不再当前本地目录下的时候，可以使用绝对路径：</p>
+<pre><code class="bash">&gt; put /path/file
+</code></pre>
+<p>　　同样，可以上传多个文件：</p>
+<pre><code class="bash">&gt; mput *.xls
+</code></pre>
+<h5 id="1-7、文本处理"><a href="#1-7、文本处理" class="headerlink" title="1.7、文本处理"></a>1.7、文本处理</h5><p>待续</p>
+
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
