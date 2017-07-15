@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>如何通过Hexo搭建一个属于自己的Blog~ | 方糖~</title>
+  <title>Code 1 | 方糖~</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -161,70 +161,29 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2017-06-05T06:37:11.000Z" itemprop="datePublished">
-          2017-06-05
+      <time datetime="2017-07-15T08:29:26.000Z" itemprop="datePublished">
+          2017-07-15
       </time>
     
-    
-    | 
-    <a href='/HenryBalthier.github.io/tags/杂/'>杂</a>
-    
-    
 </span>
-                <h1>如何通过Hexo搭建一个属于自己的Blog~</h1>
+                <h1>Code 1</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<h4 id="主要内容："><a href="#主要内容：" class="headerlink" title="主要内容："></a>主要内容：</h4><ul>
-<li>如何搭建Hexo环境</li>
-<li>如何设置主题</li>
-<li>如何上传文章</li>
-</ul>
-<a id="more"></a>
-<hr>
-<h2 id="1、windows如何搭建一个运行Blog的环境"><a href="#1、windows如何搭建一个运行Blog的环境" class="headerlink" title="1、windows如何搭建一个运行Blog的环境"></a>1、windows如何搭建一个运行Blog的环境</h2><h4 id="参考网站："><a href="#参考网站：" class="headerlink" title="参考网站："></a>参考网站：</h4><ul>
-<li><a href="http://www.jianshu.com/p/465830080ea9" target="_blank" rel="external">HEXO+Github,搭建属于自己的博客</a></li>
-<li><a href="https://segmentfault.com/a/1190000005133715" target="_blank" rel="external">如何使用 hexo＋github 搭建个人博客</a></li>
-</ul>
-<h4 id="流程简化："><a href="#流程简化：" class="headerlink" title="流程简化："></a>流程简化：</h4><p><strong>安装软件清单：</strong></p>
-<p>1、安装Node</p>
-<p>2、安装本地Git：Git bash或者别的将配置提交到Github上的软件</p>
-<p>3、申请Github，创建github page，创建blog的一个git仓库，建议生成一个ssh key</p>
-<p>4、安装Hexo：</p>
-<p><strong>配置Hexo：</strong><br>　　所需的配置文件都是在git仓库中的_config.yml文件中，直接在git bash下用vim打开即可；然后在_config.yml最下面添加连接github的仓库地址（此处建议使用ssh地址）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">	<span class="built_in">type</span>: git</div><div class="line">	repository: git@github.com:[yourGithubAccount]/[yourGithubAccount].github.io.git			</div><div class="line">	branch: master</div></pre></td></tr></table></figure></p>
-<p><strong>上传部署：</strong><br>　　本地localhost:4000预览：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s</div></pre></td></tr></table></figure></p>
-<p>　　Hexo修改后需要部署到网页可执行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo d -g</div></pre></td></tr></table></figure></p>
-<hr>
-<h2 id="2、如何设置主题"><a href="#2、如何设置主题" class="headerlink" title="2、如何设置主题"></a>2、如何设置主题</h2><h4 id="参考网站：-1"><a href="#参考网站：-1" class="headerlink" title="参考网站："></a>参考网站：</h4><ul>
-<li><a href="http://blog.csdn.net/u011904605/article/details/53792068" target="_blank" rel="external">大道至简——Hexo简洁主题推荐</a></li>
-</ul>
-<p><strong>设置：</strong></p>
-<p>1、下载主题：可以直接git clone到本地，并拷贝到blog仓库的theme目录</p>
-<p>2、在仓库主要配置文件_config.yml中将默认主题改为下载的主题目录名</p>
-<p>3、更改theme中主题的_config.yml文件，配置个人blog主题</p>
-<hr>
-<h2 id="3、如何上传文章"><a href="#3、如何上传文章" class="headerlink" title="3、如何上传文章"></a>3、如何上传文章</h2><h4 id="参考网站：-2"><a href="#参考网站：-2" class="headerlink" title="参考网站："></a>参考网站：</h4><ul>
-<li><a href="http://www.jianshu.com/p/1e402922ee32/" target="_blank" rel="external">Markdown——入门指南</a></li>
-<li><a href="http://www.appinn.com/markdown/" target="_blank" rel="external">Markdown 语法说明 (简体中文版)</a></li>
-</ul>
-<p>　　文章采用md语法，储存在目录source下，通过<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new post <span class="string">'title'</span></div></pre></td></tr></table></figure></p>
-<p>　　创建新的文章(默认为post类型)，通过<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new page <span class="string">'title'</span></div></pre></td></tr></table></figure></p>
-<p>　　创建新的页面，通过<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo d -g</div></pre></td></tr></table></figure></p>
-<p>　　进行上传部署。</p>
-<hr>
-<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><h4 id="Q-出现网页上能部署，但本地localhost-4000端口无法显示预览的问题。"><a href="#Q-出现网页上能部署，但本地localhost-4000端口无法显示预览的问题。" class="headerlink" title="Q:出现网页上能部署，但本地localhost:4000端口无法显示预览的问题。"></a>Q:出现网页上能部署，但本地localhost:4000端口无法显示预览的问题。</h4><p>A：福昕阅读器会占用本地4000端口，可以通过更改hexo的部署端口到4000以外的端口来解决。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s -p 5000</div></pre></td></tr></table></figure></p>
-<h4 id="Q-能够成功同步到github，也能成功更新网页blog，但是github上没有记录contribution的问题。"><a href="#Q-能够成功同步到github，也能成功更新网页blog，但是github上没有记录contribution的问题。" class="headerlink" title="Q:能够成功同步到github，也能成功更新网页blog，但是github上没有记录contribution的问题。"></a>Q:能够成功同步到github，也能成功更新网页blog，但是github上没有记录contribution的问题。</h4><p>A：通常是由于本地git的账号邮箱与github上存储的不一致，导致github没有将提交当作你自己的contribution，解决办法确保本地git账号邮箱与github一致再进行提交。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name <span class="string">"[yourName]"</span>//用户名</div><div class="line">git config --global user.email  <span class="string">"[yourEmail]"</span>//填写自己的邮箱</div></pre></td></tr></table></figure></p>
-<p>　　其他诸如创建github sshkey，下载hexo其他插件，theme主题自定义设置等，可以参考上述网址进行设置。</p>
-
+      		
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/HenryBalthier.github.io/2017/06/10/Learning-python-1/" style="float: left;">
-        ← Python 学习1
+    <a class="pull-left" href="/HenryBalthier.github.io/2017/07/15/Sort/" style="float: left;">
+        ← Sort
     </a>
     
+    
+    <a class="pull-right" href="/HenryBalthier.github.io/2017/07/15/Linux-1/">
+        Linux 1 →
+    </a>
     
 </nav>
 
