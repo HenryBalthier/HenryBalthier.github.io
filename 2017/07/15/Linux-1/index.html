@@ -198,6 +198,7 @@
 <p>文件类型：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">drwxr-xr-x 1 Dell 197608      0 6月   2 19:24 node_modules/</div></pre></td></tr></table></figure>
 <p>[dir]　[owner]　[group]　[others]</p>
+<hr>
 <h4 id="1-2、查看日志"><a href="#1-2、查看日志" class="headerlink" title="1.2、查看日志"></a>1.2、查看日志</h4><p>　　<a href="http://blog.csdn.net/shandianling/article/details/8112611" target="_blank" rel="external">如何实时查看linux下的日志</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">watch -d -n 1 cat /var/<span class="built_in">log</span>/messages</div></pre></td></tr></table></figure>
 <p>　　-d表示高亮不同的地方，-n表示多少秒刷新一次。</p>
@@ -206,6 +207,7 @@
 <p>　　<strong>连接时间日志</strong>–由多个程序执行，把纪录写入到/var/log/wtmp和/var/run/utmp，login等程序更新wtmp和utmp文件，使系统管理员能够跟踪谁在何时登录到系统。</p>
 <p>　　<strong>进程统计</strong>–由系统内核执行。当一个进程终止时，为每个进程往进程统计文件（pacct或acct）中写一个纪录。进程统计的目的是为系统中的基本服务提供命令使用统计。</p>
 <p>　　<strong>错误日志</strong>–由syslogd（8）执行。各种系统守护进程、用户程序和内核通过syslog（3）向文件/var/log/messages报告值得注意的事件。另外有许多UNIX程序创建日志。像HTTP和FTP这样提供网络服务的服务器也保持详细的日志。</p>
+<hr>
 <h4 id="1-3、make"><a href="#1-3、make" class="headerlink" title="1.3、make"></a>1.3、make</h4><p>　　在开发一个系统时，一般是将一个系统分成几个模块，这样做提高了系统的可维护性，但由于各个模块间不可避免存在关联，所以当一个模块改动后，其他模块也许会有所更新，当然对小系统来说，手工编译连接是没问题，但是如果是一个大系统，存在很多个模块，那么手工编译的方法就不适用了。为此，在Linux系统中，专门提供了一个make命令来自动维护目标文件，与手工编译和连接相比，make命令的优点在于他只更新修改过的文件（在linux中，一个文件被创建或更新后有一个最后修改时间，make命令就是通过这个最后修改时间来判断此文件是否被修改），而对没修改的文件则置之不理，并且make命令不会漏掉一个需要更新的文件。</p>
 <p>　　文件和文件间或模块或模块间有可能存在倚赖关系，make命令也是依据这种依赖关系来进行维护的，所以我们有必要了解什么是依赖关系；make命令当然不会自己知道这些依赖关系，而需要程序员将这些依赖关系写入一个叫makefile的文件中。Makefile文件中包含着一些目标，通常目标就是文件名，对每一个目标，提供了实现这个目标的一组命令以及和这个目标有依赖关系的其他目标或文件名。</p>
 <p>　　即make和makefile的关系是：make是一个命令工具，是一个解释makefile中指令的命令工具，一般来说，大多数的IDE都有这个命令。</p>
@@ -223,6 +225,7 @@
 <p>　　类似make clean,但同时也将configure生成的文件全部删除掉，包括Makefile文件。 </p>
 <p><strong>makefile</strong> </p>
 <p>　　makefile定义了一系列的规则来指定，哪些文件需要先编译，哪些文件需要后编译，哪些文件需要重新编译，甚至于进行更复杂的功能操作，因为 makefile就像一个Shell脚本一样，其中也可以执行操作系统的命令。makefile带来的好处就是–“自动化编译”,一旦写好，只需要一个make命令，整个工程完全自动编译，极大的提高了软件开发的效率。</p>
+<hr>
 <h4 id="1-4、awk"><a href="#1-4、awk" class="headerlink" title="1.4、awk"></a>1.4、awk</h4><p>　　awk是一个强大的文本分析工具，相对于grep的查找，sed的编辑，awk在其对数据分析并生成报告时，显得尤为强大。简单来说awk就是把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理。</p>
 <p>　　awk有3个不同版本: awk、nawk和gawk，未作特别说明，一般指gawk，gawk 是 AWK 的 GNU 版本。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">awk <span class="string">'&#123;pattern + action&#125;'</span> &#123;filenames&#125;</div></pre></td></tr></table></figure>
@@ -231,6 +234,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">1.命令行方式</div><div class="line">awk [-F  field-separator]  <span class="string">'commands'</span>  input-file(s)</div><div class="line">其中，commands 是真正awk命令，[-F域分隔符]是可选的。 input-file(s) 是待处理的文件。</div><div class="line">在awk中，文件的每一行中，由域分隔符分开的每一项称为一个域。通常，在不指名-F域分隔符的情况下，默认的域分隔符是空格。</div><div class="line"></div><div class="line">2.shell脚本方式</div><div class="line">将所有的awk命令插入一个文件，并使awk程序可执行，然后awk命令解释器作为脚本的首行，一遍通过键入脚本名称来调用。</div><div class="line">相当于shell脚本首行的：<span class="comment">#!/bin/sh</span></div><div class="line">可以换成：<span class="comment">#!/bin/awk</span></div><div class="line"></div><div class="line">3.将所有的awk命令插入一个单独文件，然后调用：</div><div class="line">awk -f awk-script-file input-file(s)</div><div class="line">其中，-f选项加载awk-script-file中的awk脚本，input-file(s)跟上面的是一样的。</div></pre></td></tr></table></figure>
 <p>　　awk是行处理器: 相比较屏幕处理的优点，在处理庞大文件时不会出现内存溢出或是处理缓慢的问题，通常用来格式化文本信息</p>
 <p>　　awk处理过程: 依次对每一行进行处理，然后输出</p>
+<hr>
 <h4 id="1-5、sed"><a href="#1-5、sed" class="headerlink" title="1.5、sed"></a>1.5、sed</h4><p>　　sed是一个很好的文件处理工具，本身是一个管道命令，主要是以行为单位进行处理，可以将数据行进行替换、删除、新增、选取等特定工作，下面先了解一下sed的用法</p>
 <p>　　sed命令行格式为：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed [-nefri] ‘<span class="built_in">command</span>’ 输入文本</div></pre></td></tr></table></figure>
@@ -246,6 +250,7 @@
 <p>　　i∶插入，i 的后面可以接字串，而这些字串会在新的一行出现(目前的上一行)；</p>
 <p>　　p∶列印，亦即将某个选择的资料印出。通常p 会与参数 sed -n 一起运作；</p>
 <p>　　s∶取代，可以直接进行取代的工作哩！通常这个s 的动作可以搭配正规表示法！例如 1,20s/old/new/g 就是啦！</p>
+<hr>
 <h4 id="1-6、ftp"><a href="#1-6、ftp" class="headerlink" title="1.6、ftp"></a>1.6、ftp</h4><p><a href="http://www.cnblogs.com/thinksasa/archive/2013/02/28/2937066.html" target="_blank" rel="external">linux下vsftpd的安装与配置说明</a><br><strong>使用 FTP 下载文件</strong></p>
 <p>　　在下载一个文件之前，我们首先需要使用lcd命令设定本地接受目录位置。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; lcd /home/user/yourdirectoryname</div></pre></td></tr></table></figure></p>
 <p>　　如果你不指定下载目录，文件将会下载到你登录 FTP 时候的工作目录。</p>
@@ -254,6 +259,7 @@
 <p><strong>使用 FTP 上传文件</strong></p>
 <p>　　使用 put命令上传文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; put file</div></pre></td></tr></table></figure></p>
 <p>　　当文件不再当前本地目录下的时候，可以使用绝对路径：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt; put /path/file</div><div class="line">``` </div><div class="line">　　同样，可以上传多个文件：</div><div class="line">``` bash</div><div class="line">&gt; mput *.xls</div></pre></td></tr></table></figure></p>
+<hr>
 <h4 id="1-7、文本处理"><a href="#1-7、文本处理" class="headerlink" title="1.7、文本处理"></a>1.7、文本处理</h4><p>待续</p>
 
             <div class="clearfix"></div>
