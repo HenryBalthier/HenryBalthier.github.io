@@ -205,11 +205,11 @@
 <p>ssh-agent ――    ssh代理程序</p>
 <p>ssh-keyscan ――　ssh　public key 生成器</p>
 <hr>
-<h4 id="2-3、TCP协议"><a href="#2-3、TCP协议" class="headerlink" title="2.3、TCP协议"></a>2.3、TCP协议</h4><p><img src="../img/1.png" alt="1.png"></p>
+<h4 id="2-3、TCP协议"><a href="#2-3、TCP协议" class="headerlink" title="2.3、TCP协议"></a>2.3、TCP协议</h4><p><img src="/2017/07/15/Linux：2、网络/../img/1.png" alt="1.png"></p>
 <p> 第一次握手：建立连接时，客户端发送 syn 包(tcp协议中syn位置1，序号为J)到服务器，并进入 SYN_SEND 状态，等待服务器确认； </p>
 <p>第二次握手：服务器收到 syn 包，必须确认客户的 SYN，同时自己也发送一个 SYN 包，即 SYN+ACK包（tcp协议中syn位置1，ack位置1，序号K，确定序号为J+1），此时服务器进入 SYN_RECV 状态； </p>
 <p>第三次握手：客户端收到服务器的 SYN＋ACK 包，向服务器发送确认包 ACK(tcp协议中ack位置1，确认序号K+1)，此包发送完毕，客户端和服务器进入 ESTABLISHED 状态，完成三次握手。</p>
-<p><img src="../img/2.png" alt="2.png"></p>
+<p><img src="/2017/07/15/Linux：2、网络/../img/2.png" alt="2.png"></p>
 <p>那TCP 的四次握手，是为了保证通信双方都关闭了连接，具体过程如下：</p>
 <p>1）客户端 A 在应用层调用close时会激发底层发送一个 FIN（tcp协议中FIN位置1、序号为M，结合上图分析）请求，用来关闭客户 A 到服务器 B 的数据传送，客户端A此时处于半关闭状态（应用层无法接收数据但底层还可以接收数据）；</p>
 <p>2）服务器 B 底层收到客户端A的FIN时会做两件事</p>
