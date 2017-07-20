@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>Linux：2、网络 | 方糖~</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="方糖~">
+    <meta name="author" content="Yu Fangheng">
+    <meta name="description" content="Henry's Blog~" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/HenryBalthier.github.io/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="方糖~" type="application/atom+xml">
+    <link rel="stylesheet" href="/HenryBalthier.github.io/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/HenryBalthier.github.io/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/HenryBalthier.github.io/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/HenryBalthier.github.io/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/HenryBalthier.github.io/js/html5shiv.min.js"></script>
+    <script src="/HenryBalthier.github.io/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/HenryBalthier.github.io/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/HenryBalthier.github.io/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/HenryBalthier.github.io/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="/" target="_BLANK" class="animsition-link">AAA</a></li>
+                    
+                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">BBB</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            <li><a href="/HenryBalthier.github.io/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/HenryBalthier.github.io/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">方糖~</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                            
+                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                            
+                            
+                            <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2017-07-11T09:26:04.000Z" itemprop="datePublished">
+          2017-07-11
+      </time>
+    
+    
+    | 
+    <a href='/HenryBalthier.github.io/tags/Linux/'>Linux</a>
+    
+    
+</span>
+                <h1>Linux：2、网络</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h4 id="主要内容："><a href="#主要内容：" class="headerlink" title="主要内容："></a>主要内容：</h4><ul>
+<li>2.1、Iptables和IP设置</li>
+<li>2.2、ssh</li>
+<li>2.3、TCP协议</li>
+<li>2.4、http协议</li>
+<li>2.5、DNS原理</li>
+<li>2.6、路由的作用<a id="more"></a>
+</li>
+</ul>
+<hr>
+<h2 id="2、网络"><a href="#2、网络" class="headerlink" title="2、网络"></a>2、网络</h2><h4 id="2-1、Iptables和IP设置"><a href="#2-1、Iptables和IP设置" class="headerlink" title="2.1、Iptables和IP设置"></a>2.1、Iptables和IP设置</h4><p>　　Iptables是什么?这是一个应用框架，它允许用户自己为系统建立一个强大的防火墙。因此，要提升安全防护能力，就要学习怎样一个好的防火墙以及怎样使用Iptables框架。</p>
+<p>　　设置网络地址：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /etc/sysconfig/network-scripts/ifcfg-eth0</div></pre></td></tr></table></figure></p>
+<p>　　你将会看到：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">DEVICE=eth0</div><div class="line">BOOTPROTO=statics</div><div class="line">HWADDR=00:0C:29:13:D1:6F</div><div class="line">ONBOOT=yes</div><div class="line">TYPE=Ethernet</div><div class="line">IPADDR=192.168.0.212</div><div class="line">NETMASK=255.255.255.0</div></pre></td></tr></table></figure>
+<p>　　BOOTPROTO=statics :表示使用静太IP地址。</p>
+<p>　　ONBOOT=yes：表示开机时，启动这个网卡。</p>
+<p>　　取动态IP地址地址</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">　　DEVICE=eth0</div><div class="line">　　ONBOOT=yes</div><div class="line">　　BOOTPROTO=dhcp</div></pre></td></tr></table></figure>
+<p>　　设置好IP地址，现在还不能生效哦，要重新启动网卡才可以。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Ifconfig &lt;网络接口名称&gt; network &lt;子网掩码&gt;</div><div class="line">　　例：<span class="comment"># ifconfig eth0 192.168.1.222 netmask 255.255.255.0</span></div><div class="line">　　注：手工配置linux网络只限于临时使用，配置不保存。</div><div class="line">　　扩展：<span class="comment"># ifconfig eth0:1 10.0.0.1 netmask 255.0.0.0 一块网卡配置多个子ip地址。</span></div><div class="line">　　<span class="comment"># ifconfig eth0 hw ether MAC地址 修改网卡的mac地址，</span></div><div class="line"><span class="comment"># /etc/rc.d/init.d/network start 启动network</span></div><div class="line"><span class="comment"># /etc/rc.d/init.d/network stop 停止network</span></div><div class="line"><span class="comment"># /etc/rc.d/init.d/network restart 重启network</span></div></pre></td></tr></table></figure></p>
+<p>　　主机名称配置文件，修改主机名<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/sysconfig/network</div></pre></td></tr></table></figure></p>
+<p>　　例：# vi /etc/sysconfig/network 使用vi编辑器打开主机名配置文件。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/sysconfig/network</div></pre></td></tr></table></figure></p>
+<p>　　NETWORKING=yes 网络是否可用。</p>
+<p>　　HOSTNAME=xxxx xxxx为新设置的主机名。</p>
+<hr>
+<h4 id="2-2、ssh"><a href="#2-2、ssh" class="headerlink" title="2.2、ssh"></a>2.2、ssh</h4><p>　　SSH全称Secure SHell，顾名思义就是非常安全的shell的意思，SSH协议是IETF（Internet Engineering Task Force）的Network Working Group所制定的一种协议。SSH的主要目的是用来取代传统的telnet和R系列命令（rlogin,rsh,rexec等）远程登陆和远程执行命令的工具，实现对远程登陆和远程执行命令加密。防止由于网络监听而出现的密码泄漏，对系统构成威胁。</p>
+<p>　　在出现SSH之前，系统管理员需要登入远程服务器执行系统管理任务时，都是用telnet来实现的，telnet协议采用明文密码传送，在传送过程中对数据也不加密，很容易被不怀好意的人在网络上监听到密码。</p>
+<p>　　SSH是一种加密协议，不仅在登陆过程中对密码进行加密传送，而且对登陆后执行的命令的数据也进行加密，这样即使别人在网络上监听并截获了你的数据包，他也看不到其中的内容。OpenSSH已经是目前大多数linux和BSD操作系统（甚至cygwin）的标准组件，因此关于如何安装OpenSSH本文就不再叙述了，如果不出意外，你的系统上必定已经安装好了OpenSSH。</p>
+<p>　　OpenSSH软件包包含以下命令：</p>
+<p>sshd ―― SSH服务端程序</p>
+<p>sftp-server ―― SFTP服务端程序（类似FTP但提供数据加密的一种协议）</p>
+<p>scp ―― 非交互式sftp-server的客户端，用来向服务器上传/下载文件</p>
+<p>sftp ―― 交互式sftp-server客户端，用法和ftp命令一样。</p>
+<p>slogin ――　ssh的别名</p>
+<p>ssh ――　SSH协议的客户端程序，用来登入远程系统或远程执行命令</p>
+<p>ssh-add ――    SSH代理相关程序，用来向SSH代理添加dsa　key</p>
+<p>ssh-agent ――    ssh代理程序</p>
+<p>ssh-keyscan ――　ssh　public key 生成器</p>
+<hr>
+<h4 id="2-3、TCP协议"><a href="#2-3、TCP协议" class="headerlink" title="2.3、TCP协议"></a>2.3、TCP协议</h4><p><img src="/2017/07/11/Linux：2、网络/1.png" alt="1.png"></p>
+<p>　　第一次握手：建立连接时，客户端发送 syn 包(tcp协议中syn位置1，序号为J)到服务器，并进入 SYN_SEND 状态，等待服务器确认； </p>
+<p>　　第二次握手：服务器收到 syn 包，必须确认客户的 SYN，同时自己也发送一个 SYN 包，即 SYN+ACK包（tcp协议中syn位置1，ack位置1，序号K，确定序号为J+1），此时服务器进入 SYN_RECV 状态； </p>
+<p>　　第三次握手：客户端收到服务器的 SYN＋ACK 包，向服务器发送确认包 ACK(tcp协议中ack位置1，确认序号K+1)，此包发送完毕，客户端和服务器进入 ESTABLISHED 状态，完成三次握手。</p>
+<p><img src="/2017/07/11/Linux：2、网络/2.png" alt="2.png"></p>
+<p>　　那TCP 的四次握手，是为了保证通信双方都关闭了连接，具体过程如下：</p>
+<p>1）客户端 A 在应用层调用close时会激发底层发送一个 FIN（tcp协议中FIN位置1、序号为M，结合上图分析）请求，用来关闭客户 A 到服务器 B 的数据传送，客户端A此时处于半关闭状态（应用层无法接收数据但底层还可以接收数据）；</p>
+<p>2）服务器 B 底层收到客户端A的FIN时会做两件事</p>
+<p>2.1)第1件事：收到客户端A的FIN时底层会主动回发一个ACK（tcp协议中ACK位置1，确认序号M+1）</p>
+<p>2.2)第2件事：收到客户端A的FIN时，导致服务器B的应用层read()返回0（告诉服务器B应用层：客户端A关闭了）</p>
+<p>3）服务器B应用层调用close()激发底层给客户端 A 发送一个 FIN（tcp协议中FIN位置1、序号为N）,这是服务器B已处于半关闭状态;</p>
+<p>4）客户端 A 底层回发 ACK（tcp协议中ACK位置1，确认序号N+1） 给服务器B，这是客户端A、服务器B都处于完全关闭状态，回收相应的资源。</p>
+<p>　　<strong>为什么建立连接协议是三次握手，而关闭连接却是四次握手呢？</strong></p>
+<p>　　这是因为服务端的 LISTEN 状态下的 SOCKET 当收到 SYN 报文的建连请求后，它可以把 ACK 和 SYN（ACK 起应答作用，而 SYN 起同步作用）放在一个报文里来发送。但关闭连接时，当收到FIN 报文通知时，如果能将ACK、FIN放在一个报文里那么就有了三次挥手，但是这是不可能，因为ACK是服务器B一收到FIN报文底层就回发的，而服务器B的FIN是应用层调用close()激发的，所以它这里的 ACK 报文和 FIN 报文在发送的时间上都是分开的，不可能同时发送。</p>
+<p>　　<strong>为什么 TIME_WAIT 状态还需要等 2MS L后才能返回到 CLOSED 状态？</strong></p>
+<p>　　这是因为虽然双方都同意关闭连接了，而且握手的 4 个报文也都协调和发送完毕，按理可以直接回到 CLOSED 状态（就好比从 SYN_SEND 状态到 ESTABLISH 状态那样）；但是因为我们必须要假想网络是不可靠的，你无法保证你最后发送的 ACK 报文会一定被对方收到，因此对方处于 LAST_ACK 状态下的 SOCKET 可能会因为超时未收到 ACK 报文，而重发 FIN 报文，所以这个 TIME_WAIT 状态的作用就是用来重发可能丢失的 ACK 报文。（里面涉及的状态是什么意思，详情请看《TCP 通信过程中各步骤的状态》）</p>
+<hr>
+<h4 id="2-4、http协议"><a href="#2-4、http协议" class="headerlink" title="2.4、http协议"></a>2.4、http协议</h4><p><a href="http://www.jianshu.com/p/92ebb79fab48" title="Linux之http协议及apache" target="_blank" rel="external">Linux之http协议及apache</a></p>
+<p><strong>一、什么是HTTP协议</strong></p>
+<p>　　HTTP是hypertext transfer protocol（超文本传输协议）的简写，它是TCP/IP协议的一个应用层协议，定义了Web客户端向Web服务器请求Web页面的方式，以及服务器向客户端传送Web页面的方式。</p>
+<p><strong>定义中的名词解释：</strong></p>
+<p><strong>什么是超文本？</strong></p>
+<p>　　超文本是用超链接的方法，将各种不同空间的文字信息组织在一起的网状文本。</p>
+<p><strong>什么是应用层协议？</strong></p>
+<p>　　网络的设计者使用分层的方式组织网络协议以及实现这些协议的硬件和软件，历史上比较重要的一个协议组织模型是五层因特网协议栈，从顶层到底层，分别为应用层、运输层、网络层、链路层、物理层。其中应用层常见的协议有HTTP、SMTP、FTP等，运输层协议有TCP、UDP等，网络层有IP等。</p>
+<p><strong>二、HTTP协议特点</strong></p>
+<p>　　1. HTTP使用TCP作为它的运输层协议，TCP为HTTP提供可靠数据传输服务。使用了分层结构，HTTP协议不用担心数据丢失，也不用关注TCP从网络的数据丢失和乱序故障中恢复的细节。<br>　　2. HTTP是一个无状态协议，服务器向客户端发送被请求的文件，而不保存任何关于该客户的信息，（需要保存则应当使用cookie）。<br>　　3. HTTP/1.0使用非持续连接，HTTP/1.1使用持续连接。使用持续连接，在客户和服务器中不用多次分配TCP的缓冲区和保持TCP变量，同时避免了每一个传输对象的两倍RTT交付时延。HTTP的默认模式是使用带流水线的持续连接。</p>
+<p><strong>Cookie的追踪用户的原理</strong></p>
+<p>　　第一次方访问服务时,服务器发送一个cookie的小数据(随机数,用来标识客户端身份), 客户端会将其保存下来,随后 , 访问同一个站点时,会把应用于此站点的cookie提交给服务器,从而服务器就能识别客户端身份.</p>
+<p><strong>胖Cookie的实现原理</strong></p>
+<p>　　将用户会话及状态信息都保存至客户端本地,在请求数据时,将状态信息回传至服务器</p>
+<p><strong>瘦cookie + session的实现原理</strong></p>
+<p>　　将用户的状态信息都保存至服务器端,并与相应客户端的cookie令牌相对应,请求数据的时候,只是需向告诉服务器自己的cookie信息.</p>
+<hr>
+<h4 id="2-5、DNS原理"><a href="#2-5、DNS原理" class="headerlink" title="2.5、DNS原理"></a>2.5、DNS原理</h4><p><strong>一、 DNS解析过程</strong></p>
+<p>　　以解析www.baidu.com域名为例。当系统需要调用www.baidu.com的主机的资料时，发送一个查询www.baidu.com的域名的指令。</p>
+<p>（1）系统存在一个hosts文件，可以用来解析域名。在系统中，可以定义查找域名的顺序：先查找hosts文件，还是先查找DNS服务器。一般设置先查找hosts文件，如果在hosts文件中发现www.baidu.com的记录，则直接返回结果。</p>
+<p>（2）如果hosts文件中没有发现记录，则把查询指令转发到系统中指定的域名服务器，进行DNS查询。</p>
+<p>（3）域名服务器在自己的缓存中查找相应的域名记录，如果存在该记录，则返回结果；否则，把这个查询指令转发到根域名服务器。</p>
+<p>（4）在根域名服务器的记录中，根据递归查询的规则，只能返回顶级域名com，并且把能够解析com的域名服务器的地址告诉客户机。</p>
+<p>（5）客户机根据返回的信息，继续向com域名服务器发送递归请求，收到请求的、能够正确返回baidu.com域名信息的域名服务器，在把相关的信息返回给客户机。</p>
+<p>（6）客户机再次向baidu.com的域名服务器发送递归请求，收到请求的服务器再次进行解析；该服务器已经能够把www.baidu.com域名完全解析到一个IP地址，并把这个IP地址返回。</p>
+<p><strong>二、 Linux下DNS服务器的配置</strong></p>
+<p>　　linux系统上通用的域名解析软件是BIND，除此之外，Linux系统中还有两个与DNS解析相关的文件。</p>
+<p>（1）两个与DNS解析相关的文件（./etc/resolv.conf  和./etc/host.conf）</p>
+<p>./etc/reolv.conf该文件指定系统中DNS服务器的IP地址和一些相关信息。格式一般如下：</p>
+<pre><code>Search   www.baidu.com
+
+nameserver  192.168.1.1
+
+nameserver  192.168.1.154
+</code></pre><p>　　第一行指定位置该计算机的域时，默认属于指定的域。</p>
+<p>　　第二行和第三行指定系统用于查找域名的域名服务器的IP地址。可以为系统指定多个域名服务器。当系统进行域名查询时，首先查找第一台域名服务器，如果第一台域名服务器没有响应，则查找第二台域名服务器，以此类推。</p>
+<p>　　./etc/host.conf该文件进行域名解析时查找host文件和DNS服务器的顺序。一般格式如下：</p>
+<pre><code>orderhost，bind
+</code></pre><p>（2）bind配置: 请参考其他配置说明</p>
+<p>　　bind中存在两个与域名解析相关的文件在/var/named目录下（named.ca 、named.local等）</p>
+<hr>
+<h4 id="2-6、路由的作用"><a href="#2-6、路由的作用" class="headerlink" title="2.6、路由的作用"></a>2.6、路由的作用</h4><p>　　<strong>路由是选择一条数据包传输路径的过程，也就是说主机怎么向目的地发送数据的过程。</strong>当TCP/IP主机发送IP数据包时，便出现了路由，且当到达IP路由器时还会再次出现。路由器是从一个物理网向另一个物理网发送数据包的装置，<strong>路由器通常被称为网关</strong>，它承但着分发数据包的任务。对于发送的主机和路由器而言，必须决定向哪里转发数据包。在决定路由时，IP层查询位于内存中的路由表，然后根据查询规则，进行ip路由。是不是很抽象？先说如何选路：</p>
+<p>　　(1)当一个主机试图与另一个主机通信时，IP首先决定目的主机是一个内网还是外网，怎么确定？当然使用网络号。</p>
+<p>　　(2)如果是是同一内网，那就就是直接发送了，这个最简答不过了。</p>
+<p>　　(3)如果目的主机是和发送主机不在同一个内网，也就是在外网了，很啰嗦，IP将查询路由表来为外网主机或外网选择一个路由，所以一般情况下有可能为某个外网指定特定的路由，具体问题稍后分析。</p>
+<p>　　(4)若未找到明确的路由，此时在路由表中还会有默认网关，也可称为缺省网关，IP用缺省的网关地址将一个数据传送给下一个指定的路由器，所以网关也可能是路由器，也可能只是内网向特定路由器传输数据的网关。</p>
+<p>　　(4)在该路由器收到数据后，它再次为远程主机或网络查询路由，若还未找到路由，该数据包将发送到该路由器的缺省网关地址。</p>
+<p>　　每发现一条路由，数据包被转送下一级路由器，称为一次“跳步”，按照同样的方式进行转发，并最终发送至目的主机。若未发现任何一个路由可以接受此次ip包的地址，发送主机将收到一个出错信息，也就是说其中任何一跳出现了不可到达，最后的结果也就是报错了。</p>
+<p><strong>IP路由选择主要完成以下这些功能：</strong></p>
+<p>（1）搜索路由表，寻找能与目的IP地址完全匹配的表目（网络号和主机号都要匹配）。如果找到，则把报文发送给该表目指定的下一站路由器或直接连接的网络接口（取决于标志字段的值）。</p>
+<p>（2）搜索路由表，寻找能与目的网络号相匹配的表目。如果找到，则把报文发送给该表目指定的下一站路由器或直接连接的网络接口（取决于标志字段的值）。目的网络上的所有主机都可以通过这个表目来处置。例如，一个以太网上的所有主机都是通过这种表目进行寻径的。这种搜索网络的匹配方法必须考虑可能的子网掩码。关于这一点我们在下一节中进行讨论。</p>
+<p>（3）搜索路由表，寻找标为“默认（default）”的表目。如果找到，则把报文发送给该表目指定的下一站路由器。如果上面这些步骤都没有成功，那么该数据报就不能被传送。如果不能传送的数据报来自本机，那么一般会向生成数据报的应用程序返回一个“主机不可达”或 “网络不可达”的错误。</p>
+<p>　　完整主机地址匹配在网络号匹配之前执行。只有当它们都失败后才选择默认路由。默认路由，以及下一站路由器发送的ICMP间接报文（如果我们为数据报选择了错误的默认路由），是IP路由选择机制中功能强大的特性。</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/HenryBalthier.github.io/2017/07/12/Linux：3、进程管理/" style="float: left;">
+        ← Linux：3、进程管理
+    </a>
+    
+    
+    <a class="pull-right" href="/HenryBalthier.github.io/2017/07/10/Linux：1、基础操作/">
+        Linux：1、基础操作 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+
+
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By Yu Fangheng. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/HenryBalthier.github.io/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/HenryBalthier.github.io/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/HenryBalthier.github.io/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/HenryBalthier.github.io/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/HenryBalthier.github.io/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      (function(){
+        console.log('font');
+        var getCss = function(path) {
+          var head = document.getElementsByTagName('head')[0];
+          link = document.createElement('link');
+          link.href = path;
+          link.rel = 'stylesheet';
+          link.type = 'text/css';
+          head.appendChild(link);
+        };
+        getCss('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+        getCss('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
+      })();
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+</body>
+</html>
