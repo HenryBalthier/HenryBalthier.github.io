@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Java 学习1：概述 | 方糖~</title>
+  <title>Java 学习3：类与对象 | 方糖~</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -161,84 +161,24 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2017-07-20T02:24:13.000Z" itemprop="datePublished">
-          2017-07-20
+      <time datetime="2017-07-24T08:03:50.000Z" itemprop="datePublished">
+          2017-07-24
       </time>
     
-    
-    | 
-    <a href='/HenryBalthier.github.io/tags/Java/'>Java</a>
-    
-    
 </span>
-                <h1>Java 学习1：概述</h1>
+                <h1>Java 学习3：类与对象</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<h4 id="主要内容："><a href="#主要内容：" class="headerlink" title="主要内容："></a>主要内容：</h4><ul>
-<li>1、Java虚拟机(JVM)</li>
-<li>2、Java开发环境</li>
-<li>3、Java类库</li>
-</ul>
-<a id="more"></a>
-<hr>
-<h4 id="Java学习参考网站："><a href="#Java学习参考网站：" class="headerlink" title="Java学习参考网站："></a>Java学习参考网站：</h4><ul>
-<li><a href="http://www.weixueyuan.net/java/rumen/" title="Java入门教程：最全面最简单的Java基础教程" target="_blank" rel="external">Java入门教程：最全面最简单的Java基础教程</a></li>
-<li><a href="https://www.runoob.com/java/java-tutorial.html" title="Java 教程" target="_blank" rel="external">Java 教程</a></li>
-</ul>
-<hr>
-<h2 id="1、Java虚拟机-JVM-以及跨平台原理"><a href="#1、Java虚拟机-JVM-以及跨平台原理" class="headerlink" title="1、Java虚拟机(JVM)以及跨平台原理"></a>1、Java虚拟机(JVM)以及跨平台原理</h2><p>　　JVM也是一个软件，不同的平台有不同的版本。我们编写的Java源码，<strong>编译</strong>后会生成一种 .class 文件，称为<strong>字节码文件</strong>。<strong>Java虚拟机</strong>就是负责将<strong>字节码</strong>文件翻译成特定平台下的<strong>机器码</strong>然后运行。也就是说，只要在不同平台上安装对应的JVM，就可以运行字节码文件，运行我们编写的Java程序。</p>
-<p>　　而这个过程中，我们编写的Java程序没有做任何改变，仅仅是通过JVM这一”中间层“，就能在不同平台上运行。</p>
-<p>　　JVM是一个”桥梁“，是一个”中间件“，是实现跨平台的关键，Java代码首先被编译成字节码文件，再由JVM将字节码文件翻译成机器语言，从而达到运行Java程序的目的。</p>
-<p>　　注意：编译的结果不是生成机器码，而是生成字节码，字节码不能直接运行，必须通过JVM翻译成机器码才能运行。<strong>不同平台下编译生成的字节码是一样的，但是由JVM翻译成的机器码却不一样。</strong></p>
-<p>　　所以，运行Java程序必须有JVM的支持，因为编译的结果不是机器码，必须要经过JVM的再次翻译才能执行。即使你将Java程序打包成可执行文件（例如 .exe），仍然需要JVM的支持。</p>
-<p><strong>关于JVM的执行效率</strong></p>
-<p>　　Java 推出的前几年，人们有不同的看法，解释字节码肯定比全速运行机器码慢很多，牺牲性能换来跨平台的优势是否值得？</p>
-<p>　　然而，JVM 有一个选项，可以将使用最频繁的字节码翻译成机器码并保存，这一过程被称为即时编译。这种方式确实很有效，致使微软的 .NET 平台也使用了虚拟机。</p>
-<p>　　现在的及时编译器已经相当出色，甚至成了传统编译器的竞争对手，某些情况下甚至超过了传统编译器，原因是JVM可以监控运行时信息。例如，即时编译器可以监控使用频率高的代码并进行优化，可以消除函数调用（即“内嵌”）。</p>
-<p>　　但是，Java 毕竟有一些C/C++没有的额外的开销，关键应用程序速度较慢。比如Java采用了与平台无关的绘图方式，GUI程序（客户端程序）执行要慢；虚拟机启动也需要时间。</p>
-<hr>
-<h2 id="2、Java开发环境"><a href="#2、Java开发环境" class="headerlink" title="2、Java开发环境"></a>2、Java开发环境</h2><p>　　要进行Java开发，首先要安装JDK（Java Development Kit，Java开发工具箱）。</p>
-<p>　　JDK 是一系列工具的集合，这些工具是编译Java源码、运行Java程序所必需的，例如JVM、基础类库、编译器、打包工具等。不论是什么样的 Java 应用服务器，都是内置了某个版本的 JDK，因此掌握 JDK 是学好 Java 的第一步。</p>
-<p>　　JDK所提供的部分工具：</p>
-<ul>
-<li>java编译器：javac.exe</li>
-<li>java解释器：java.exe</li>
-<li>java文档生成器：javadoc.exe</li>
-<li>java调试器：jdb.exe</li>
-</ul>
-<hr>
-<h2 id="3、Java类库"><a href="#3、Java类库" class="headerlink" title="3、Java类库"></a>3、Java类库</h2><p>　　Java类库中有很多包：</p>
-<ul>
-<li>以 java.* 开头的是Java的核心包，所有程序都会使用这些包中的类；</li>
-<li>以 javax.<em> 开头的是扩展包，x 是 extension 的意思，也就是扩展。虽然 javax.</em> 是对 java.<em> 的优化和扩展，但是由于 javax.</em> 使用的越来越多，很多程序都依赖于 javax.<em>，所以 javax.</em> 也是核心的一部分了，也随JDK一起发布。</li>
-<li>以 org.* 开头的是各个机构或组织发布的包，因为这些组织很有影响力，它们的代码质量很高，所以也将它们开发的部分常用的类随JDK一起发布。</li>
-</ul>
-<p>　　在包的命名方面，为了防止重名，有一个惯例：大家都以自己域名的倒写形式作为开头来为自己开发的包命名，例如百度发布的包会以 com.baidu.<em> 开头，w3c组织发布的包会以 org.w3c.</em> 开头，微学苑发布的包会以 net.weixueyuan.* 开头……</p>
-<p>　　组织机构的域名后缀一般为 org，公司的域名后缀一般为 com，可以认为 org.<em> 开头的包为非盈利组织机构发布的包，它们一般是开源的，可以免费使用在自己的产品中，不用考虑侵权问题，而以 com.</em> 开头的包往往由盈利性的公司发布，可能会有版权问题，使用时要注意。</p>
-<p>　　java中常用的几个包介绍：</p>
-<ul>
-<li>java.lang         该包提供了Java编程的基础类，例如：Object、Math、String、StringBuffer、System、Thread等，不使用该包就很难编写Java代码了。    </li>
-<li>java.util     该包提供了包含集合框架、遗留的集合类、事件模型、日期和时间实施、国际化和各种实用工具类（字符串标记生成器、随机数生成器和位数组）。</li>
-<li>java.io     该包通过文件系统、数据流和序列化提供系统的输入与输出。</li>
-<li>java.net     该包提供实现网络应用与开发的类。</li>
-<li>java.sql     该包提供了使用Java语言访问并处理存储在数据源（通常是一个关系型数据库）中的数据API。</li>
-<li>java.awt、javax.swing     这两个包提供了GUI设计与开发的类。java.awt包提供了创建界面和绘制图形图像的所有类，而javax.swing包提供了一组“轻量级”的组件，尽量让这些组件在所有平台上的工作方式相同。</li>
-<li>java.text     提供了与自然语言无关的方式来处理文本、日期、数字和消息的类和接口。</li>
-</ul>
-
+      		
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/HenryBalthier.github.io/2017/07/24/Java-学习2：语法基础/" style="float: left;">
-        ← Java 学习2：语法基础
-    </a>
     
-    
-    <a class="pull-right" href="/HenryBalthier.github.io/2017/07/17/搜索算法整理/">
-        搜索算法整理 →
+    <a class="pull-right" href="/HenryBalthier.github.io/2017/07/24/Java-学习2：语法基础/">
+        Java 学习2：语法基础 →
     </a>
     
 </nav>
