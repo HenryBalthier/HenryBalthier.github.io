@@ -165,16 +165,321 @@
           2017-07-24
       </time>
     
+    
+    | 
+    <a href='/HenryBalthier.github.io/tags/Java/'>Java</a>
+    
+    
 </span>
                 <h1>Java 学习3：类与对象</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		
+      		<h4 id="主要内容："><a href="#主要内容：" class="headerlink" title="主要内容："></a>主要内容：</h4><ul>
+<li>1、Java类的定义及其实例化</li>
+<li>2、this关键字</li>
+<li>3、Java方法重载</li>
+</ul>
+<a id="more"></a>
+<hr>
+<h2 id="1、Java类的定义及其实例化"><a href="#1、Java类的定义及其实例化" class="headerlink" title="1、Java类的定义及其实例化"></a>1、Java类的定义及其实例化</h2><p>　　类必须先定义才能使用。类是创建对象的模板，创建对象也叫类的实例化。</p>
+<p>　　下面通过一个简单的例子来理解Java中类的定义：</p>
+<pre><code>public class Dog{
+    String name;
+    int age;
+
+    void bark(){  // 汪汪叫
+        System.out.println(&quot;汪汪，不要过来&quot;);
+    }
+
+    void hungry(){  // 饥饿
+        System.out.println(&quot;主人，我饿了&quot;);
+    }
+}
+</code></pre><p>　　对示例的说明：</p>
+<pre><code>public 是类的修饰符，表明该类是公共类，可以被其他类访问。修饰符将在下节讲解。
+class 是定义类的关键字。
+Dog 是类名称。
+name、age 是类的成员变量，也叫属性；bark()、hungry() 是类中的函数，也叫方法。
+</code></pre><p>　　一个类可以包含以下类型变量：</p>
+<pre><code>局部变量：在方法或者语句块中定义的变量被称为局部变量。变量声明和初始化都是在方法中，方法结束后，变量就会自动销毁。
+成员变量：成员变量是定义在类中、方法体之外的变量。这种变量在创建对象的时候实例化（分配内存）。成员变量可以被类中的方法和特定类的语句访问。
+类变量：类变量也声明在类中，方法体之外，但必须声明为static类型。static 也是修饰符的一种，将在下节讲解。
+</code></pre><p><strong>构造方法</strong></p>
+<p>　　在类实例化的过程中自动执行的方法叫做构造方法，它不需要你手动调用。构造方法可以在类实例化的过程中做一些初始化的工作。</p>
+<p>　　构造方法的名称必须与类的名称相同，并且没有返回值。</p>
+<p>　　每个类都有构造方法。如果没有显式地为类定义构造方法，Java编译器将会为该类提供一个默认的构造方法。</p>
+<p>　　下面是一个构造方法示例：</p>
+<pre><code>public class Dog{
+    String name;
+    int age;
+
+    // 构造方法，没有返回值
+    Dog(String name1, int age1){
+        name = name1;
+        age = age1;
+        System.out.println(&quot;感谢主人领养了我&quot;);
+    }
+
+    // 普通方法，必须有返回值
+    void bark(){
+        System.out.println(&quot;汪汪，不要过来&quot;);
+    }
+
+    void hungry(){
+        System.out.println(&quot;主人，我饿了&quot;);
+    }
+
+    public static void main(String arg[]){
+        // 创建对象时传递的参数要与构造方法参数列表对应
+        Dog myDog = new Dog(&quot;花花&quot;, 3);
+    }
+}
+</code></pre><p>　　运行结果：<br>感谢主人领养了我</p>
+<p>　　说明：</p>
+<pre><code>构造方法不能被显示调用。
+构造方法不能有返回值，因为没有变量来接收返回值。
+</code></pre><p><strong>创建对象</strong></p>
+<p>　　对象是类的一个实例，创建对象的过程也叫类的实例化。对象是以类为模板来创建的。</p>
+<p>　　在Java中，使用new关键字来创建对象，一般有以下三个步骤：</p>
+<pre><code>声明：声明一个对象，包括对象名称和对象类型。
+实例化：使用关键字new来创建一个对象。
+初始化：使用new创建对象时，会调用构造方法初始化对象。
+</code></pre><p>　　例如：</p>
+<pre><code>Dog myDog;  // 声明一个对象
+myDog = new Dog(&quot;花花&quot;, 3);  // 实例化
+</code></pre><p>　　也可以在声明的同时进行初始化：</p>
+<pre><code>Dog myDog = new Dog(&quot;花花&quot;, 3);
+</code></pre><p>　　<strong>访问成员变量和方法</strong></p>
+<p>　　通过已创建的对象来访问成员变量和成员方法，例如：</p>
+<pre><code>// 实例化
+Dog myDog = new Dog(&quot;花花&quot;, 3);
+// 通过点号访问成员变量
+myDog.name;
+// 通过点号访问成员方法
+myDog.bark();
+</code></pre><p>　　下面的例子演示了如何访问成员变量和方法：</p>
+<pre><code>public class Dog{
+    String name;
+    int age;
+
+    Dog(String name1, int age1){
+        name = name1;
+        age = age1;
+        System.out.println(&quot;感谢主人领养了我&quot;);
+    }
+
+    void bark(){
+        System.out.println(&quot;汪汪，不要过来&quot;);
+    }
+
+    void hungry(){
+        System.out.println(&quot;主人，我饿了&quot;);
+    }
+
+    public static void main(String arg[]){
+        Dog myDog = new Dog(&quot;花花&quot;, 3);
+        // 访问成员变量
+        String name = myDog.name;
+        int age = myDog.age;
+        System.out.println(&quot;我是一只小狗，我名字叫&quot; + name + &quot;，我&quot; + age + &quot;岁了&quot;);
+        // 访问方法
+        myDog.bark();
+        myDog.hungry();
+    }
+}
+</code></pre><h2 id="2、Java访问修饰符（访问控制符）"><a href="#2、Java访问修饰符（访问控制符）" class="headerlink" title="2、Java访问修饰符（访问控制符）"></a>2、Java访问修饰符（访问控制符）</h2><p>　　Java 通过修饰符来控制类、属性和方法的访问权限和其他功能，通常放在语句的最前端。例如：</p>
+<pre><code>public class className {
+    // body of class
+}
+private boolean myFlag;
+static final double weeks = 9.5;
+protected static final int BOXWIDTH = 42;
+public static void main(String[] arguments) {
+    // body of method
+}
+</code></pre><p>　　Java 的修饰符很多，分为访问修饰符和非访问修饰符。本节仅介绍访问修饰符，非访问修饰符会在后续介绍。</p>
+<p>　　访问修饰符也叫访问控制符，是指能够控制类、成员变量、方法的使用权限的关键字。</p>
+<p>　　在面向对象编程中，访问控制符是一个很重要的概念，可以使用它来保护对类、变量、方法和构造方法的访问。</p>
+<p>　　Java支持四种不同的访问权限：</p>
+<p>public     共有的，对所有类可见。<br>protected     受保护的，对同一包内的类和所有子类可见。<br>private     私有的，在同一类内可见。<br>默认的     在同一包内可见。默认不使用任何修饰符。</p>
+<p><strong>public：公有的</strong></p>
+<p>　　被声明为public的类、方法、构造方法和接口能够被任何其他类访问。</p>
+<p>　　如果几个相互访问的public类分布在不用的包中，则需要导入相应public类所在的包。由于类的继承性，类所有的公有方法和变量都能被其子类继承。</p>
+<p>　　下面的方法使用了公有访问控制：</p>
+<pre><code>public static void main(String[] arguments) {
+    // body of method
+}
+</code></pre><p>　　Java程序的main() 方法必须设置成公有的，否则，Java解释器将不能运行该类。</p>
+<p><strong>protected：受保护的</strong></p>
+<p>　　被声明为protected的变量、方法和构造方法能被同一个包中的任何其他类访问，也能够被不同包中的子类访问。</p>
+<p>　　protected访问修饰符不能修饰类和接口，方法和成员变量能够声明为　protected，但是接口的成员变量和成员方法不能声明为protected。</p>
+<p>　　子类能访问protected修饰符声明的方法和变量，这样就能保护不相关的类使用这些方法和变量。</p>
+<p>　　下面的父类使用了protected访问修饰符，子类重载了父类的bark()方法。</p>
+<pre><code>public class Dog{
+    protected void bark() {
+        System.out.println(&quot;汪汪，不要过来&quot;);
+    }
+}
+class Teddy extends Dog{  // 泰迪
+    void bark() {
+        System.out.println(&quot;汪汪，我好怕，不要跟着我&quot;);
+    }
+}
+</code></pre><p>　　如果把bark()方法声明为private，那么除了Dog之外的类将不能访问该方法。如果把bark()声明为public，那么所有的类都能够访问该方法。如果我们只想让该方法对其所在类的子类可见，则将该方法声明为protected。<br>private：私有的<br>　　私有访问修饰符是最严格的访问级别，所以被声明为private的方法、变量和构造方法只能被所属类访问，并且类和接口不能声明为private。</p>
+<p>　　声明为私有访问类型的变量只能通过类中公共的Getter/Setter方法被外部类访问。</p>
+<p>　　private访问修饰符的使用主要用来隐藏类的实现细节和保护类的数据。</p>
+<p>　　下面的类使用了私有访问修饰符：</p>
+<pre><code>public class Dog{
+    private String name;
+    private int age;
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+</code></pre><p>　　例子中，Dog类中的name、age变量为私有变量，所以其他类不能直接得到和设置该变量的值。为了使其他类能够操作该变量，定义了两对public方法，getName()/setName() 和 getAge()/setAge()，它们用来获取和设置私有变量的值。</p>
+<p>　　this 是Java中的一个关键字，本章会讲到，你可以点击 Java this关键字详解 预览。</p>
+<p>　　在类中定义访问私有变量的方法，习惯上是这样命名的：在变量名称前面加“get”或“set”，并将变量的首字母大写。例如，获取私有变量 name 的方法为 getName()，设置 name 的方法为 setName()。这些方法经常使用，也有了特定的称呼，称为 Getter 和 Setter 方法。<br>默认的：不使用任何关键字</p>
+<p>　　不使用任何修饰符声明的属性和方法，对同一个包内的类是可见的。接口里的变量都隐式声明为public static final，而接口里的方法默认情况下访问权限为public。</p>
+<p>　　如下例所示，类、变量和方法的定义没有使用任何修饰符：</p>
+<pre><code>class Dog{
+    String name;
+    int age;
+
+    void bark(){  // 汪汪叫
+        System.out.println(&quot;汪汪，不要过来&quot;);
+    }
+    void hungry(){  // 饥饿
+        System.out.println(&quot;主人，我饿了&quot;);
+    }
+}
+</code></pre><p><strong>访问控制和继承</strong></p>
+<p>　　请注意以下方法继承（不了解继承概念的读者可以跳过这里，或者点击 Java继承和多态 预览）的规则：</p>
+<ul>
+<li>父类中声明为public的方法在子类中也必须为public。</li>
+<li>父类中声明为protected的方法在子类中要么声明为protected，要么声明为public。不能声明为private。</li>
+<li>父类中默认修饰符声明的方法，能够在子类中声明为private。</li>
+<li>父类中声明为private的方法，不能够被继承。</li>
+</ul>
+<p><strong>如何使用访问控制符</strong></p>
+<p>　　访问控制符可以让我们很方便的控制代码的权限：</p>
+<ul>
+<li>当需要让自己编写的类被所有的其他类访问时，就可以将类的访问控制符声明为 public。</li>
+<li>当需要让自己的类只能被自己的包中的类访问时，就可以省略访问控制符。</li>
+<li>当需要控制一个类中的成员数据时，可以将这个类中的成员数据访问控制符设置为 public、protected，或者省略。</li>
+</ul>
+<h2 id="2、this关键字"><a href="#2、this关键字" class="headerlink" title="2、this关键字"></a>2、this关键字</h2><p>　　this 关键字用来表示当前对象本身，或当前类的一个实例，通过 this 可以调用本对象的所有方法和属性。例如：</p>
+<pre><code>public class Demo{
+    public int x = 10;
+    public int y = 15;
+    public void sum(){
+        // 通过 this 点取成员变量
+        int z = this.x + this.y;
+        System.out.println(&quot;x + y = &quot; + z);
+    }
+
+    public static void main(String[] args) {
+        Demo obj = new Demo();
+        obj.sum();
+    }
+}
+</code></pre><p>　　运行结果：<br>x + y = 25</p>
+<p>　　上面的程序中，obj 是 Demo 类的一个实例，this 与 obj 等价，执行 int z = this.x + this.y;，就相当于执行 int z = obj.x + obj.y;</p>
+<p><strong>作为参数传递</strong></p>
+<p>　　需要在某些完全分离的类中调用一个方法，并将当前对象的一个引用作为参数传递时。例如：</p>
+<pre><code>public class Demo{
+    public static void main(String[] args){
+        B b = new B(new A());
+    }
+}
+class A{
+    public A(){
+        new B(this).print();  // 匿名对象
+    }
+    public void print(){
+        System.out.println(&quot;Hello from A!&quot;);
+    }
+}
+class B{
+    A a;
+    public B(A a){
+        this.a = a;
+    }
+    public void print() {
+        a.print();
+        System.out.println(&quot;Hello from B!&quot;);
+    }
+}
+</code></pre><p>　　运行结果：<br>Hello from A!<br>Hello from B!</p>
+<p>　　匿名对象就是没有名字的对象。如果对象只使用一次，就可以作为匿名对象，代码中 new B(this).print(); 等价于 ( new B(this) ).print();，先通过 new B(this) 创建一个没有名字的对象，再调用它的方法。</p>
+<h2 id="3、Java方法重载"><a href="#3、Java方法重载" class="headerlink" title="3、Java方法重载"></a>3、Java方法重载</h2><p>　　在Java中，同一个类中的多个方法可以有相同的名字，只要它们的参数列表不同就可以，这被称为方法重载(method overloading)。</p>
+<p>　　参数列表又叫参数签名，包括参数的类型、参数的个数和参数的顺序，只要有一个不同就叫做参数列表不同。</p>
+<p>　　重载是面向对象的一个基本特性。</p>
+<p>　　下面看一个详细的实例。</p>
+<pre><code>public class Demo{
+    // 一个普通的方法，不带参数
+    void test(){
+        System.out.println(&quot;No parameters&quot;);
+    }
+    // 重载上面的方法，并且带了一个整型参数
+    void test(int a){
+        System.out.println(&quot;a: &quot; + a);
+    }
+    // 重载上面的方法，并且带了两个参数
+    void test(int a,int b){
+        System.out.println(&quot;a and b: &quot; + a + &quot; &quot; + b);
+    }
+    // 重载上面的方法，并且带了一个双精度参数
+    double test(double a){
+        System.out.println(&quot;double a: &quot; + a);
+        return a*a;
+    }
+
+    public static void main(String args[]){
+        Demo obj= new Demo();
+        obj.test();
+        obj.test(2);
+        obj.test(2,3);
+        obj.test(2.0);
+    }
+}
+</code></pre><p>　　运行结果：<br>No parameters<br>a: 2<br>a and b: 2 3<br>double a: 2.0</p>
+<p>　　通过上面的实例，读者可以看出，重载就是在一个类中，有相同的函数名称，但形参不同的函数。重载的结果，可以让一个程序段尽量减少代码和方法的种类。</p>
+<p><strong>说明：</strong></p>
+<ul>
+<li>参数列表不同包括：个数不同、类型不同和顺序不同。</li>
+<li>仅仅参数变量名称不同是不可以的。</li>
+<li>跟成员方法一样，构造方法也可以重载。</li>
+<li>声明为final的方法不能被重载。</li>
+<li>声明为static的方法不能被重载，但是能够被再次声明。</li>
+</ul>
+<p><strong>方法的重载的规则：</strong></p>
+<ul>
+<li>方法名称必须相同。</li>
+<li>参数列表必须不同（个数不同、或类型不同、参数排列顺序不同等）。</li>
+<li>方法的返回类型可以相同也可以不相同。</li>
+<li>仅仅返回类型不同不足以成为方法的重载。</li>
+</ul>
+<p><strong>方法重载的实现：</strong></p>
+<p>方法名称相同时，编译器会根据调用方法的参数个数、参数类型等去逐个匹配，以选择对应的方法，如果匹配失败，则编译器报错，这叫做重载分辨。</p>
+
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/HenryBalthier.github.io/2017/07/24/Java-学习4：关键字/" style="float: left;">
+        ← Java 学习4：关键字
+    </a>
     
     
     <a class="pull-right" href="/HenryBalthier.github.io/2017/07/24/Java-学习2：语法基础/">
