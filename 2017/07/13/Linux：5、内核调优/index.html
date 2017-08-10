@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Linux：5、内核调优 | 方糖~</title>
+  <title>Linux：5、内核调优、软件安装和安全 | 方糖~</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -175,21 +175,38 @@
     
     
 </span>
-                <h1>Linux：5、内核调优</h1>
+                <h1>Linux：5、内核调优、软件安装和安全</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<h4 id="主要内容："><a href="#主要内容：" class="headerlink" title="主要内容："></a>主要内容：</h4><h4 id="状态："><a href="#状态：" class="headerlink" title="状态："></a>状态：</h4><p>待施工！<br><a id="more"></a></p>
+      		<h4 id="主要内容："><a href="#主要内容：" class="headerlink" title="主要内容："></a>主要内容：</h4><ul>
+<li>内核调优</li>
+<li>软件安装</li>
+<li>安全管理<h4 id="状态："><a href="#状态：" class="headerlink" title="状态："></a>状态：</h4>待施工！<a id="more"></a>
+</li>
+</ul>
 <hr>
+<p>####<strong>5.1、内核调优</strong></p>
 <p><a href="http://www.cnblogs.com/olinux/p/5577767.html" title="linux内核调优参考" target="_blank" rel="external">linux内核调优参考</a></p>
+<hr>
+<p>####<strong>5.2、软件安装</strong></p>
+<p><a href="http://blog.csdn.net/wangxiaofei2006/article/details/9198823" title="Linux系统安全配置的一些规则(整理) " target="_blank" rel="external">Linux系统安全配置的一些规则(整理) </a></p>
+<hr>
+<p>####<strong>5.3、安全管理</strong></p>
+<h5 id="1、wget"><a href="#1、wget" class="headerlink" title="1、wget"></a>1、wget</h5><p>　　wget是一个从网络上自动下载文件的自由工具。它支持HTTP，HTTPS和FTP协议，可以使用HTTP代理.</p>
+<p>　　所谓的自动下载是指，wget可以在用户退出系统的之后在后台执行。这意味这你可以登录系统，启动一个wget下载任务，然后退出系统，wget将在后台执行直到任务完成，相对于其它大部分浏览器在下载大量数据时需要用户一直的参与，这省去了极大的麻烦。</p>
+<p>　　wget可以跟踪HTML页面上的链接依次下载来创建远程服务器的本地版本，完全重建原始站点的目录结构。这又常被称作”递归下载”。在递归下载的时候，wget遵循Robot Exclusion标准(/robots.txt). wget可以在下载的同时，将链接转换成指向本地文件，以方便离线浏览。</p>
+<p>　　wget非常稳定,它在带宽很窄的情况下和不稳定网络中有很强的适应性.如果是由于网络的原因下载失败，wget会不断的尝试，直到整个文件下载完毕。如果是服务器打断下载过程，它会再次联到服务器上从停止的地方继续下载。这对从那些限定了链接时间的服务器上下载大文件非常有用。</p>
+<p>　　<strong>wget的常见用法</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">　　Usage: wget [OPTION]… [URL]…</div><div class="line">``` </div><div class="line">　　**用wget做站点镜像:**</div><div class="line">``` bash</div><div class="line">　　wget -r -p -np -k http://dsec.pku.edu.cn/~usr_name/</div></pre></td></tr></table></figure>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/HenryBalthier.github.io/2017/07/13/Linux：6、安全/" style="float: left;">
-        ← Linux：6、安全
+    <a class="pull-left" href="/HenryBalthier.github.io/2017/07/15/各种各样的编程语言特点/" style="float: left;">
+        ← 各种各样的编程语言特点
     </a>
     
     
