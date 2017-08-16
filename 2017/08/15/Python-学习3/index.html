@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Python 学习2 | 方糖~</title>
+  <title>Python 学习3：多线程编程 | 方糖~</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -165,8 +165,8 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2017-08-10T11:20:07.000Z" itemprop="datePublished">
-          2017-08-10
+      <time datetime="2017-08-15T08:05:55.000Z" itemprop="datePublished">
+          2017-08-15
       </time>
     
     
@@ -175,35 +175,127 @@
     
     
 </span>
-                <h1>Python 学习2</h1>
+                <h1>Python 学习3：多线程编程</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
       		<h4 id="主要内容："><a href="#主要内容：" class="headerlink" title="主要内容："></a>主要内容：</h4><ul>
-<li>迭代器、生成器</li>
-<li>装饰器2</li>
-<li>正则表达式</li>
-<li>filter、map、reduce</li>
+<li>进程、线程</li>
+<li>Python多线程、多进程、异步协程编程</li>
+<li></li>
 </ul>
 <h4 id="状态："><a href="#状态：" class="headerlink" title="状态："></a>状态：</h4><p>待施工！<br><a id="more"></a></p>
 <hr>
-<h4 id="Python学习参考网站："><a href="#Python学习参考网站：" class="headerlink" title="Python学习参考网站："></a>Python学习参考网站：</h4><ul>
-<li><a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000" target="_blank" rel="external">Python教程 - 廖雪峰的官方网站</a></li>
+<h2 id="1、进程和线程"><a href="#1、进程和线程" class="headerlink" title="1、进程和线程"></a>1、进程和线程</h2><p><strong>什么是进程</strong></p>
+<ul>
+<li>进程是程序的一次执行。</li>
+<li>每个进程都有自己的地址空间、内存、数据栈及其他记录其轨迹的辅助数据。</li>
+<li>各进程只能使用进程间通讯（IPC）而不能直接共享信息。</li>
 </ul>
-<hr>
-<h2 id="1、迭代器"><a href="#1、迭代器" class="headerlink" title="1、迭代器"></a>1、迭代器</h2>
+<p><strong>什么是线程</strong></p>
+<ul>
+<li>所有线程运行在同一进程中，共享相同的运行环境。</li>
+<li>线程有开始、顺序执行和结束三部分，有一个记录运行到何处的指令指针。</li>
+<li>一个进程中各个线程共享同一数据空间</li>
+</ul>
+<p><strong>Python全局解释器锁（GIL）</strong></p>
+<ul>
+<li>Python代码由Python解释器主循环控制，任意时刻都只有一个线程在执行。</li>
+<li>Python解释器的访问由GIL控制，负责切换进程、锁定（设置为睡眠）线程和唤醒线程等功能。</li>
+</ul>
+<h2 id="2、Python多线程、多进程、协程编程"><a href="#2、Python多线程、多进程、协程编程" class="headerlink" title="2、Python多线程、多进程、协程编程"></a>2、Python多线程、多进程、协程编程</h2><pre><code>Python由于有全锁局的存在（同一时间只能有一个线程执行），并不能利用多核优势。所以，如果你的多线程进程是CPU密集型的，那多线程并不能带来效率上的提升，相反还可能会因为线程的频繁切换，导致效率下降；如果是IO密集型，多线程进程可以利用IO阻塞等待时的空闲时间执行其他线程，提升效率。
+</code></pre><p>首先，要实现多任务，通常我们会设计Master-Worker模式，Master负责分配任务，Worker负责执行任务，因此，多任务环境下，通常是一个Master，多个Worker。</p>
+<ul>
+<li>如果用多进程实现Master-Worker，主进程就是Master，其他进程就是Worker。</li>
+<li>如果用多线程实现Master-Worker，主线程就是Master，其他线程就是Worker。</li>
+</ul>
+<p>多进程模式最大的优点就是稳定性高，因为一个子进程崩溃了，不会影响主进程和其他子进程。（当然主进程挂了所有进程就全挂了，但是Master进程只负责分配任务，挂掉的概率低）著名的Apache最早就是采用多进程模式。</p>
+<p>多进程模式的缺点是创建进程的代价大，在Unix/Linux系统下，用fork调用还行，在Windows下创建进程开销巨大。另外，操作系统能同时运行的进程数也是有限的，在内存和CPU的限制下，如果有几千个进程同时运行，操作系统连调度都会成问题。</p>
+<p>多线程模式通常比多进程快一点，但是也快不到哪去，而且，多线程模式致命的缺点就是任何一个线程挂掉都可能直接造成整个进程崩溃，因为所有线程共享进程的内存。在Windows上，如果一个线程执行的代码出了问题，你经常可以看到这样的提示：“该程序执行了非法操作，即将关闭”，其实往往是某个线程出了问题，但是操作系统会强制结束整个进程。</p>
+<p>在Windows下，多线程的效率比多进程要高，所以微软的IIS服务器默认采用多线程模式。由于多线程存在稳定性的问题，IIS的稳定性就不如Apache。为了缓解这个问题，IIS和Apache现在又有多进程+多线程的混合模式，真是把问题越搞越复杂。</p>
+<h4 id="2-1、Python多线程"><a href="#2-1、Python多线程" class="headerlink" title="2.1、Python多线程"></a>2.1、Python多线程</h4><p>多线程采用threading<br>简单多线程实现：</p>
+<pre><code>def Multithread(func, nums):
+    start = clock()
+    threads = []
+    for i in range(nums):
+        t = threading.Thread(target=func, args=(i, ))
+        threads.append(t)
+    for i in range(nums):
+        threads[i].start()
+
+    for i in range(nums):
+        threads[i].join()
+    end = clock()
+    print(&apos;MultiThread run cost: %.2f s\n&apos; % (end - start))
+</code></pre><h4 id="2-2、Python多进程"><a href="#2-2、Python多进程" class="headerlink" title="2.2、Python多进程"></a>2.2、Python多进程</h4><p>多进程采用multiprocessing<br>简单多进程实现：</p>
+<pre><code>def Multiprocessing(func, nums):
+    start = clock()
+    pool = multiprocessing.Pool(nums)
+    #pool.map(func, range(nums))
+    for i in range(nums):
+        pool.apply_async(func, args=(i, ))
+    pool.close()
+    pool.join()
+    end = clock()
+    print(&apos;MultiProcessing run cost: %.2f s\n&apos; % (end - start))
+</code></pre><h4 id="2-3、Python协程与异步并发"><a href="#2-3、Python协程与异步并发" class="headerlink" title="2.3、Python协程与异步并发"></a>2.3、Python协程与异步并发</h4><p>考虑到CPU和IO之间巨大的速度差异，一个任务在执行的过程中大部分时间都在等待IO操作，单进程单线程模型会导致别的任务无法并行执行，因此，我们才需要多进程模型或者多线程模型来支持多任务并发执行。</p>
+<p>现代操作系统对IO操作已经做了巨大的改进，最大的特点就是支持异步IO。如果充分利用操作系统提供的异步IO支持，就可以用单进程单线程模型来执行多任务，这种全新的模型称为事件驱动模型，Nginx就是支持异步IO的Web服务器，它在单核CPU上采用单进程模型就可以高效地支持多任务。在多核CPU上，可以运行多个进程（数量与CPU核心数相同），充分利用多核CPU。由于系统总的进程数量十分有限，因此操作系统调度非常高效。用异步IO编程模型来实现多任务是一个主要的趋势。</p>
+<p>对应到Python语言，单线程的异步编程模型称为协程，有了协程的支持，就可以基于事件驱动编写高效的多任务程序。</p>
+<h4 id="2-4、对比"><a href="#2-4、对比" class="headerlink" title="2.4、对比"></a>2.4、对比</h4><p>测试函数：采用等待的loop循环，和基于cpu计算的computer</p>
+<pre><code>def loop(number):
+    print(&apos;start loop No.%d&apos; % number)
+    print(&apos;Parent process %s.&apos; % os.getpid())
+    sleep(number)
+    print(&apos;end loop No,%d, sleep %d seconds&apos; % (number, number))
+
+def computer(number):
+    print(&apos;start computer No.%d&apos; % number)
+    res = sum([random.randint(1, 100) for i in range(1000000)])
+    print(&apos;end computer No,%d, result = %d&apos; % (number, res))
+</code></pre><h4 id="2-5、进程间通信"><a href="#2-5、进程间通信" class="headerlink" title="2.5、进程间通信"></a>2.5、进程间通信</h4><pre><code>from multiprocessing import Process, Queue
+import os, time, random
+
+# 写数据进程执行的代码:
+def write(q):
+    print(&apos;Process to write: %s&apos; % os.getpid())
+    for value in [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;]:
+        print(&apos;Put %s to queue...&apos; % value)
+        q.put(value)
+        time.sleep(random.random())
+
+# 读数据进程执行的代码:
+def read(q):
+    print(&apos;Process to read: %s&apos; % os.getpid())
+    while True:
+        value = q.get(True)
+        print(&apos;Get %s from queue.&apos; % value)
+
+if __name__==&apos;__main__&apos;:
+    # 父进程创建Queue，并传给各个子进程：
+    q = Queue()
+    pw = Process(target=write, args=(q,))
+    pr = Process(target=read, args=(q,))
+    # 启动子进程pw，写入:
+    pw.start()
+    # 启动子进程pr，读取:
+    pr.start()
+    # 等待pw结束:
+    pw.join()
+    # pr进程里是死循环，无法等待其结束，只能强行终止:
+    pr.terminate()
+</code></pre>
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/HenryBalthier.github.io/2017/08/15/Python-学习3/" style="float: left;">
-        ← Python 学习3：多线程编程
+    <a class="pull-left" href="/HenryBalthier.github.io/2017/08/16/Python分布式进程/" style="float: left;">
+        ← Python分布式进程
     </a>
     
     
-    <a class="pull-right" href="/HenryBalthier.github.io/2017/07/24/Java-学习3：类与对象/">
-        Java 学习3：类与对象 →
+    <a class="pull-right" href="/HenryBalthier.github.io/2017/08/10/Python-学习2/">
+        Python 学习2 →
     </a>
     
 </nav>
