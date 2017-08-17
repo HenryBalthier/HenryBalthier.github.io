@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Python 学习3：多线程编程 | 方糖~</title>
+  <title>【玩转Python系列】3、多线程编程 | 方糖~</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -175,16 +175,16 @@
     
     
 </span>
-                <h1>Python 学习3：多线程编程</h1>
+                <h1>【玩转Python系列】3、多线程编程</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
       		<h4 id="主要内容："><a href="#主要内容：" class="headerlink" title="主要内容："></a>主要内容：</h4><ul>
 <li>进程、线程</li>
 <li>Python多线程、多进程、异步协程编程</li>
-<li></li>
+<li>Multiprocessing基础</li>
 </ul>
-<h4 id="状态："><a href="#状态：" class="headerlink" title="状态："></a>状态：</h4><p>待施工！<br><a id="more"></a></p>
+<a id="more"></a>
 <hr>
 <h2 id="1、进程和线程"><a href="#1、进程和线程" class="headerlink" title="1、进程和线程"></a>1、进程和线程</h2><p><strong>什么是进程</strong></p>
 <ul>
@@ -204,16 +204,16 @@
 <li>Python解释器的访问由GIL控制，负责切换进程、锁定（设置为睡眠）线程和唤醒线程等功能。</li>
 </ul>
 <h2 id="2、Python多线程、多进程、协程编程"><a href="#2、Python多线程、多进程、协程编程" class="headerlink" title="2、Python多线程、多进程、协程编程"></a>2、Python多线程、多进程、协程编程</h2><pre><code>Python由于有全锁局的存在（同一时间只能有一个线程执行），并不能利用多核优势。所以，如果你的多线程进程是CPU密集型的，那多线程并不能带来效率上的提升，相反还可能会因为线程的频繁切换，导致效率下降；如果是IO密集型，多线程进程可以利用IO阻塞等待时的空闲时间执行其他线程，提升效率。
-</code></pre><p>首先，要实现多任务，通常我们会设计Master-Worker模式，Master负责分配任务，Worker负责执行任务，因此，多任务环境下，通常是一个Master，多个Worker。</p>
+</code></pre><p>　　首先，要实现多任务，通常我们会设计Master-Worker模式，Master负责分配任务，Worker负责执行任务，因此，多任务环境下，通常是一个Master，多个Worker。</p>
 <ul>
 <li>如果用多进程实现Master-Worker，主进程就是Master，其他进程就是Worker。</li>
 <li>如果用多线程实现Master-Worker，主线程就是Master，其他线程就是Worker。</li>
 </ul>
-<p>多进程模式最大的优点就是稳定性高，因为一个子进程崩溃了，不会影响主进程和其他子进程。（当然主进程挂了所有进程就全挂了，但是Master进程只负责分配任务，挂掉的概率低）著名的Apache最早就是采用多进程模式。</p>
-<p>多进程模式的缺点是创建进程的代价大，在Unix/Linux系统下，用fork调用还行，在Windows下创建进程开销巨大。另外，操作系统能同时运行的进程数也是有限的，在内存和CPU的限制下，如果有几千个进程同时运行，操作系统连调度都会成问题。</p>
-<p>多线程模式通常比多进程快一点，但是也快不到哪去，而且，多线程模式致命的缺点就是任何一个线程挂掉都可能直接造成整个进程崩溃，因为所有线程共享进程的内存。在Windows上，如果一个线程执行的代码出了问题，你经常可以看到这样的提示：“该程序执行了非法操作，即将关闭”，其实往往是某个线程出了问题，但是操作系统会强制结束整个进程。</p>
-<p>在Windows下，多线程的效率比多进程要高，所以微软的IIS服务器默认采用多线程模式。由于多线程存在稳定性的问题，IIS的稳定性就不如Apache。为了缓解这个问题，IIS和Apache现在又有多进程+多线程的混合模式，真是把问题越搞越复杂。</p>
-<h4 id="2-1、Python多线程"><a href="#2-1、Python多线程" class="headerlink" title="2.1、Python多线程"></a>2.1、Python多线程</h4><p>多线程采用threading<br>简单多线程实现：</p>
+<p>　　多进程模式最大的优点就是稳定性高，因为一个子进程崩溃了，不会影响主进程和其他子进程。（当然主进程挂了所有进程就全挂了，但是Master进程只负责分配任务，挂掉的概率低）著名的Apache最早就是采用多进程模式。</p>
+<p>　　多进程模式的缺点是创建进程的代价大，在Unix/Linux系统下，用fork调用还行，在Windows下创建进程开销巨大。另外，操作系统能同时运行的进程数也是有限的，在内存和CPU的限制下，如果有几千个进程同时运行，操作系统连调度都会成问题。</p>
+<p>　　多线程模式通常比多进程快一点，但是也快不到哪去，而且，多线程模式致命的缺点就是任何一个线程挂掉都可能直接造成整个进程崩溃，因为所有线程共享进程的内存。在Windows上，如果一个线程执行的代码出了问题，你经常可以看到这样的提示：“该程序执行了非法操作，即将关闭”，其实往往是某个线程出了问题，但是操作系统会强制结束整个进程。</p>
+<p>　　在Windows下，多线程的效率比多进程要高，所以微软的IIS服务器默认采用多线程模式。由于多线程存在稳定性的问题，IIS的稳定性就不如Apache。为了缓解这个问题，IIS和Apache现在又有多进程+多线程的混合模式，真是把问题越搞越复杂。</p>
+<h4 id="2-1、Python多线程"><a href="#2-1、Python多线程" class="headerlink" title="2.1、Python多线程"></a>2.1、Python多线程</h4><p>　　多线程采用threading<br>　　简单多线程实现：</p>
 <pre><code>def Multithread(func, nums):
     start = clock()
     threads = []
@@ -227,7 +227,7 @@
         threads[i].join()
     end = clock()
     print(&apos;MultiThread run cost: %.2f s\n&apos; % (end - start))
-</code></pre><h4 id="2-2、Python多进程"><a href="#2-2、Python多进程" class="headerlink" title="2.2、Python多进程"></a>2.2、Python多进程</h4><p>多进程采用multiprocessing<br>简单多进程实现：</p>
+</code></pre><h4 id="2-2、Python多进程"><a href="#2-2、Python多进程" class="headerlink" title="2.2、Python多进程"></a>2.2、Python多进程</h4><p>　　多进程采用multiprocessing<br>　　简单多进程实现：</p>
 <pre><code>def Multiprocessing(func, nums):
     start = clock()
     pool = multiprocessing.Pool(nums)
@@ -238,10 +238,10 @@
     pool.join()
     end = clock()
     print(&apos;MultiProcessing run cost: %.2f s\n&apos; % (end - start))
-</code></pre><h4 id="2-3、Python协程与异步并发"><a href="#2-3、Python协程与异步并发" class="headerlink" title="2.3、Python协程与异步并发"></a>2.3、Python协程与异步并发</h4><p>考虑到CPU和IO之间巨大的速度差异，一个任务在执行的过程中大部分时间都在等待IO操作，单进程单线程模型会导致别的任务无法并行执行，因此，我们才需要多进程模型或者多线程模型来支持多任务并发执行。</p>
-<p>现代操作系统对IO操作已经做了巨大的改进，最大的特点就是支持异步IO。如果充分利用操作系统提供的异步IO支持，就可以用单进程单线程模型来执行多任务，这种全新的模型称为事件驱动模型，Nginx就是支持异步IO的Web服务器，它在单核CPU上采用单进程模型就可以高效地支持多任务。在多核CPU上，可以运行多个进程（数量与CPU核心数相同），充分利用多核CPU。由于系统总的进程数量十分有限，因此操作系统调度非常高效。用异步IO编程模型来实现多任务是一个主要的趋势。</p>
-<p>对应到Python语言，单线程的异步编程模型称为协程，有了协程的支持，就可以基于事件驱动编写高效的多任务程序。</p>
-<h4 id="2-4、对比"><a href="#2-4、对比" class="headerlink" title="2.4、对比"></a>2.4、对比</h4><p>测试函数：采用等待的loop循环，和基于cpu计算的computer</p>
+</code></pre><h4 id="2-3、Python协程与异步并发"><a href="#2-3、Python协程与异步并发" class="headerlink" title="2.3、Python协程与异步并发"></a>2.3、Python协程与异步并发</h4><p>　　考虑到CPU和IO之间巨大的速度差异，一个任务在执行的过程中大部分时间都在等待IO操作，单进程单线程模型会导致别的任务无法并行执行，因此，我们才需要多进程模型或者多线程模型来支持多任务并发执行。</p>
+<p>　　现代操作系统对IO操作已经做了巨大的改进，最大的特点就是支持异步IO。如果充分利用操作系统提供的异步IO支持，就可以用单进程单线程模型来执行多任务，这种全新的模型称为事件驱动模型，Nginx就是支持异步IO的Web服务器，它在单核CPU上采用单进程模型就可以高效地支持多任务。在多核CPU上，可以运行多个进程（数量与CPU核心数相同），充分利用多核CPU。由于系统总的进程数量十分有限，因此操作系统调度非常高效。用异步IO编程模型来实现多任务是一个主要的趋势。</p>
+<p>　　对应到Python语言，单线程的异步编程模型称为协程，有了协程的支持，就可以基于事件驱动编写高效的多任务程序。</p>
+<h4 id="2-4、对比"><a href="#2-4、对比" class="headerlink" title="2.4、对比"></a>2.4、对比</h4><p>　　测试函数：采用等待的loop循环，和基于cpu计算的computer</p>
 <pre><code>def loop(number):
     print(&apos;start loop No.%d&apos; % number)
     print(&apos;Parent process %s.&apos; % os.getpid())
@@ -283,19 +283,229 @@ if __name__==&apos;__main__&apos;:
     pw.join()
     # pr进程里是死循环，无法等待其结束，只能强行终止:
     pr.terminate()
-</code></pre>
+</code></pre><h2 id="3、Multiprocessing基础"><a href="#3、Multiprocessing基础" class="headerlink" title="3、Multiprocessing基础"></a>3、Multiprocessing基础</h2><h4 id="3-1、multiprocessing常用组件及功能"><a href="#3-1、multiprocessing常用组件及功能" class="headerlink" title="3.1、multiprocessing常用组件及功能"></a>3.1、multiprocessing常用组件及功能</h4><p>　　参考网站：<a href="https://thief.one/2016/11/23/Python-multiprocessing/" target="_blank" rel="external">Multiprocessing基础</a></p>
+<p>　　创建管理进程模块：</p>
+<ul>
+<li>Process（用于创建进程模块）</li>
+<li>Pool（用于创建管理进程池）</li>
+<li>Queue（用于进程通信，资源共享）</li>
+<li>Value，Array（用于进程通信，资源共享）</li>
+<li>Pipe（用于管道通信）</li>
+<li>Manager（用于资源共享）</li>
+</ul>
+<p>　　同步子进程模块：</p>
+<ul>
+<li>Condition</li>
+<li>Event</li>
+<li>Lock</li>
+<li>RLock</li>
+<li>Semaphore</li>
+</ul>
+<p><strong>Process模块</strong></p>
+<p>　　Process模块用来创建子进程，是Multiprocessing核心模块，使用方式与Threading类似，可以实现多进程的创建，启动，关闭等操作。</p>
+<p><strong>Pool模块</strong></p>
+<p>　　Pool模块是用来创建管理进程池的，当子进程非常多且需要控制子进程数量时可以使用此模块。</p>
+<p><strong>Queue模块</strong></p>
+<p>　　Queue模块用来控制进程安全，与线程中的Queue用法一样。</p>
+<p><strong>Pipe模块</strong></p>
+<p>　　Pipe模块用来管道操作。</p>
+<p><strong>Manager模块</strong></p>
+<p>　　Manager模块常与Pool模块一起使用，作用是共享资源。</p>
+<p><strong>Lock模块</strong></p>
+<p>　　作用：当多个进程需要访问共享资源的时候，Lock可以用来避免访问的冲突。</p>
+<p>　　具体场景：所有的任务在打印的时候都会向同一个标准输出(stdout)输出。这样输出的字符会混合在一起，无法阅读。使用Lock同步，在一个任务输出完成之后，再允许另一个任务输出，可以避免多个任务同时向终端输出。</p>
+<p><strong>Semaphore模块</strong></p>
+<p>　　作用：用来控制对共享资源的访问数量，例如池的最大连接数。</p>
+<p><strong>Event模块</strong></p>
+<p>　　作用：用来实现进程间同步通信。</p>
+<p><strong>Multiprocessing.dummy多线程</strong></p>
+<p>　　Multiprocessing.dummy用法与Multiprocessing用法基本相同，只不过是用来创建多线程。</p>
+<h4 id="3-2、进程共享资源"><a href="#3-2、进程共享资源" class="headerlink" title="3.2、进程共享资源"></a>3.2、进程共享资源</h4><p>　　Multiprocessing类中共享资源可以使用3种方式，分别是Queue，Array，Manager。这三个都是Multiprocessing自带的组件，使用起来也非常方便。注意：普通的全局变量是不能被子进程所共享的，只有通过Multiprocessing组件构造的数据结构可以被共享。</p>
+<p><strong>Queue类</strong></p>
+<p>　　使用Multiprocessing.Queue类，共享资源（share memory）（只适用Process类）</p>
+<p>　　缺点：不能再Pool进程池中使用。</p>
+<p><strong>Array、Value类</strong></p>
+<p>　　使用Multiprocessing.Array类，共享资源（share memory）（只适用于Process类）</p>
+<p>　　缺点：无法与Pool一起使用。</p>
+<pre><code>from multiprocessing import Process, Array
+
+def test(a):
+    for i in range(len(a)):
+        a[i] = -a[i]
+
+if __name__ == &apos;__main__&apos;:
+    arr = Array(&apos;i&apos;, range(10))
+    p = Process(target=test, args=(arr, ))  #需要将arr对象传递给子进程
+    p.start()
+    p.join()
+    print(arr[:])
+</code></pre><p><strong>Manager类</strong></p>
+<p>　　使用Multiprocessing.Manager类，共享资源。（可以适用Pool类）</p>
+<p>　　说明：由于windows操作系统下，创建Multiprocessing类对象代码一定要放在main()函数下，而linux不需要，因此这里区分2个版本。</p>
+<p>　　实例目的：父进程在执行子进程的过程中，同步判断一个公共资源值，如果满足条件则结束所有进程。</p>
+<h4 id="3-3、multiprocessing-Process"><a href="#3-3、multiprocessing-Process" class="headerlink" title="3.3、multiprocessing.Process"></a>3.3、multiprocessing.Process</h4><p>　　利用multiprocessing.Process对象可以创建一个进程，该Process对象与Thread对象的用法相同，也有start(), run(), join()等方法。Process类适合简单的进程创建，如需资源共享可以结合multiprocessing.Queue使用；如果想要控制进程数量，则建议使用进程池Pool类。</p>
+<p><strong>Process介绍</strong></p>
+<p>　　构造方法：</p>
+<ul>
+<li>Process([group [, target [, name [, args [, kwargs]]]]])</li>
+<li>group: 线程组，目前还没有实现，库引用中提示必须是None；</li>
+<li>target: 要执行的方法；</li>
+<li>name: 进程名；</li>
+<li>args/kwargs: 要传入方法的参数。</li>
+</ul>
+<p>　　实例方法：</p>
+<ul>
+<li>is_alive()：返回进程是否在运行。</li>
+<li>join([timeout])：阻塞当前上下文环境的进程程，直到调用此方法的进程终止或到达指定的timeout（可选参数）。</li>
+<li>start()：进程准备就绪，等待CPU调度。</li>
+<li>run()：strat()调用run方法，如果实例进程时未制定传入target，这star执行t默认run()方法。</li>
+<li>terminate()：不管任务是否完成，立即停止工作进程。</li>
+</ul>
+<p>　　属性：</p>
+<ul>
+<li>authkey</li>
+<li>daemon：和线程的setDeamon功能一样（将父进程设置为守护进程，当父进程结束时，子进程也结束）。</li>
+<li>exitcode(进程在运行时为None、如果为–N，表示被信号N结束）。</li>
+<li>name：进程名字。</li>
+<li>pid：进程号。</li>
+</ul>
+<h4 id="3-4、multiprocessing-Pool"><a href="#3-4、multiprocessing-Pool" class="headerlink" title="3.4、multiprocessing.Pool"></a>3.4、multiprocessing.Pool</h4><p>　　Multiprocessing.Pool可以提供指定数量的进程供用户调用，当有新的请求提交到pool中时，如果池还没有满，那么就会创建一个新的进程用来执行该请求；但如果池中的进程数已经达到规定最大值，那么该请求就会等待，直到池中有进程结束，才会创建新的进程来执行它。在共享资源时，只能使用Multiprocessing.Manager类，而不能使用Queue或者Array。</p>
+<p><strong>Pool介绍</strong></p>
+<p>　　用途</p>
+<p>　　Pool类用于需要执行的目标很多，而手动限制进程数量又太繁琐时，如果目标少且不用控制进程数量则可以用Process类。<br>构造方法</p>
+<ul>
+<li><strong>Pool</strong>([processes[, initializer[, initargs[, maxtasksperchild[, context]]]]])</li>
+<li><strong>processes</strong> ：使用的工作进程的数量，如果processes是None那么使用 os.cpu_count()返回的数量。</li>
+<li>initializer： 如果initializer是None，那么每一个工作进程在开始的时候会调用initializer(*initargs)。</li>
+<li>maxtasksperchild：工作进程退出之前可以完成的任务数，完成后用一个新的工作进程来替代原进程，来让闲置的资源被释放。maxtasksperchild默认是None，意味着只要Pool存在工作进程就会一直存活。</li>
+<li>context: 用在制定工作进程启动时的上下文，一般使用 multiprocessing.Pool() 或者一个context对象的Pool()方法来创建一个池，两种方法都适当的设置了context。</li>
+</ul>
+<p>　　实例方法</p>
+<ul>
+<li><strong>apply_async</strong>(func[, args[, kwds[, callback]]]) 它是非阻塞。</li>
+<li><strong>apply</strong>(func[, args[, kwds]])是阻塞的。</li>
+<li>close() 关闭pool，使其不在接受新的任务。</li>
+<li>terminate() 关闭pool，结束工作进程，不在处理未完成的任务。</li>
+<li>join() 主进程阻塞，等待子进程的退出， join方法要在close或terminate之后使用。</li>
+</ul>
+<p>　　</p>
+<pre><code>from multiprocessing import Pool
+def test(i):
+    print i
+if __name__==&quot;__main__&quot;:
+    lists=[1,2,3]
+    pool=Pool(processes=2)      #定义最大的进程数
+    pool.map(test,lists)        #p必须是一个可迭代变量。
+    pool.close()
+    pool.join()
+</code></pre><h4 id="3-5、子进程返回值"><a href="#3-5、子进程返回值" class="headerlink" title="3.5、子进程返回值"></a>3.5、子进程返回值</h4><p>　　在实际使用多进程的时候，可能需要获取到子进程运行的返回值。如果只是用来存储，则可以将返回值保存到一个数据结构中；如果需要判断此返回值，从而决定是否继续执行所有子进程，则会相对比较复杂。另外在Multiprocessing中，可以利用Process与Pool创建子进程，这两种用法在获取子进程返回值上的写法上也不相同。这篇中，我们直接上代码，分析多进程中获取子进程返回值的不同用法，以及优缺点。</p>
+<p><strong>初级用法（Pool）</strong></p>
+<p>　　目的：存储子进程返回值</p>
+<p>　　说明：如果只是单纯的存储子进程返回值，则可以使用Pool的apply_async异步进程池；当然也可以使用Process，用法与threading中的相同，这里只介绍前者。</p>
+<p>　　实例：当进程池中所有子进程执行完毕后，输出每个子进程的返回值。</p>
+<pre><code>from multiprocessing import Pool
+def test(p):     
+    return p
+if __name__==&quot;__main__&quot;:
+    pool = Pool(processes=10)
+    result=[]
+    for i  in xrange(50000):
+       &apos;&apos;&apos;
+       for循环执行流程：
+       （1）添加子进程到pool，并将这个对象（子进程）添加到result这个列表中。（此时子进程并没有运行）
+       （2）执行子进程（同时执行10个）
+       &apos;&apos;&apos;
+       result.append(pool.apply_async(test, args=(i,)))#维持执行的进程总数为10，当一个进程执行完后添加新进程.       
+    pool.join()
+    &apos;&apos;&apos;
+    遍历result列表，取出子进程对象，访问get()方法，获取返回值。（此时所有子进程已执行完毕）
+    &apos;&apos;&apos;
+    for i in result:
+        print i.get()
+</code></pre><p><strong>高级用法（Pool）</strong></p>
+<p>　　目的：父进程实时获取子进程返回值，以此为标记结束所有进程。</p>
+<p><strong>实例（一）</strong></p>
+<p>　　执行子进程的过程中，不断获取返回值并校验，如果返回值为True则结果所有进程。</p>
+<pre><code>from multiprocessing import Pool
+import Queue
+import time
+def test(p):
+    time.sleep(0.001)
+    if p==10000:
+        return True
+    else:
+        return False
+if __name__==&quot;__main__&quot;:
+    pool = Pool(processes=10)
+    q=Queue.Queue()
+    for i  in xrange(50000):
+        &apos;&apos;&apos;
+        将子进程对象存入队列中。
+        &apos;&apos;&apos;
+        q.put(pool.apply_async(test, args=(i,)))#维持执行的进程总数为10，当一个进程执行完后添加新进程.       
+    &apos;&apos;&apos;
+    因为这里使用的为pool.apply_async异步方法，因此子进程执行的过程中，父进程会执行while，获取返回值并校验。
+    &apos;&apos;&apos;
+    while 1:
+        if q.get().get():
+            pool.terminate() #结束进程池中的所有子进程。
+            break
+    pool.join()
+</code></pre><p>　　说明：总共要执行50000个子进程（并发数量为10），当其中一个子进程返回True时，结束进程池。因为使用了apply_async为异步进程，因此在执行完for循环的添加子进程操作后（只是添加并没有执行完所有的子进程），可以直接执行while代码，实时判断子进程返回值是否有True，有的话结束所有进程。</p>
+<p>　　优点：不必等到所有子进程结束再结束程序，只要得到想要的结果就可以提前结束，节省资源。</p>
+<p>　　不足：当需要执行的子进程非常大时，不适用，因为for循环在添加子进程时，要花费很长的时间，虽然是异步，但是也需要等待for循环添加子进程操作结束才能执行while代码，因此会比较慢。</p>
+<p><strong>实例（二）</strong></p>
+<p>　　多线程+多进程，添加执行子进程的过程中，不断获取返回值并校验，如果返回值为True则结果所有进程。</p>
+<pre><code>from multiprocessing import Pool
+import Queue
+import threading
+import time
+def test(p):
+    time.sleep(0.001)
+    if p==10000:
+        return True
+    else:
+        return False
+if __name__==&quot;__main__&quot;:
+    result=Queue.Queue() #队列
+    pool = Pool()
+    def pool_th():
+        for i  in xrange(50000000): ##这里需要创建执行的子进程非常多
+            try:
+                result.put(pool.apply_async(test, args=(i,)))
+            except:
+                break
+    def result_th():
+        while 1:
+            a=result.get().get() #获取子进程返回值
+            if a:
+                pool.terminate() #结束所有子进程
+                break
+    &apos;&apos;&apos;
+    利用多线程，同时运行Pool函数创建执行子进程，以及运行获取子进程返回值函数。
+    &apos;&apos;&apos;
+    t1=threading.Thread(target=pool_th)
+    t2=threading.Thread(target=result_th)
+    t1.start()
+    t2.start()
+    t1.join()
+    t2.join()
+    pool.join()
+</code></pre><p>　　执行流程：利用多线程，创建一个执行pool_th函数线程，一个执行result_th函数线程，pool_th函数用来添加进程池，开启进程执行功能函数并将子进程对象存入队列，而result_th()函数用来不停地从队列中取子进程对象，调用get（）方法获取返回值。等发现其中存在子进程的返回值为True时，结束所有进程，最后结束线程。</p>
+<p>　　优点：弥补了实例（一）的不足，即使for循环的子进程数量很多，也能提高性能，因为for循环与判断子进程返回值同时进行。</p>
+
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/HenryBalthier.github.io/2017/08/16/Python分布式进程/" style="float: left;">
-        ← Python分布式进程
+    <a class="pull-left" href="/HenryBalthier.github.io/2017/08/16/Python协程与异步并发/" style="float: left;">
+        ← 【玩转Python系列】4、协程与异步并发
     </a>
     
     
     <a class="pull-right" href="/HenryBalthier.github.io/2017/08/10/Python-学习2/">
-        Python 学习2 →
+        【玩转Python系列】2、迭代器、生成器、装饰器、RE等 →
     </a>
     
 </nav>
