@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>【Python系列】5、分布式进程 | 方糖~</title>
+  <title>MySQL数据类型 | 方糖~</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -165,156 +165,41 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2017-08-17T13:36:45.000Z" itemprop="datePublished">
-          2017-08-17
+      <time datetime="2017-08-21T06:37:35.000Z" itemprop="datePublished">
+          2017-08-21
       </time>
     
     
     | 
-    <a href='/HenryBalthier.github.io/tags/python/'>python</a>
+    <a href='/HenryBalthier.github.io/tags/mysql/'>mysql</a>
     
     
 </span>
-                <h1>【Python系列】5、分布式进程</h1>
+                <h1>MySQL数据类型</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
       		<h4 id="主要内容："><a href="#主要内容：" class="headerlink" title="主要内容："></a>主要内容：</h4><ul>
-<li>分布式进程</li>
-<li>代码样例</li>
+<li>整形、浮点型、定点数、字符串、二进制数、时间日期、其他属性</li>
 </ul>
 <a id="more"></a>
 <hr>
-<h4 id="Python学习参考网站："><a href="#Python学习参考网站：" class="headerlink" title="Python学习参考网站："></a>Python学习参考网站：</h4><ul>
-<li><a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000" target="_blank" rel="external">Python教程 - 廖雪峰的官方网站</a></li>
-</ul>
-<hr>
-<p>　　Python的multiprocessing模块不但支持多进程，其中managers子模块还支持把多进程分布到多台机器上。一个服务进程可以作为调度者，将任务分布到其他多个进程中，依靠网络通信。由于managers模块封装很好，不必了解网络通信的细节，就可以很容易地编写分布式多进程程序。</p>
-<p>　　举个例子：如果我们已经有一个通过Queue通信的多进程程序在同一台机器上运行，现在，由于处理任务的进程任务繁重，希望把发送任务的进程和处理任务的进程分布到两台机器上。怎么用分布式进程实现？</p>
-<p>　　原有的Queue可以继续使用，但是，通过managers模块把Queue通过网络暴露出去，就可以让其他机器的进程访问Queue了。请注意，当我们在一台机器上写多进程程序时，创建的Queue可以直接拿来用，但是，在分布式多进程环境下，添加任务到Queue不可以直接对原始的task_queue进行操作，那样就绕过了QueueManager的封装，必须通过manager.get_task_queue()获得的Queue接口添加。</p>
-<h4 id="服务端代码"><a href="#服务端代码" class="headerlink" title="服务端代码"></a>服务端代码</h4><p><strong>环境：win10</strong></p>
-<p><strong>python2.7/3.5</strong></p>
-<pre><code># -*- coding: utf-8 -*-
-
-import random, time, Queue
-from multiprocessing.managers import BaseManager
-from multiprocessing import freeze_support
-
-# 发送任务的队列:
-task_queue = Queue.Queue()
-# 接收结果的队列:
-result_queue = Queue.Queue()
-
-# 从BaseManager继承的QueueManager:
-class QueueManager(BaseManager):
-    pass
-def task_q():
-    return task_queue
-def result_q():
-    return result_queue
-
-def master():
-    # 把两个Queue都注册到网络上, callable参数关联了Queue对象:
-    QueueManager.register(&apos;get_task_queue&apos;, callable=task_q)
-    QueueManager.register(&apos;get_result_queue&apos;, callable=result_q)
-    # 绑定端口5000, 设置验证码&apos;abc&apos;:
-    #server_addr = &apos;127.0.0.1&apos;
-    server_addr = &apos;10.212.43.18&apos;
-    manager = QueueManager(address=(server_addr, 5000), authkey=b&apos;abc&apos;)
-    # 启动Queue:
-    manager.start()
-    # 获得通过网络访问的Queue对象:
-    task = manager.get_task_queue()
-    result = manager.get_result_queue()
-    # 放几个任务进去:
-    for i in range(10):
-        n = random.randint(0, 10000)
-        print(&apos;Put task %d...&apos; % n)
-        task.put(n)
-    # 从result队列读取结果:
-    print(&apos;Try get results...&apos;)
-    for i in range(10):
-        r = result.get(timeout=60)
-        print(&apos;Result: %s&apos; % r)
-    # 关闭:
-    manager.shutdown()
-    print(&apos;master exit.&apos;)
-
-if __name__ == &apos;__main__&apos;:
-    #freeze_support()
-    master()
-</code></pre><h4 id="客户端代码"><a href="#客户端代码" class="headerlink" title="客户端代码"></a>客户端代码</h4><p><strong>环境：1、本机；2、远程CentOS7；3、远程win7</strong></p>
-<p><strong>python2.7/3.5</strong></p>
-<pre><code># -*- coding: utf-8 -*-
-import time, sys, queue
-from multiprocessing.managers import BaseManager
-from multiprocessing import freeze_support
-
-# 创建类似的QueueManager:
-class QueueManager(BaseManager):
-    pass
-
-def worker():
-    # 由于这个QueueManager只从网络上获取Queue，所以注册时只提供名字:
-    QueueManager.register(&apos;get_task_queue&apos;)
-    QueueManager.register(&apos;get_result_queue&apos;)
-
-    # 连接到服务器，也就是运行task_master.py的机器:
-    server_addr = &apos;10.212.43.18&apos;
-    #server_addr = &apos;127.0.0.1&apos;
-    print(&apos;Connect to server %s...&apos; % server_addr)
-    # 端口和验证码注意保持与task_master.py设置的完全一致:
-    m = QueueManager(address=(server_addr, 5000), authkey=b&apos;abc&apos;)
-    # 从网络连接:
-    m.connect()
-    # 获取Queue的对象:
-    task = m.get_task_queue()
-    result = m.get_result_queue()
-    # 从task队列取任务,并把结果写入result队列:
-    for i in range(10):
-        try:
-            n = task.get(timeout=1)
-            print(&apos;run task %d * %d...&apos; % (n, n))
-            r = &apos;%d * %d = %d&apos; % (n, n, n*n)
-            time.sleep(1)
-            result.put(r)
-        except queue.Empty:
-            print(&apos;task queue is empty.&apos;)
-    # 处理结束:
-    print(&apos;worker exit.&apos;)
-
-if __name__ == &apos;__main__&apos;:
-    freeze_support()
-    worker()
-</code></pre><h4 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h4><ul>
-<li><strong>Q：报错ImportError: No module named ‘Queue’</strong></li>
-</ul>
-<p>　　在python2.7下模块名为Queue，3.5下模块名变为queue。</p>
-<ul>
-<li><strong>Q：报错OSError: [WinError 10049] 在其上下文中，该请求的地址无效。</strong></li>
-</ul>
-<p>　　stock.bind应监听本地地址，Linux下可以为空‘’，windows下需要设置为‘127.0.0.1’或外部局域网地址。</p>
-<ul>
-<li><strong>Q：报错ValueError: unsupported pickle protocol: 3</strong></li>
-</ul>
-<p>　　服务端和客户端Python版本不一致造成，需确保版本一致（如均使用2.7）</p>
-<ul>
-<li><strong>Q：其他网络连接问题：</strong></li>
-</ul>
-<p>　　确认防火墙以及端口是否正确配置；确认端口是否被其他程序占用；确认服务器和客户端的IP地址和端口是否正确。</p>
+<p><img src="/2017/08/21/MySQL数据类型/整型.png" alt="整型.png"></p>
+<p><img src="/2017/08/21/MySQL数据类型/浮点型.png" alt="浮点型.png"></p>
+<p><img src="/2017/08/21/MySQL数据类型/定点数.png" alt="定点数.png"></p>
+<p><img src="/2017/08/21/MySQL数据类型/字符串.png" alt="字符串.png"></p>
+<p><img src="/2017/08/21/MySQL数据类型/二进制数.png" alt="二进制数.png"></p>
+<p><img src="/2017/08/21/MySQL数据类型/日期时间.png" alt="日期时间.png"></p>
+<p><img src="/2017/08/21/MySQL数据类型/数据类型属性.png" alt="数据类型属性.png"></p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/HenryBalthier.github.io/2017/08/21/MySQL基础/" style="float: left;">
-        ← SQL基础
-    </a>
     
-    
-    <a class="pull-right" href="/HenryBalthier.github.io/2017/08/16/Python协程与异步并发/">
-        【Python系列】4、协程与异步并发 →
+    <a class="pull-right" href="/HenryBalthier.github.io/2017/08/21/MySQL基础/">
+        SQL基础 →
     </a>
     
 </nav>

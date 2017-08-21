@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>SQL基础 | 方糖~</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="方糖~">
+    <meta name="author" content="Yu Fangheng">
+    <meta name="description" content="Henry's Blog~" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/HenryBalthier.github.io/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="方糖~" type="application/atom+xml">
+    <link rel="stylesheet" href="/HenryBalthier.github.io/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/HenryBalthier.github.io/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/HenryBalthier.github.io/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/HenryBalthier.github.io/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/HenryBalthier.github.io/js/html5shiv.min.js"></script>
+    <script src="/HenryBalthier.github.io/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/HenryBalthier.github.io/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/HenryBalthier.github.io/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/HenryBalthier.github.io/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="https://henrybalthier.github.io/HenryBalthier.github.io/tags/python/" target="_BLANK" class="animsition-link">Python</a></li>
+                    
+                        <li><a href="https://henrybalthier.github.io/HenryBalthier.github.io/tags/Linux/" target="_BLANK" class="animsition-link">Linux</a></li>
+                    
+                        <li><a href="https://henrybalthier.github.io/HenryBalthier.github.io/tags/Java/" target="_BLANK" class="animsition-link">Java</a></li>
+                    
+                        <li><a href="https://henrybalthier.github.io/HenryBalthier.github.io/tags/%E7%AE%97%E6%B3%95/" target="_BLANK" class="animsition-link">算法</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            <li><a href="/HenryBalthier.github.io/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/HenryBalthier.github.io/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">方糖~</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                            
+                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                            
+                            
+                            <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2017-08-20T23:08:22.000Z" itemprop="datePublished">
+          2017-08-21
+      </time>
+    
+    
+    | 
+    <a href='/HenryBalthier.github.io/tags/mysql/'>mysql</a>
+    
+    
+</span>
+                <h1>SQL基础</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h4 id="主要内容："><a href="#主要内容：" class="headerlink" title="主要内容："></a>主要内容：</h4><ul>
+<li>SQLite</li>
+<li>MySQL用户管理</li>
+<li>MySQL指令</li>
+</ul>
+<a id="more"></a>
+<hr>
+<h4 id="SQLite"><a href="#SQLite" class="headerlink" title="SQLite"></a>SQLite</h4><p>　　SQLite是一种嵌入式数据库，它的数据库就是一个文件。由于SQLite本身是C写的，而且体积很小，所以，经常被集成到各种应用程序中，甚至在iOS和Android的App中都可以集成。</p>
+<pre><code># 导入SQLite驱动:
+&gt;&gt;&gt; import sqlite3
+# 连接到SQLite数据库
+# 数据库文件是test.db
+# 如果文件不存在，会自动在当前目录创建:
+&gt;&gt;&gt; conn = sqlite3.connect(&apos;test.db&apos;)
+# 创建一个Cursor:
+&gt;&gt;&gt; cursor = conn.cursor()
+# 执行一条SQL语句，创建user表:
+&gt;&gt;&gt; cursor.execute(&apos;create table user (id varchar(20) primary key, name varchar(20))&apos;)
+&lt;sqlite3.Cursor object at 0x10f8aa260&gt;
+# 继续执行一条SQL语句，插入一条记录:
+&gt;&gt;&gt; cursor.execute(&apos;insert into user (id, name) values (\&apos;1\&apos;, \&apos;Michael\&apos;)&apos;)
+&lt;sqlite3.Cursor object at 0x10f8aa260&gt;
+# 通过rowcount获得插入的行数:
+&gt;&gt;&gt; cursor.rowcount
+1
+# 关闭Cursor:
+&gt;&gt;&gt; cursor.close()
+# 提交事务:
+&gt;&gt;&gt; conn.commit()
+# 关闭Connection:
+&gt;&gt;&gt; conn.close()
+</code></pre><p>　　查询记录：</p>
+<pre><code>&gt;&gt;&gt; conn = sqlite3.connect(&apos;test.db&apos;)
+&gt;&gt;&gt; cursor = conn.cursor()
+# 执行查询语句:
+&gt;&gt;&gt; cursor.execute(&apos;select * from user where id=?&apos;, (&apos;1&apos;,))
+&lt;sqlite3.Cursor object at 0x10f8aa340&gt;
+# 获得查询结果集:
+&gt;&gt;&gt; values = cursor.fetchall()
+&gt;&gt;&gt; values
+[(&apos;1&apos;, &apos;Michael&apos;)]
+&gt;&gt;&gt; cursor.close()
+&gt;&gt;&gt; conn.close()
+</code></pre><p>　　使用Cursor对象执行insert，update，delete语句时，执行结果由rowcount返回影响的行数，就可以拿到执行结果。使用Cursor对象执行select语句时，通过featchall()可以拿到结果集。结果集是一个list，每个元素都是一个tuple，对应一行记录。如果SQL语句带有参数，那么需要把参数按照位置传递给execute()方法，有几个?占位符就必须对应几个参数，例如：</p>
+<pre><code>cursor.execute(&apos;select * from user where name=? and pwd=?&apos;, (&apos;abc&apos;, &apos;password&apos;))
+</code></pre><h4 id="MySQL用户管理"><a href="#MySQL用户管理" class="headerlink" title="MySQL用户管理"></a>MySQL用户管理</h4><p><strong><a href="http://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="external">MySQL 教程</a></strong></p>
+<p>1.新建用户</p>
+<p>　　1.1 登录MYSQL：</p>
+<pre><code>　　@&gt;mysql -u root -p
+　　@&gt;密码
+
+mysql -D 所选择的数据库名 -h 主机名 -u 用户名 -p
+-h : 该命令用于指定客户端所要登录的MySQL主机名, 登录当前机器该参数可以省略;
+-u : 所要登录的用户名;
+-p : 告诉服务器将会使用一个密码来登录, 如果所要登录的用户名密码为空, 可以忽略此选项。
+</code></pre><p>　　1.2 创建用户：</p>
+<pre><code>　　mysql&gt; insert into mysql.user(Host,User,Password) values(&quot;localhost&quot;,&quot;test&quot;,password(&quot;1234&quot;));
+</code></pre><p>　　这样就创建了一个名为：test 密码为：1234 的用户。</p>
+<p>　　注意：此处的”localhost”，是指该用户只能在本地登录，不能在另外一台机器上远程登录。如果想远程登录的话，将”localhost”改为”%”，表示在任何一台电脑上都可以登录。也可以指定某台机器可以远程登录。</p>
+<p>　　1.3 然后登录一下：</p>
+<pre><code>　　mysql&gt;exit;
+　　@&gt;mysql -u test -p
+　　@&gt;输入密码
+　　mysql&gt;登录成功
+</code></pre><p>2.为用户授权</p>
+<p>　　授权格式：grant 权限 on 数据库.* to 用户名@登录主机 identified by “密码”;　</p>
+<p>　　2.1 登录MYSQL（有ROOT权限），这里以ROOT身份登录：</p>
+<pre><code>　　@&gt;mysql -u root -p
+　　@&gt;密码
+</code></pre><p>　　2.2 首先为用户创建一个数据库(testDB)：</p>
+<pre><code>　　mysql&gt;create database testDB;
+</code></pre><p>　　2.3 授权test用户拥有testDB数据库的所有权限（某个数据库的所有权限）：</p>
+<pre><code>　　 mysql&gt;grant all privileges on testDB.* to test@localhost identified by &apos;1234&apos;;
+ 　　mysql&gt;flush privileges;//刷新系统权限表
+</code></pre><p>　　格式：grant 权限 on 数据库.* to 用户名@登录主机 identified by “密码”;　</p>
+<p>　　2.4 如果想指定部分权限给一用户，可以这样来写:</p>
+<pre><code>　　mysql&gt;grant select,update on testDB.* to test@localhost identified by &apos;1234&apos;;
+　　mysql&gt;flush privileges; //刷新系统权限表
+</code></pre><p>　　2.5 授权test用户拥有所有数据库的某些权限： 　 </p>
+<pre><code>　　mysql&gt;grant select,delete,update,create,drop on *.* to test@&quot;%&quot; identified by &quot;1234&quot;;
+//test用户对所有数据库都有select,delete,update,create,drop 权限。
+　 //@&quot;%&quot; 表示对所有非本地主机授权，不包括localhost。（localhost地址设为127.0.0.1，如果设为真实的本地地址，不知道是否可以，没有验证。）
+　 //对localhost授权：加上一句grant all privileges on testDB.* to test@localhost identified by &apos;1234&apos;;即可。
+</code></pre><p>3.删除用户</p>
+<pre><code>@&gt;mysql -u root -p
+@&gt;密码
+mysql&gt;Delete FROM user Where User=&apos;test&apos; and Host=&apos;localhost&apos;;
+mysql&gt;flush privileges;
+mysql&gt;drop database testDB; //删除用户的数据库
+</code></pre><p>　　删除账户及权限：</p>
+<pre><code>&gt;drop user 用户名@&apos;%&apos;;
+&gt;drop user 用户名@ localhost; 
+</code></pre><p>4.修改指定用户密码</p>
+<pre><code>@&gt;mysql -u root -p
+@&gt;密码
+mysql&gt;update mysql.user set password=password(&apos;新密码&apos;) where User=&quot;test&quot; and Host=&quot;localhost&quot;;
+mysql&gt;flush privileges;
+</code></pre><p>5.列出所有数据库</p>
+<pre><code>　　mysql&gt;show database;
+</code></pre><p>6.切换数据库</p>
+<pre><code>　　mysql&gt;use &apos;数据库名&apos;; 
+</code></pre><p>7.列出所有表</p>
+<pre><code>　　mysql&gt;show tables; 
+</code></pre><p>8.显示数据表结构</p>
+<pre><code>　　mysql&gt;describe 表名; 
+</code></pre><p>9.删除数据库和数据表</p>
+<pre><code>　　mysql&gt;drop database 数据库名;
+　　mysql&gt;drop table 数据表名;
+</code></pre><h4 id="MySQL指令"><a href="#MySQL指令" class="headerlink" title="MySQL指令"></a>MySQL指令</h4><p>MySQL 为关系型数据库(Relational Database Management System), 这种所谓的”关系型”可以理解为”表格”的概念, 一个关系型数据库由一个或数个表格组成</p>
+<ul>
+<li>表头(header): 每一列的名称;</li>
+<li>列(row): 具有相同数据类型的数据的集合;</li>
+<li>行(col): 每一行用来描述某个人/物的具体信息;</li>
+<li>值(value): 行的具体信息, 每个值必须与该列的数据类型相同;</li>
+<li>键(key): 表中用来识别某个特定的人\物的方法, 键的值在当前列中具有唯一性。</li>
+</ul>
+<p><strong>数据类型</strong></p>
+<p>数字类型</p>
+<ul>
+<li>整数: tinyint、smallint、mediumint、int、bigint</li>
+<li>浮点数: float、double、real、decimal</li>
+<li>日期和时间: date、time、datetime、timestamp、year</li>
+</ul>
+<p>字符串类型</p>
+<ul>
+<li>字符串: char、varchar</li>
+<li>文本: tinytext、text、mediumtext、longtext<br>二进制(可用来存储图片、音乐等): tinyblob、blob、mediumblob、longblob</li>
+</ul>
+<p>详见：————</p>
+<p><strong>增</strong></p>
+<p>insert 语句可以用来将一行或多行数据插到数据库表中, 使用的一般形式如下:</p>
+<pre><code>insert [into] 表名 [(列名1, 列名2, 列名3, ...)] values (值1, 值2, 值3, ...);
+</code></pre><p>其中 [] 内的内容是可选的, 例如, 要给 samp_db 数据库中的 students 表插入一条记录, 执行语句:</p>
+<pre><code>insert into students values(NULL, &quot;王刚&quot;, &quot;男&quot;, 20, &quot;13811371377&quot;);
+</code></pre><p>按回车键确认后若提示 Query Ok, 1 row affected (0.05 sec) 表示数据插入成功。 若插入失败请检查是否已选择需要操作的数据库。</p>
+<p>有时我们只需要插入部分数据, 或者不按照列的顺序进行插入, 可以使用这样的形式进行插入:</p>
+<pre><code>insert into students (name, sex, age) values(&quot;孙丽华&quot;, &quot;女&quot;, 21);
+</code></pre><p><strong>删</strong></p>
+<p>delete 语句用于删除表中的数据, 基本用法为:</p>
+<pre><code>delete from 表名称 where 删除条件;
+</code></pre><p>使用示例:</p>
+<p>删除id为2的行: delete from students where id=2;</p>
+<p>删除所有年龄小于21岁的数据: delete from students where age&lt;20;</p>
+<p>删除表中的所有数据: delete from students;</p>
+<p><strong>查</strong></p>
+<p>select 语句常用来根据一定的查询规则到数据库中获取数据, 其基本的用法为:</p>
+<pre><code>select 列名称 from 表名称 [查询条件];
+</code></pre><p>例如要查询 students 表中所有学生的名字和年龄, 输入语句 select name, age from students; 执行结果如下:</p>
+<pre><code>mysql&gt; select name, age from students;
++--------+-----+
+| name   | age |
++--------+-----+
+| 王刚   |  20 |
+| 孙丽华 |  21 |
+| 王永恒 |  23 |
+| 郑俊杰 |  19 |
+| 陈芳   |  22 |
+| 张伟朋 |  21 |
++--------+-----+
+6 rows in set (0.00 sec)
+
+mysql&gt;
+</code></pre><p>也可以使用通配符 <em> 查询表中所有的内容, 语句: select </em> from students;<br>按特定条件查询:</p>
+<pre><code>where 关键词用于指定查询条件, 用法形式为: select 列名称 from 表名称 where 条件;
+</code></pre><p>以查询所有性别为女的信息为例, 输入查询语句: select * from students where sex=”女”;</p>
+<p>where 子句不仅仅支持 “where 列名 = 值” 这种名等于值的查询形式, 对一般的比较运算的运算符都是支持的, 例如 =、&gt;、&lt;、&gt;=、&lt;、!= 以及一些扩展运算符 is [not] null、in、like 等等。 还可以对查询条件使用 or 和 and 进行组合查询, 以后还会学到更加高级的条件查询方式, 这里不再多做介绍。</p>
+<p>示例:</p>
+<p>查询年龄在21岁以上的所有人信息: select * from students where age &gt; 21;</p>
+<p>查询名字中带有 “王” 字的所有人信息: select * from students where name like “%王%”;</p>
+<p>查询id小于5且年龄大于20的所有人信息: select * from students where id<5 and="" age="">20;</5></p>
+<p><strong>改</strong></p>
+<p>update 语句可用来修改表中的数据, 基本的使用形式为:</p>
+<pre><code>update 表名称 set 列名称=新值 where 更新条件;
+</code></pre><p>使用示例:</p>
+<p>将id为5的手机号改为默认的”-“: update students set tel=default where id=5;</p>
+<p>将所有人的年龄增加1: update students set age=age+1;</p>
+<p>将手机号为 13288097888 的姓名改为 “张伟鹏”, 年龄改为 19: update students set name=”张伟鹏”, age=19 where tel=”13288097888”;</p>
+<p><strong>修改表</strong></p>
+<p>alter table 语句用于创建后对表的修改, 基础用法如下:</p>
+<ul>
+<li><p>添加列</p>
+<p>  基本形式: alter table 表名 add 列名 列数据类型 [after 插入位置];</p>
+</li>
+</ul>
+<p>示例:</p>
+<p>在表的最后追加列 address: alter table students add address char(60);</p>
+<p>在名为 age 的列后插入列 birthday: alter table students add birthday date after age;</p>
+<ul>
+<li><p>修改列</p>
+<pre><code>基本形式: alter table 表名 change 列名称 列新名称 新数据类型;
+</code></pre></li>
+</ul>
+<p>示例:</p>
+<p>将表 tel 列改名为 telphone: alter table students change tel telphone char(13) default “-“;</p>
+<p>将 name 列的数据类型改为 char(16): alter table students change name name char(16) not null;</p>
+<ul>
+<li><p>删除列</p>
+<pre><code>基本形式: alter table 表名 drop 列名称;
+</code></pre></li>
+</ul>
+<p>示例:</p>
+<p>删除 birthday 列: alter table students drop birthday;</p>
+<ul>
+<li><p>重命名表</p>
+<pre><code>基本形式: alter table 表名 rename 新表名;
+</code></pre></li>
+</ul>
+<p>示例:</p>
+<p>重命名 students 表为 workmates: alter table students rename workmates;</p>
+<ul>
+<li><p>删除整张表</p>
+<pre><code>基本形式: drop table 表名;
+</code></pre></li>
+</ul>
+<p>示例: 删除 workmates 表: drop table workmates;</p>
+<ul>
+<li><p>删除整个数据库</p>
+<pre><code>基本形式: drop database 数据库名;
+</code></pre></li>
+</ul>
+<p>示例: 删除 samp_db 数据库: drop database samp_db;</p>
+<h4 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h4><p>####Q:报错1044 access denied for user @localhost</p>
+<p>　　因为mysql数据库的user表里，存在用户名为空的账户即匿名账户，导致登录的时候是虽然用的是root，但实际是匿名登录的，通过错误提示里的’’@’localhost’可以看出来，于是解决办法见方法二。</p>
+<p>方法一：<br>1.关闭mysql</p>
+<pre><code># service mysqld stop
+</code></pre><p>2.屏蔽权限</p>
+<pre><code># mysqld_safe --skip-grant-table
+</code></pre><p>   屏幕出现： Starting demo from …..</p>
+<p>3.新开起一个终端输入</p>
+<pre><code># mysql -u root mysql
+mysql&gt; UPDATE user SET Password=PASSWORD(&apos;newpassword&apos;) where USER=&apos;root&apos;;
+mysql&gt; FLUSH PRIVILEGES;//记得要这句话，否则如果关闭先前的终端，又会出现原来的错误
+mysql&gt; \q
+</code></pre><p>方法二：<br>1.关闭mysql</p>
+<pre><code># service mysqld stop
+</code></pre><p>2.屏蔽权限</p>
+<pre><code># mysqld_safe --skip-grant-table
+</code></pre><p>   屏幕出现： Starting demo from …..</p>
+<p>3.新开起一个终端输入</p>
+<pre><code># mysql -u root mysql
+mysql&gt; delete from user where USER=&apos;&apos;;
+mysql&gt; FLUSH PRIVILEGES;//记得要这句话，否则如果关闭先前的终端，又会出现原来的错误
+mysql&gt; \q 
+</code></pre>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/HenryBalthier.github.io/2017/08/21/MySQL数据类型/" style="float: left;">
+        ← MySQL数据类型
+    </a>
+    
+    
+    <a class="pull-right" href="/HenryBalthier.github.io/2017/08/17/Python分布式进程/">
+        【Python系列】5、分布式进程 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+
+
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By Yu Fangheng. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/HenryBalthier.github.io/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/HenryBalthier.github.io/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/HenryBalthier.github.io/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/HenryBalthier.github.io/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/HenryBalthier.github.io/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      (function(){
+        console.log('font');
+        var getCss = function(path) {
+          var head = document.getElementsByTagName('head')[0];
+          link = document.createElement('link');
+          link.href = path;
+          link.rel = 'stylesheet';
+          link.type = 'text/css';
+          head.appendChild(link);
+        };
+        getCss('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+        getCss('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
+      })();
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+</body>
+</html>
