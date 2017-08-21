@@ -203,6 +203,7 @@
 <li>Python代码由Python解释器主循环控制，任意时刻都只有一个线程在执行。</li>
 <li>Python解释器的访问由GIL控制，负责切换进程、锁定（设置为睡眠）线程和唤醒线程等功能。</li>
 </ul>
+<hr>
 <h2 id="2、Python多线程、多进程、协程编程"><a href="#2、Python多线程、多进程、协程编程" class="headerlink" title="2、Python多线程、多进程、协程编程"></a>2、Python多线程、多进程、协程编程</h2><pre><code>Python由于有全锁局的存在（同一时间只能有一个线程执行），并不能利用多核优势。所以，如果你的多线程进程是CPU密集型的，那多线程并不能带来效率上的提升，相反还可能会因为线程的频繁切换，导致效率下降；如果是IO密集型，多线程进程可以利用IO阻塞等待时的空闲时间执行其他线程，提升效率。
 </code></pre><p>　　首先，要实现多任务，通常我们会设计Master-Worker模式，Master负责分配任务，Worker负责执行任务，因此，多任务环境下，通常是一个Master，多个Worker。</p>
 <ul>
@@ -283,7 +284,8 @@ if __name__==&apos;__main__&apos;:
     pw.join()
     # pr进程里是死循环，无法等待其结束，只能强行终止:
     pr.terminate()
-</code></pre><h2 id="3、Multiprocessing基础"><a href="#3、Multiprocessing基础" class="headerlink" title="3、Multiprocessing基础"></a>3、Multiprocessing基础</h2><h4 id="3-1、multiprocessing常用组件及功能"><a href="#3-1、multiprocessing常用组件及功能" class="headerlink" title="3.1、multiprocessing常用组件及功能"></a>3.1、multiprocessing常用组件及功能</h4><p>　　参考网站：<a href="https://thief.one/2016/11/23/Python-multiprocessing/" target="_blank" rel="external">Multiprocessing基础</a></p>
+</code></pre><hr>
+<h2 id="3、Multiprocessing基础"><a href="#3、Multiprocessing基础" class="headerlink" title="3、Multiprocessing基础"></a>3、Multiprocessing基础</h2><h4 id="3-1、multiprocessing常用组件及功能"><a href="#3-1、multiprocessing常用组件及功能" class="headerlink" title="3.1、multiprocessing常用组件及功能"></a>3.1、multiprocessing常用组件及功能</h4><p>　　参考网站：<a href="https://thief.one/2016/11/23/Python-multiprocessing/" target="_blank" rel="external">Multiprocessing基础</a></p>
 <p>　　创建管理进程模块：</p>
 <ul>
 <li>Process（用于创建进程模块）</li>

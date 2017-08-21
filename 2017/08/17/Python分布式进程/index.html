@@ -192,6 +192,7 @@
 <p>　　Python的multiprocessing模块不但支持多进程，其中managers子模块还支持把多进程分布到多台机器上。一个服务进程可以作为调度者，将任务分布到其他多个进程中，依靠网络通信。由于managers模块封装很好，不必了解网络通信的细节，就可以很容易地编写分布式多进程程序。</p>
 <p>　　举个例子：如果我们已经有一个通过Queue通信的多进程程序在同一台机器上运行，现在，由于处理任务的进程任务繁重，希望把发送任务的进程和处理任务的进程分布到两台机器上。怎么用分布式进程实现？</p>
 <p>　　原有的Queue可以继续使用，但是，通过managers模块把Queue通过网络暴露出去，就可以让其他机器的进程访问Queue了。请注意，当我们在一台机器上写多进程程序时，创建的Queue可以直接拿来用，但是，在分布式多进程环境下，添加任务到Queue不可以直接对原始的task_queue进行操作，那样就绕过了QueueManager的封装，必须通过manager.get_task_queue()获得的Queue接口添加。</p>
+<hr>
 <h4 id="服务端代码"><a href="#服务端代码" class="headerlink" title="服务端代码"></a>服务端代码</h4><p><strong>环境：win10</strong></p>
 <p><strong>python2.7/3.5</strong></p>
 <pre><code># -*- coding: utf-8 -*-
@@ -243,7 +244,8 @@ def master():
 if __name__ == &apos;__main__&apos;:
     #freeze_support()
     master()
-</code></pre><h4 id="客户端代码"><a href="#客户端代码" class="headerlink" title="客户端代码"></a>客户端代码</h4><p><strong>环境：1、本机；2、远程CentOS7；3、远程win7</strong></p>
+</code></pre><hr>
+<h4 id="客户端代码"><a href="#客户端代码" class="headerlink" title="客户端代码"></a>客户端代码</h4><p><strong>环境：1、本机；2、远程CentOS7；3、远程win7</strong></p>
 <p><strong>python2.7/3.5</strong></p>
 <pre><code># -*- coding: utf-8 -*-
 import time, sys, queue
@@ -286,7 +288,8 @@ def worker():
 if __name__ == &apos;__main__&apos;:
     freeze_support()
     worker()
-</code></pre><h4 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h4><ul>
+</code></pre><hr>
+<h4 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h4><ul>
 <li><strong>Q：报错ImportError: No module named ‘Queue’</strong></li>
 </ul>
 <p>　　在python2.7下模块名为Queue，3.5下模块名变为queue。</p>
@@ -309,7 +312,7 @@ if __name__ == &apos;__main__&apos;:
         <nav class="pagination" role="pagination">
     
     <a class="pull-left" href="/HenryBalthier.github.io/2017/08/21/MySQL基础/" style="float: left;">
-        ← SQL基础
+        ← MySQL基础
     </a>
     
     
