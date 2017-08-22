@@ -226,43 +226,12 @@ int[] demoArray;
 <p>　　通常，你可以在定义的同时分配空间，语法为：<br>    type arrayName[] = new type[arraySize];<br>　　例如：</p>
 <pre><code>int demoArray[] = new int[3];
 </code></pre><p><strong>数组的初始化</strong></p>
-<p>　　你可以在声明数组的同时进行初始化（静态初始化），也可以在声明以后进行初始化（动态初始化）。例如：</p>
-<pre><code>// 静态初始化
-// 静态初始化的同时就为数组元素分配空间并赋值
-int intArray[] = {1,2,3,4};
-
-// 动态初始化
-float floatArray[] = new float[3];
-floatArray[0] = 1.0f;
-floatArray[1] = 132.63f;
-floatArray[2] = 100F;
-</code></pre><p><strong>数组引用</strong></p>
+<p>　　你可以在声明数组的同时进行初始化（静态初始化），也可以在声明以后进行初始化（动态初始化）。例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 静态初始化</span></div><div class="line"><span class="comment">// 静态初始化的同时就为数组元素分配空间并赋值</span></div><div class="line"><span class="keyword">int</span> intArray[] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 动态初始化</span></div><div class="line"><span class="keyword">float</span> floatArray[] = <span class="keyword">new</span> <span class="keyword">float</span>[<span class="number">3</span>];</div><div class="line">floatArray[<span class="number">0</span>] = <span class="number">1.0f</span>;</div><div class="line">floatArray[<span class="number">1</span>] = <span class="number">132.63f</span>;</div><div class="line">floatArray[<span class="number">2</span>] = <span class="number">100F</span>;</div></pre></td></tr></table></figure></p>
+<p><strong>数组引用</strong></p>
 <p>　　可以通过下标来引用数组：<br>    arrayName[index];<br>　　与C、C++不同，Java对数组元素要进行越界检查以保证安全性。</p>
 <p>　　每个数组都有一个length属性来指明它的长度，例如 intArray.length 指明数组 intArray 的长度。</p>
-<p>　　【示例】写一段代码，要求输入任意5个整数，输出它们的和。</p>
-<pre><code>import java.util.*;
-public class Demo {
-    public static void main(String[] args){
-        int intArray[] = new int[5];
-        long total = 0;
-        int len = intArray.length;
-
-        // 给数组元素赋值
-        System.out.print(&quot;请输入&quot; + len + &quot;个整数，以空格为分隔：&quot;);
-        Scanner sc = new Scanner(System.in);
-        for(int i=0; i&lt;len; i++){
-            intArray[i] = sc.nextInt();
-        }
-
-        // 计算数组元素的和
-        for(int i=0; i&lt;len; i++){
-            total += intArray[i];
-        }
-
-        System.out.println(&quot;所有数组元素的和为：&quot; + total);
-    }
-}
-</code></pre><p>　　运行结果：<br>请输入5个整数，以空格为分隔：10 20 15 25 50<br>所有数组元素的和为：120</p>
+<p>　　【示例】写一段代码，要求输入任意5个整数，输出它们的和。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.*;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        <span class="keyword">int</span> intArray[] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>];</div><div class="line">        <span class="keyword">long</span> total = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> len = intArray.length;</div><div class="line">       </div><div class="line">        <span class="comment">// 给数组元素赋值</span></div><div class="line">        System.out.print(<span class="string">"请输入"</span> + len + <span class="string">"个整数，以空格为分隔："</span>);</div><div class="line">        Scanner sc = <span class="keyword">new</span> Scanner(System.in);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;len; i++)&#123;</div><div class="line">            intArray[i] = sc.nextInt();</div><div class="line">        &#125;</div><div class="line">       </div><div class="line">        <span class="comment">// 计算数组元素的和</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;len; i++)&#123;</div><div class="line">            total += intArray[i];</div><div class="line">        &#125;</div><div class="line">       </div><div class="line">        System.out.println(<span class="string">"所有数组元素的和为："</span> + total);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　运行结果：<br>请输入5个整数，以空格为分隔：10 20 15 25 50<br>所有数组元素的和为：120</p>
 <p><strong>数组的遍历</strong></p>
 <p>　　实际开发中，经常需要遍历数组以获取数组中的每一个元素。最容易想到的方法是for循环，例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> arrayDemo[] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">192</span>, <span class="number">100</span>&#125;;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,len=arrayDemo.length; i&lt;len; i++)&#123;</div><div class="line">    System.out.println(arrayDemo[i] + <span class="string">", "</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>　　输出结果：<br>1, 2, 4, 7, 9, 192, 100,</p>
@@ -292,38 +261,8 @@ a[1][2] = 93;
 int a[ ][ ] = new int[2][ ];
 a[0] = new int[3];
 a[1] = new int[5];
-</code></pre><p>　　【示例】通过二维数组计算两个矩阵的乘积。</p>
-<pre><code>public class Demo {
-    public static void main(String[] args){
-        // 第一个矩阵（动态初始化一个二维数组）
-        int a[][] = new int[2][3];
-        // 第二个矩阵（静态初始化一个二维数组）
-        int b[][] = { {1,5,2,8}, {5,9,10,-3}, {2,7,-5,-18} };
-        // 结果矩阵
-        int c[][] = new int[2][4];
-
-        // 初始化第一个矩阵
-        for(int i=0; i&lt;2; i++)
-            for(int j=0; j&lt;3 ;j++)
-                a[i][j] = (i+1) * (j+2);
-
-        // 计算矩阵乘积
-        for (int i=0; i&lt;2; i++){
-            for (int j=0; j&lt;4; j++){
-                c[i][j]=0;
-                for(int k=0; k&lt;3; k++)
-                    c[i][j] += a[i][k] * b[k][j];
-            }
-        }
-        // 输出结算结果
-        for(int i=0; i&lt;2; i++){
-            for (int j=0; j&lt;4; j++)
-                System.out.printf(&quot;%-5d&quot;, c[i][j]);
-            System.out.println();
-        }
-    }
-}
-</code></pre><p>　　运行结果：<br>25   65   14   -65<br>50   130  28   -130</p>
+</code></pre><p>　　【示例】通过二维数组计算两个矩阵的乘积。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        <span class="comment">// 第一个矩阵（动态初始化一个二维数组）</span></div><div class="line">        <span class="keyword">int</span> a[][] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>][<span class="number">3</span>];</div><div class="line">        <span class="comment">// 第二个矩阵（静态初始化一个二维数组）</span></div><div class="line">        <span class="keyword">int</span> b[][] = &#123; &#123;<span class="number">1</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">8</span>&#125;, &#123;<span class="number">5</span>,<span class="number">9</span>,<span class="number">10</span>,-<span class="number">3</span>&#125;, &#123;<span class="number">2</span>,<span class="number">7</span>,-<span class="number">5</span>,-<span class="number">18</span>&#125; &#125;;</div><div class="line">        <span class="comment">// 结果矩阵</span></div><div class="line">        <span class="keyword">int</span> c[][] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>][<span class="number">4</span>];</div><div class="line">       </div><div class="line">        <span class="comment">// 初始化第一个矩阵</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">2</span>; i++)</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;<span class="number">3</span> ;j++)</div><div class="line">                a[i][j] = (i+<span class="number">1</span>) * (j+<span class="number">2</span>);</div><div class="line">       </div><div class="line">        <span class="comment">// 计算矩阵乘积</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">2</span>; i++)&#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;<span class="number">4</span>; j++)&#123;</div><div class="line">                c[i][j]=<span class="number">0</span>;</div><div class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>; k&lt;<span class="number">3</span>; k++)</div><div class="line">                    c[i][j] += a[i][k] * b[k][j];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 输出结算结果</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">2</span>; i++)&#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;<span class="number">4</span>; j++)</div><div class="line">                System.out.printf(<span class="string">"%-5d"</span>, c[i][j]);</div><div class="line">            System.out.println();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　运行结果：<br>25   65   14   -65<br>50   130  28   -130</p>
 <p>　　几点说明：</p>
 <ul>
 <li>上面讲的是静态数组。静态数组一旦被声明，它的容量就固定了，不容改变。所以在声明数组时，一定要考虑数组的最大容量，防止容量不够的现象。</li>
@@ -350,85 +289,12 @@ System.out.println(str.charAt(0) + &quot;    &quot; + str.charAt(5) + &quot;    
 System.out.println(str.contains(&quot;yuan&quot;));
 </code></pre><p>输出结果：<br>true</p>
 <p><strong>4) replace() 方法</strong></p>
-<p>　　字符串替换，用来替换字符串中所有指定的子串，例如：</p>
-<pre><code>String str1 = &quot;The url of weixueyuan is www.weixueyuan.net!&quot;;
-String str2 = str1.replace(&quot;weixueyuan&quot;, &quot;微学苑&quot;);
-System.out.println(str1);
-System.out.println(str2);
-</code></pre><p>　　输出结果：<br>The url of weixueyuan is www.weixueyuan.net!<br>The url of 微学苑 is www.微学苑.net!</p>
+<p>　　字符串替换，用来替换字符串中所有指定的子串，例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">String str1 = <span class="string">"The url of weixueyuan is www.weixueyuan.net!"</span>;</div><div class="line">String str2 = str1.replace(<span class="string">"weixueyuan"</span>, <span class="string">"微学苑"</span>);</div><div class="line">System.out.println(str1);</div><div class="line">System.out.println(str2);</div></pre></td></tr></table></figure></p>
+<p>　　输出结果：<br>The url of weixueyuan is www.weixueyuan.net!<br>The url of 微学苑 is www.微学苑.net!</p>
 <p>　　注意：replace() 方法不会改变原来的字符串，而是生成一个新的字符串。</p>
 <p><strong>5) split() 方法</strong></p>
-<p>　　以指定字符串作为分隔符，对当前字符串进行分割，分割的结果是一个数组，例如：</p>
-<pre><code>import java.util.*;
-public class Demo {
-    public static void main(String[] args){
-        String str = &quot;wei_xue_yuan_is_good&quot;;
-        String strArr[] = str.split(&quot;_&quot;);
-        System.out.println(Arrays.toString(strArr));
-    }
-}
-</code></pre><p>　　<br>　　运行结果：<br>[wei, xue, yuan, is, good]</p>
-<h2 id="3、StringBuffer"><a href="#3、StringBuffer" class="headerlink" title="3、StringBuffer"></a>3、StringBuffer</h2><p>　　String 的值是不可变的，每次对String的操作都会生成新的String对象，不仅效率低，而且耗费大量内存空间。</p>
-<p>　　StringBuffer类和String类一样，也用来表示字符串，但是StringBuffer的内部实现方式和String不同，在进行字符串处理时，不生成新的对象，在内存使用上要优于String。</p>
-<p>　　StringBuffer 默认分配16字节长度的缓冲区，当字符串超过该大小时，会自动增加缓冲区长度，而不是生成新的对象。</p>
-<p>　　StringBuffer不像String，只能通过 new 来创建对象，不支持简写方式，例如：</p>
-<pre><code>StringBuffer str1 = new StringBuffer();  // 分配16个字节长度的缓冲区
-StringBuffer str2 = =new StringBuffer(512);  // 分配512个字节长度的缓冲区
-</code></pre><p><strong>StringBuffer类的主要方法</strong></p>
-<p>　　StringBuffer类中的方法主要偏重于对于字符串的操作，例如追加、插入和删除等，这个也是StringBuffer类和String类的主要区别。实际开发中，如果需要对一个字符串进行频繁的修改，建议使用 StringBuffer。</p>
-<p><strong>1) append() 方法</strong></p>
-<p>　　append() 方法用于向当前字符串的末尾追加内容，类似于字符串的连接。调用该方法以后，StringBuffer对象的内容也发生改变，例如：</p>
-<pre><code>StringBuffer str = new StringBuffer(“biancheng100”);
-str.append(true);
-</code></pre><p>　　则对象str的值将变成”biancheng100true”。注意是str指向的内容变了，不是str的指向变了。</p>
-<p>　　字符串的”+“操作实际上也是先创建一个StringBuffer对象，然后调用append()方法将字符串片段拼接起来，最后调用toString()方法转换为字符串。</p>
-<p>　　这样看来，String的连接操作就比StringBuffer多出了一些附加操作，效率上必然会打折扣。</p>
-<p>　　但是，对于长度较小的字符串，”+“操作更加直观，更具可读性，有些时候可以稍微牺牲一下效率。</p>
-<p><strong>2)  deleteCharAt()</strong></p>
-<p>　　deleteCharAt() 方法用来删除指定位置的字符，并将剩余的字符形成新的字符串。例如：</p>
-<pre><code>StringBuffer str = new StringBuffer(&quot;abcdef&quot;);
-str. deleteCharAt(3);
-</code></pre><p>　　该代码将会删除索引值为3的字符，即”d“字符。</p>
-<p>　　你也可以通过delete()方法一次性删除多个字符，例如：</p>
-<pre><code>StringBuffer str = new StringBuffer(&quot;abcdef&quot;);
-str.delete(1, 4);
-</code></pre><p>　　该代码会删除索引值为1~4之间的字符，包括索引值1，但不包括4。</p>
-<p><strong>3) insert() 方法</strong></p>
-<p>　　insert() 用来在指定位置插入字符串，可以认为是append()的升级版。例如：</p>
-<pre><code>StringBuffer str = new StringBuffer(&quot;abcdef&quot;);
-str.insert(3, &quot;xyz&quot;);
-</code></pre><p>最后str所指向的字符串为 abcdxyzef。<br>4) setCharAt() 方法<br>setCharAt() 方法用来修改指定位置的字符。例如：</p>
-<pre><code>StringBuffer str = new StringBuffer(&quot;abcdef&quot;);
-str.setCharAt(3, &apos;z&apos;);
-</code></pre><p>　　该代码将把索引值为3的字符修改为 z，最后str所指向的字符串为 abczef。</p>
-<p>　　以上仅仅是部分常用方法的简单说明，更多方法和解释请查阅API文档。</p>
-<p><strong>String和StringBuffer的效率对比</strong></p>
-<p>　　为了更加明显地看出它们的执行效率，下面的代码，将26个英文字母加了10000次。</p>
-<pre><code>public class Demo {
-    public static void main(String[] args){
-        String fragment = &quot;abcdefghijklmnopqrstuvwxyz&quot;;
-        int times = 10000;
-
-        // 通过String对象
-        long timeStart1 = System.currentTimeMillis();
-        String str1 = &quot;&quot;;
-        for (int i=0; i&lt;times; i++) {
-            str1 += fragment;
-        }
-        long timeEnd1 = System.currentTimeMillis();
-        System.out.println(&quot;String: &quot; + (timeEnd1 - timeStart1) + &quot;ms&quot;);
-
-        // 通过StringBuffer
-        long timeStart2 = System.currentTimeMillis();
-        StringBuffer str2 = new StringBuffer();
-        for (int i=0; i&lt;times; i++) {
-            str2.append(fragment);
-        }
-        long timeEnd2 = System.currentTimeMillis();
-        System.out.println(&quot;StringBuffer: &quot; + (timeEnd2 - timeStart2) + &quot;ms&quot;);
-    }
-}
-</code></pre><p>　　运行结果：<br>String: 5287ms<br>StringBuffer: 3ms</p>
+<p>　　以指定字符串作为分隔符，对当前字符串进行分割，分割的结果是一个数组，例如：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div></pre></td><td class="code"><pre><div class="line">    import java.util.*;</div><div class="line">    public class Demo &#123;</div><div class="line">        public static void main(String[] args)&#123;</div><div class="line">            String str = "wei_xue_yuan_is_good";</div><div class="line">            String strArr[] = str.split("_");</div><div class="line">            System.out.println(Arrays.toString(strArr));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">```　</div><div class="line">　　运行结果：</div><div class="line">[wei, xue, yuan, is, good]</div><div class="line"></div><div class="line"></div><div class="line">## 3、StringBuffer</div><div class="line">　　String 的值是不可变的，每次对String的操作都会生成新的String对象，不仅效率低，而且耗费大量内存空间。</div><div class="line"></div><div class="line">　　StringBuffer类和String类一样，也用来表示字符串，但是StringBuffer的内部实现方式和String不同，在进行字符串处理时，不生成新的对象，在内存使用上要优于String。</div><div class="line"></div><div class="line">　　StringBuffer 默认分配16字节长度的缓冲区，当字符串超过该大小时，会自动增加缓冲区长度，而不是生成新的对象。</div><div class="line"></div><div class="line">　　StringBuffer不像String，只能通过 new 来创建对象，不支持简写方式，例如：</div><div class="line"></div><div class="line">    StringBuffer str1 = new StringBuffer();  // 分配16个字节长度的缓冲区</div><div class="line">    StringBuffer str2 = =new StringBuffer(512);  // 分配512个字节长度的缓冲区</div><div class="line"></div><div class="line"></div><div class="line">**StringBuffer类的主要方法**</div><div class="line"></div><div class="line">　　StringBuffer类中的方法主要偏重于对于字符串的操作，例如追加、插入和删除等，这个也是StringBuffer类和String类的主要区别。实际开发中，如果需要对一个字符串进行频繁的修改，建议使用 StringBuffer。</div><div class="line"></div><div class="line">**1) append() 方法**</div><div class="line"></div><div class="line">　　append() 方法用于向当前字符串的末尾追加内容，类似于字符串的连接。调用该方法以后，StringBuffer对象的内容也发生改变，例如：</div><div class="line"></div><div class="line">    StringBuffer str = new StringBuffer(“biancheng100”);</div><div class="line">    str.append(true);</div><div class="line"></div><div class="line">　　则对象str的值将变成”biancheng100true”。注意是str指向的内容变了，不是str的指向变了。</div><div class="line"></div><div class="line">　　字符串的”+“操作实际上也是先创建一个StringBuffer对象，然后调用append()方法将字符串片段拼接起来，最后调用toString()方法转换为字符串。</div><div class="line"></div><div class="line">　　这样看来，String的连接操作就比StringBuffer多出了一些附加操作，效率上必然会打折扣。</div><div class="line"></div><div class="line">　　但是，对于长度较小的字符串，”+“操作更加直观，更具可读性，有些时候可以稍微牺牲一下效率。</div><div class="line"></div><div class="line">**2)  deleteCharAt()**</div><div class="line"></div><div class="line">　　deleteCharAt() 方法用来删除指定位置的字符，并将剩余的字符形成新的字符串。例如：</div><div class="line"></div><div class="line">    StringBuffer str = new StringBuffer("abcdef");</div><div class="line">    str. deleteCharAt(3);</div><div class="line"></div><div class="line">　　该代码将会删除索引值为3的字符，即”d“字符。</div><div class="line"></div><div class="line">　　你也可以通过delete()方法一次性删除多个字符，例如：</div><div class="line"></div><div class="line">    StringBuffer str = new StringBuffer("abcdef");</div><div class="line">    str.delete(1, 4);</div><div class="line"></div><div class="line">　　该代码会删除索引值为1~4之间的字符，包括索引值1，但不包括4。</div><div class="line"></div><div class="line">**3) insert() 方法**</div><div class="line"></div><div class="line">　　insert() 用来在指定位置插入字符串，可以认为是append()的升级版。例如：</div><div class="line"></div><div class="line">    StringBuffer str = new StringBuffer("abcdef");</div><div class="line">    str.insert(3, "xyz");</div><div class="line"></div><div class="line">最后str所指向的字符串为 abcdxyzef。</div><div class="line">4) setCharAt() 方法</div><div class="line">setCharAt() 方法用来修改指定位置的字符。例如：</div><div class="line"></div><div class="line">    StringBuffer str = new StringBuffer("abcdef");</div><div class="line">    str.setCharAt(3, 'z');</div><div class="line"></div><div class="line">　　该代码将把索引值为3的字符修改为 z，最后str所指向的字符串为 abczef。</div><div class="line"></div><div class="line">　　以上仅仅是部分常用方法的简单说明，更多方法和解释请查阅API文档。</div><div class="line"></div><div class="line">**String和StringBuffer的效率对比**</div><div class="line"></div><div class="line">　　为了更加明显地看出它们的执行效率，下面的代码，将26个英文字母加了10000次。</div><div class="line">```java</div><div class="line">    public class Demo &#123;</div><div class="line">        public static void main(String[] args)&#123;</div><div class="line">            String fragment = "abcdefghijklmnopqrstuvwxyz";</div><div class="line">            int times = 10000;</div><div class="line">           </div><div class="line">            // 通过String对象</div><div class="line">            long timeStart1 = System.currentTimeMillis();</div><div class="line">            String str1 = "";</div><div class="line">            for (int i=0; i&lt;times; i++) &#123;</div><div class="line">                str1 += fragment;</div><div class="line">            &#125;</div><div class="line">            long timeEnd1 = System.currentTimeMillis();</div><div class="line">            System.out.println("String: " + (timeEnd1 - timeStart1) + "ms");</div><div class="line">           </div><div class="line">            // 通过StringBuffer</div><div class="line">            long timeStart2 = System.currentTimeMillis();</div><div class="line">            StringBuffer str2 = new StringBuffer();</div><div class="line">            for (int i=0; i&lt;times; i++) &#123;</div><div class="line">                str2.append(fragment);</div><div class="line">            &#125;</div><div class="line">            long timeEnd2 = System.currentTimeMillis();</div><div class="line">            System.out.println("StringBuffer: " + (timeEnd2 - timeStart2) + "ms");</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>　　运行结果：<br>String: 5287ms<br>StringBuffer: 3ms</p>
 <p>　　结论很明显，StringBuffer的执行效率比String快上千倍，这个差异随着叠加次数的增加越来越明显，当叠加次数达到30000次的时候，运行结果为：<br>String: 35923ms<br>StringBuffer: 8ms</p>
 <p>　　所以，强烈建议在涉及大量字符串操作时使用StringBuffer。</p>
 <p><strong>StringBuilder类</strong></p>

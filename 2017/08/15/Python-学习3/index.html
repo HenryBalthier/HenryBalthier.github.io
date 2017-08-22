@@ -215,76 +215,80 @@
 <p>　　多线程模式通常比多进程快一点，但是也快不到哪去，而且，多线程模式致命的缺点就是任何一个线程挂掉都可能直接造成整个进程崩溃，因为所有线程共享进程的内存。在Windows上，如果一个线程执行的代码出了问题，你经常可以看到这样的提示：“该程序执行了非法操作，即将关闭”，其实往往是某个线程出了问题，但是操作系统会强制结束整个进程。</p>
 <p>　　在Windows下，多线程的效率比多进程要高，所以微软的IIS服务器默认采用多线程模式。由于多线程存在稳定性的问题，IIS的稳定性就不如Apache。为了缓解这个问题，IIS和Apache现在又有多进程+多线程的混合模式，真是把问题越搞越复杂。</p>
 <h4 id="2-1、Python多线程"><a href="#2-1、Python多线程" class="headerlink" title="2.1、Python多线程"></a>2.1、Python多线程</h4><p>　　多线程采用threading<br>　　简单多线程实现：</p>
-<pre><code>def Multithread(func, nums):
+<pre><code class="python"><span class="function"><span class="keyword">def</span> <span class="title">Multithread</span><span class="params">(func, nums)</span>:</span>
     start = clock()
     threads = []
-    for i in range(nums):
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(nums):
         t = threading.Thread(target=func, args=(i, ))
         threads.append(t)
-    for i in range(nums):
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(nums):
         threads[i].start()
 
-    for i in range(nums):
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(nums):
         threads[i].join()
     end = clock()
-    print(&apos;MultiThread run cost: %.2f s\n&apos; % (end - start))
-</code></pre><h4 id="2-2、Python多进程"><a href="#2-2、Python多进程" class="headerlink" title="2.2、Python多进程"></a>2.2、Python多进程</h4><p>　　多进程采用multiprocessing<br>　　简单多进程实现：</p>
-<pre><code>def Multiprocessing(func, nums):
+    print(<span class="string">'MultiThread run cost: %.2f s\n'</span> % (end - start))
+</code></pre>
+<h4 id="2-2、Python多进程"><a href="#2-2、Python多进程" class="headerlink" title="2.2、Python多进程"></a>2.2、Python多进程</h4><p>　　多进程采用multiprocessing<br>　　简单多进程实现：</p>
+<pre><code class="python"><span class="function"><span class="keyword">def</span> <span class="title">Multiprocessing</span><span class="params">(func, nums)</span>:</span>
     start = clock()
     pool = multiprocessing.Pool(nums)
-    #pool.map(func, range(nums))
-    for i in range(nums):
+    <span class="comment">#pool.map(func, range(nums))</span>
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(nums):
         pool.apply_async(func, args=(i, ))
     pool.close()
     pool.join()
     end = clock()
-    print(&apos;MultiProcessing run cost: %.2f s\n&apos; % (end - start))
-</code></pre><h4 id="2-3、Python协程与异步并发"><a href="#2-3、Python协程与异步并发" class="headerlink" title="2.3、Python协程与异步并发"></a>2.3、Python协程与异步并发</h4><p>　　考虑到CPU和IO之间巨大的速度差异，一个任务在执行的过程中大部分时间都在等待IO操作，单进程单线程模型会导致别的任务无法并行执行，因此，我们才需要多进程模型或者多线程模型来支持多任务并发执行。</p>
+    print(<span class="string">'MultiProcessing run cost: %.2f s\n'</span> % (end - start))
+</code></pre>
+<h4 id="2-3、Python协程与异步并发"><a href="#2-3、Python协程与异步并发" class="headerlink" title="2.3、Python协程与异步并发"></a>2.3、Python协程与异步并发</h4><p>　　考虑到CPU和IO之间巨大的速度差异，一个任务在执行的过程中大部分时间都在等待IO操作，单进程单线程模型会导致别的任务无法并行执行，因此，我们才需要多进程模型或者多线程模型来支持多任务并发执行。</p>
 <p>　　现代操作系统对IO操作已经做了巨大的改进，最大的特点就是支持异步IO。如果充分利用操作系统提供的异步IO支持，就可以用单进程单线程模型来执行多任务，这种全新的模型称为事件驱动模型，Nginx就是支持异步IO的Web服务器，它在单核CPU上采用单进程模型就可以高效地支持多任务。在多核CPU上，可以运行多个进程（数量与CPU核心数相同），充分利用多核CPU。由于系统总的进程数量十分有限，因此操作系统调度非常高效。用异步IO编程模型来实现多任务是一个主要的趋势。</p>
 <p>　　对应到Python语言，单线程的异步编程模型称为协程，有了协程的支持，就可以基于事件驱动编写高效的多任务程序。</p>
 <h4 id="2-4、对比"><a href="#2-4、对比" class="headerlink" title="2.4、对比"></a>2.4、对比</h4><p>　　测试函数：采用等待的loop循环，和基于cpu计算的computer</p>
-<pre><code>def loop(number):
-    print(&apos;start loop No.%d&apos; % number)
-    print(&apos;Parent process %s.&apos; % os.getpid())
+<pre><code class="python"><span class="function"><span class="keyword">def</span> <span class="title">loop</span><span class="params">(number)</span>:</span>
+    print(<span class="string">'start loop No.%d'</span> % number)
+    print(<span class="string">'Parent process %s.'</span> % os.getpid())
     sleep(number)
-    print(&apos;end loop No,%d, sleep %d seconds&apos; % (number, number))
+    print(<span class="string">'end loop No,%d, sleep %d seconds'</span> % (number, number))
 
-def computer(number):
-    print(&apos;start computer No.%d&apos; % number)
-    res = sum([random.randint(1, 100) for i in range(1000000)])
-    print(&apos;end computer No,%d, result = %d&apos; % (number, res))
-</code></pre><h4 id="2-5、进程间通信"><a href="#2-5、进程间通信" class="headerlink" title="2.5、进程间通信"></a>2.5、进程间通信</h4><pre><code>from multiprocessing import Process, Queue
-import os, time, random
+<span class="function"><span class="keyword">def</span> <span class="title">computer</span><span class="params">(number)</span>:</span>
+    print(<span class="string">'start computer No.%d'</span> % number)
+    res = sum([random.randint(<span class="number">1</span>, <span class="number">100</span>) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1000000</span>)])
+    print(<span class="string">'end computer No,%d, result = %d'</span> % (number, res))
+</code></pre>
+<h4 id="2-5、进程间通信"><a href="#2-5、进程间通信" class="headerlink" title="2.5、进程间通信"></a>2.5、进程间通信</h4><pre><code class="python"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process, Queue
+<span class="keyword">import</span> os, time, random
 
-# 写数据进程执行的代码:
-def write(q):
-    print(&apos;Process to write: %s&apos; % os.getpid())
-    for value in [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;]:
-        print(&apos;Put %s to queue...&apos; % value)
+<span class="comment"># 写数据进程执行的代码:</span>
+<span class="function"><span class="keyword">def</span> <span class="title">write</span><span class="params">(q)</span>:</span>
+    print(<span class="string">'Process to write: %s'</span> % os.getpid())
+    <span class="keyword">for</span> value <span class="keyword">in</span> [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>]:
+        print(<span class="string">'Put %s to queue...'</span> % value)
         q.put(value)
         time.sleep(random.random())
 
-# 读数据进程执行的代码:
-def read(q):
-    print(&apos;Process to read: %s&apos; % os.getpid())
-    while True:
-        value = q.get(True)
-        print(&apos;Get %s from queue.&apos; % value)
+<span class="comment"># 读数据进程执行的代码:</span>
+<span class="function"><span class="keyword">def</span> <span class="title">read</span><span class="params">(q)</span>:</span>
+    print(<span class="string">'Process to read: %s'</span> % os.getpid())
+    <span class="keyword">while</span> <span class="keyword">True</span>:
+        value = q.get(<span class="keyword">True</span>)
+        print(<span class="string">'Get %s from queue.'</span> % value)
 
-if __name__==&apos;__main__&apos;:
-    # 父进程创建Queue，并传给各个子进程：
+<span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:
+    <span class="comment"># 父进程创建Queue，并传给各个子进程：</span>
     q = Queue()
     pw = Process(target=write, args=(q,))
     pr = Process(target=read, args=(q,))
-    # 启动子进程pw，写入:
+    <span class="comment"># 启动子进程pw，写入:</span>
     pw.start()
-    # 启动子进程pr，读取:
+    <span class="comment"># 启动子进程pr，读取:</span>
     pr.start()
-    # 等待pw结束:
+    <span class="comment"># 等待pw结束:</span>
     pw.join()
-    # pr进程里是死循环，无法等待其结束，只能强行终止:
+    <span class="comment"># pr进程里是死循环，无法等待其结束，只能强行终止:</span>
     pr.terminate()
-</code></pre><hr>
+</code></pre>
+<hr>
 <h2 id="3、Multiprocessing基础"><a href="#3、Multiprocessing基础" class="headerlink" title="3、Multiprocessing基础"></a>3、Multiprocessing基础</h2><h4 id="3-1、multiprocessing常用组件及功能"><a href="#3-1、multiprocessing常用组件及功能" class="headerlink" title="3.1、multiprocessing常用组件及功能"></a>3.1、multiprocessing常用组件及功能</h4><p>　　参考网站：<a href="https://thief.one/2016/11/23/Python-multiprocessing/" target="_blank" rel="external">Multiprocessing基础</a></p>
 <p>　　创建管理进程模块：</p>
 <ul>
@@ -329,19 +333,20 @@ if __name__==&apos;__main__&apos;:
 <p><strong>Array、Value类</strong></p>
 <p>　　使用Multiprocessing.Array类，共享资源（share memory）（只适用于Process类）</p>
 <p>　　缺点：无法与Pool一起使用。</p>
-<pre><code>from multiprocessing import Process, Array
+<pre><code class="python"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process, Array
 
-def test(a):
-    for i in range(len(a)):
+<span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(a)</span>:</span>
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(a)):
         a[i] = -a[i]
 
-if __name__ == &apos;__main__&apos;:
-    arr = Array(&apos;i&apos;, range(10))
-    p = Process(target=test, args=(arr, ))  #需要将arr对象传递给子进程
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    arr = Array(<span class="string">'i'</span>, range(<span class="number">10</span>))
+    p = Process(target=test, args=(arr, ))  <span class="comment">#需要将arr对象传递给子进程</span>
     p.start()
     p.join()
     print(arr[:])
-</code></pre><p><strong>Manager类</strong></p>
+</code></pre>
+<p><strong>Manager类</strong></p>
 <p>　　使用Multiprocessing.Manager类，共享资源。（可以适用Pool类）</p>
 <p>　　说明：由于windows操作系统下，创建Multiprocessing类对象代码一定要放在main()函数下，而linux不需要，因此这里区分2个版本。</p>
 <p>　　实例目的：父进程在执行子进程的过程中，同步判断一个公共资源值，如果满足条件则结束所有进程。</p>
@@ -391,101 +396,104 @@ if __name__ == &apos;__main__&apos;:
 <li>join() 主进程阻塞，等待子进程的退出， join方法要在close或terminate之后使用。</li>
 </ul>
 <p>　　</p>
-<pre><code>from multiprocessing import Pool
-def test(i):
-    print i
-if __name__==&quot;__main__&quot;:
-    lists=[1,2,3]
-    pool=Pool(processes=2)      #定义最大的进程数
-    pool.map(test,lists)        #p必须是一个可迭代变量。
+<pre><code class="python"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool
+<span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(i)</span>:</span>
+    <span class="keyword">print</span> i
+<span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:
+    lists=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]
+    pool=Pool(processes=<span class="number">2</span>)      <span class="comment">#定义最大的进程数</span>
+    pool.map(test,lists)        <span class="comment">#p必须是一个可迭代变量。</span>
     pool.close()
     pool.join()
-</code></pre><h4 id="3-5、子进程返回值"><a href="#3-5、子进程返回值" class="headerlink" title="3.5、子进程返回值"></a>3.5、子进程返回值</h4><p>　　在实际使用多进程的时候，可能需要获取到子进程运行的返回值。如果只是用来存储，则可以将返回值保存到一个数据结构中；如果需要判断此返回值，从而决定是否继续执行所有子进程，则会相对比较复杂。另外在Multiprocessing中，可以利用Process与Pool创建子进程，这两种用法在获取子进程返回值上的写法上也不相同。这篇中，我们直接上代码，分析多进程中获取子进程返回值的不同用法，以及优缺点。</p>
+</code></pre>
+<h4 id="3-5、子进程返回值"><a href="#3-5、子进程返回值" class="headerlink" title="3.5、子进程返回值"></a>3.5、子进程返回值</h4><p>　　在实际使用多进程的时候，可能需要获取到子进程运行的返回值。如果只是用来存储，则可以将返回值保存到一个数据结构中；如果需要判断此返回值，从而决定是否继续执行所有子进程，则会相对比较复杂。另外在Multiprocessing中，可以利用Process与Pool创建子进程，这两种用法在获取子进程返回值上的写法上也不相同。这篇中，我们直接上代码，分析多进程中获取子进程返回值的不同用法，以及优缺点。</p>
 <p><strong>初级用法（Pool）</strong></p>
 <p>　　目的：存储子进程返回值</p>
 <p>　　说明：如果只是单纯的存储子进程返回值，则可以使用Pool的apply_async异步进程池；当然也可以使用Process，用法与threading中的相同，这里只介绍前者。</p>
 <p>　　实例：当进程池中所有子进程执行完毕后，输出每个子进程的返回值。</p>
-<pre><code>from multiprocessing import Pool
-def test(p):     
-    return p
-if __name__==&quot;__main__&quot;:
-    pool = Pool(processes=10)
+<pre><code class="python"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool
+<span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(p)</span>:</span>     
+    <span class="keyword">return</span> p
+<span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:
+    pool = Pool(processes=<span class="number">10</span>)
     result=[]
-    for i  in xrange(50000):
-       &apos;&apos;&apos;
+    <span class="keyword">for</span> i  <span class="keyword">in</span> xrange(<span class="number">50000</span>):
+       <span class="string">'''
        for循环执行流程：
        （1）添加子进程到pool，并将这个对象（子进程）添加到result这个列表中。（此时子进程并没有运行）
        （2）执行子进程（同时执行10个）
-       &apos;&apos;&apos;
-       result.append(pool.apply_async(test, args=(i,)))#维持执行的进程总数为10，当一个进程执行完后添加新进程.       
+       '''</span>
+       result.append(pool.apply_async(test, args=(i,)))<span class="comment">#维持执行的进程总数为10，当一个进程执行完后添加新进程.       </span>
     pool.join()
-    &apos;&apos;&apos;
+    <span class="string">'''
     遍历result列表，取出子进程对象，访问get()方法，获取返回值。（此时所有子进程已执行完毕）
-    &apos;&apos;&apos;
-    for i in result:
-        print i.get()
-</code></pre><p><strong>高级用法（Pool）</strong></p>
+    '''</span>
+    <span class="keyword">for</span> i <span class="keyword">in</span> result:
+        <span class="keyword">print</span> i.get()
+</code></pre>
+<p><strong>高级用法（Pool）</strong></p>
 <p>　　目的：父进程实时获取子进程返回值，以此为标记结束所有进程。</p>
 <p><strong>实例（一）</strong></p>
 <p>　　执行子进程的过程中，不断获取返回值并校验，如果返回值为True则结果所有进程。</p>
-<pre><code>from multiprocessing import Pool
-import Queue
-import time
-def test(p):
-    time.sleep(0.001)
-    if p==10000:
-        return True
-    else:
-        return False
-if __name__==&quot;__main__&quot;:
-    pool = Pool(processes=10)
+<pre><code class="python"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool
+<span class="keyword">import</span> Queue
+<span class="keyword">import</span> time
+<span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(p)</span>:</span>
+    time.sleep(<span class="number">0.001</span>)
+    <span class="keyword">if</span> p==<span class="number">10000</span>:
+        <span class="keyword">return</span> <span class="keyword">True</span>
+    <span class="keyword">else</span>:
+        <span class="keyword">return</span> <span class="keyword">False</span>
+<span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:
+    pool = Pool(processes=<span class="number">10</span>)
     q=Queue.Queue()
-    for i  in xrange(50000):
-        &apos;&apos;&apos;
+    <span class="keyword">for</span> i  <span class="keyword">in</span> xrange(<span class="number">50000</span>):
+        <span class="string">'''
         将子进程对象存入队列中。
-        &apos;&apos;&apos;
-        q.put(pool.apply_async(test, args=(i,)))#维持执行的进程总数为10，当一个进程执行完后添加新进程.       
-    &apos;&apos;&apos;
+        '''</span>
+        q.put(pool.apply_async(test, args=(i,)))<span class="comment">#维持执行的进程总数为10，当一个进程执行完后添加新进程.       </span>
+    <span class="string">'''
     因为这里使用的为pool.apply_async异步方法，因此子进程执行的过程中，父进程会执行while，获取返回值并校验。
-    &apos;&apos;&apos;
-    while 1:
-        if q.get().get():
-            pool.terminate() #结束进程池中的所有子进程。
-            break
+    '''</span>
+    <span class="keyword">while</span> <span class="number">1</span>:
+        <span class="keyword">if</span> q.get().get():
+            pool.terminate() <span class="comment">#结束进程池中的所有子进程。</span>
+            <span class="keyword">break</span>
     pool.join()
-</code></pre><p>　　说明：总共要执行50000个子进程（并发数量为10），当其中一个子进程返回True时，结束进程池。因为使用了apply_async为异步进程，因此在执行完for循环的添加子进程操作后（只是添加并没有执行完所有的子进程），可以直接执行while代码，实时判断子进程返回值是否有True，有的话结束所有进程。</p>
+</code></pre>
+<p>　　说明：总共要执行50000个子进程（并发数量为10），当其中一个子进程返回True时，结束进程池。因为使用了apply_async为异步进程，因此在执行完for循环的添加子进程操作后（只是添加并没有执行完所有的子进程），可以直接执行while代码，实时判断子进程返回值是否有True，有的话结束所有进程。</p>
 <p>　　优点：不必等到所有子进程结束再结束程序，只要得到想要的结果就可以提前结束，节省资源。</p>
 <p>　　不足：当需要执行的子进程非常大时，不适用，因为for循环在添加子进程时，要花费很长的时间，虽然是异步，但是也需要等待for循环添加子进程操作结束才能执行while代码，因此会比较慢。</p>
 <p><strong>实例（二）</strong></p>
 <p>　　多线程+多进程，添加执行子进程的过程中，不断获取返回值并校验，如果返回值为True则结果所有进程。</p>
-<pre><code>from multiprocessing import Pool
-import Queue
-import threading
-import time
-def test(p):
-    time.sleep(0.001)
-    if p==10000:
-        return True
-    else:
-        return False
-if __name__==&quot;__main__&quot;:
-    result=Queue.Queue() #队列
+<pre><code class="python"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool
+<span class="keyword">import</span> Queue
+<span class="keyword">import</span> threading
+<span class="keyword">import</span> time
+<span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(p)</span>:</span>
+    time.sleep(<span class="number">0.001</span>)
+    <span class="keyword">if</span> p==<span class="number">10000</span>:
+        <span class="keyword">return</span> <span class="keyword">True</span>
+    <span class="keyword">else</span>:
+        <span class="keyword">return</span> <span class="keyword">False</span>
+<span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:
+    result=Queue.Queue() <span class="comment">#队列</span>
     pool = Pool()
-    def pool_th():
-        for i  in xrange(50000000): ##这里需要创建执行的子进程非常多
-            try:
+    <span class="function"><span class="keyword">def</span> <span class="title">pool_th</span><span class="params">()</span>:</span>
+        <span class="keyword">for</span> i  <span class="keyword">in</span> xrange(<span class="number">50000000</span>): <span class="comment">##这里需要创建执行的子进程非常多</span>
+            <span class="keyword">try</span>:
                 result.put(pool.apply_async(test, args=(i,)))
-            except:
-                break
-    def result_th():
-        while 1:
-            a=result.get().get() #获取子进程返回值
-            if a:
-                pool.terminate() #结束所有子进程
-                break
-    &apos;&apos;&apos;
+            <span class="keyword">except</span>:
+                <span class="keyword">break</span>
+    <span class="function"><span class="keyword">def</span> <span class="title">result_th</span><span class="params">()</span>:</span>
+        <span class="keyword">while</span> <span class="number">1</span>:
+            a=result.get().get() <span class="comment">#获取子进程返回值</span>
+            <span class="keyword">if</span> a:
+                pool.terminate() <span class="comment">#结束所有子进程</span>
+                <span class="keyword">break</span>
+    <span class="string">'''
     利用多线程，同时运行Pool函数创建执行子进程，以及运行获取子进程返回值函数。
-    &apos;&apos;&apos;
+    '''</span>
     t1=threading.Thread(target=pool_th)
     t2=threading.Thread(target=result_th)
     t1.start()
@@ -493,7 +501,8 @@ if __name__==&quot;__main__&quot;:
     t1.join()
     t2.join()
     pool.join()
-</code></pre><p>　　执行流程：利用多线程，创建一个执行pool_th函数线程，一个执行result_th函数线程，pool_th函数用来添加进程池，开启进程执行功能函数并将子进程对象存入队列，而result_th()函数用来不停地从队列中取子进程对象，调用get（）方法获取返回值。等发现其中存在子进程的返回值为True时，结束所有进程，最后结束线程。</p>
+</code></pre>
+<p>　　执行流程：利用多线程，创建一个执行pool_th函数线程，一个执行result_th函数线程，pool_th函数用来添加进程池，开启进程执行功能函数并将子进程对象存入队列，而result_th()函数用来不停地从队列中取子进程对象，调用get（）方法获取返回值。等发现其中存在子进程的返回值为True时，结束所有进程，最后结束线程。</p>
 <p>　　优点：弥补了实例（一）的不足，即使for循环的子进程数量很多，也能提高性能，因为for循环与判断子进程返回值同时进行。</p>
 
             <div class="clearfix"></div>

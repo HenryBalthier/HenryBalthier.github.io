@@ -187,20 +187,8 @@
 <a id="more"></a>
 <hr>
 <h2 id="1、Java类的定义及其实例化"><a href="#1、Java类的定义及其实例化" class="headerlink" title="1、Java类的定义及其实例化"></a>1、Java类的定义及其实例化</h2><p>　　类必须先定义才能使用。类是创建对象的模板，创建对象也叫类的实例化。</p>
-<p>　　下面通过一个简单的例子来理解Java中类的定义：</p>
-<pre><code>public class Dog{
-    String name;
-    int age;
-
-    void bark(){  // 汪汪叫
-        System.out.println(&quot;汪汪，不要过来&quot;);
-    }
-
-    void hungry(){  // 饥饿
-        System.out.println(&quot;主人，我饿了&quot;);
-    }
-}
-</code></pre><p>　　对示例的说明：</p>
+<p>　　下面通过一个简单的例子来理解Java中类的定义：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span></span>&#123;</div><div class="line">    String name;</div><div class="line">    <span class="keyword">int</span> age;</div><div class="line">   </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">bark</span><span class="params">()</span></span>&#123;  <span class="comment">// 汪汪叫</span></div><div class="line">        System.out.println(<span class="string">"汪汪，不要过来"</span>);</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hungry</span><span class="params">()</span></span>&#123;  <span class="comment">// 饥饿</span></div><div class="line">        System.out.println(<span class="string">"主人，我饿了"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　对示例的说明：</p>
 <pre><code>public 是类的修饰符，表明该类是公共类，可以被其他类访问。修饰符将在下节讲解。
 class 是定义类的关键字。
 Dog 是类名称。
@@ -213,33 +201,8 @@ name、age 是类的成员变量，也叫属性；bark()、hungry() 是类中的
 <p>　　在类实例化的过程中自动执行的方法叫做构造方法，它不需要你手动调用。构造方法可以在类实例化的过程中做一些初始化的工作。</p>
 <p>　　构造方法的名称必须与类的名称相同，并且没有返回值。</p>
 <p>　　每个类都有构造方法。如果没有显式地为类定义构造方法，Java编译器将会为该类提供一个默认的构造方法。</p>
-<p>　　下面是一个构造方法示例：</p>
-<pre><code>public class Dog{
-    String name;
-    int age;
-
-    // 构造方法，没有返回值
-    Dog(String name1, int age1){
-        name = name1;
-        age = age1;
-        System.out.println(&quot;感谢主人领养了我&quot;);
-    }
-
-    // 普通方法，必须有返回值
-    void bark(){
-        System.out.println(&quot;汪汪，不要过来&quot;);
-    }
-
-    void hungry(){
-        System.out.println(&quot;主人，我饿了&quot;);
-    }
-
-    public static void main(String arg[]){
-        // 创建对象时传递的参数要与构造方法参数列表对应
-        Dog myDog = new Dog(&quot;花花&quot;, 3);
-    }
-}
-</code></pre><p>　　运行结果：<br>感谢主人领养了我</p>
+<p>　　下面是一个构造方法示例：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span></span>&#123;</div><div class="line">    String name;</div><div class="line">    <span class="keyword">int</span> age;</div><div class="line">   </div><div class="line">    <span class="comment">// 构造方法，没有返回值</span></div><div class="line">    Dog(String name1, <span class="keyword">int</span> age1)&#123;</div><div class="line">        name = name1;</div><div class="line">        age = age1;</div><div class="line">        System.out.println(<span class="string">"感谢主人领养了我"</span>);</div><div class="line">    &#125;</div><div class="line">   </div><div class="line">    <span class="comment">// 普通方法，必须有返回值</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">bark</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"汪汪，不要过来"</span>);</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hungry</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"主人，我饿了"</span>);</div><div class="line">    &#125;</div><div class="line">   </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String arg[])</span></span>&#123;</div><div class="line">        <span class="comment">// 创建对象时传递的参数要与构造方法参数列表对应</span></div><div class="line">        Dog myDog = <span class="keyword">new</span> Dog(<span class="string">"花花"</span>, <span class="number">3</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　运行结果：<br>感谢主人领养了我</p>
 <p>　　说明：</p>
 <pre><code>构造方法不能被显示调用。
 构造方法不能有返回值，因为没有变量来接收返回值。
@@ -255,44 +218,9 @@ myDog = new Dog(&quot;花花&quot;, 3);  // 实例化
 </code></pre><p>　　也可以在声明的同时进行初始化：</p>
 <pre><code>Dog myDog = new Dog(&quot;花花&quot;, 3);
 </code></pre><p>　　<strong>访问成员变量和方法</strong></p>
-<p>　　通过已创建的对象来访问成员变量和成员方法，例如：</p>
-<pre><code>// 实例化
-Dog myDog = new Dog(&quot;花花&quot;, 3);
-// 通过点号访问成员变量
-myDog.name;
-// 通过点号访问成员方法
-myDog.bark();
-</code></pre><p>　　下面的例子演示了如何访问成员变量和方法：</p>
-<pre><code>public class Dog{
-    String name;
-    int age;
-
-    Dog(String name1, int age1){
-        name = name1;
-        age = age1;
-        System.out.println(&quot;感谢主人领养了我&quot;);
-    }
-
-    void bark(){
-        System.out.println(&quot;汪汪，不要过来&quot;);
-    }
-
-    void hungry(){
-        System.out.println(&quot;主人，我饿了&quot;);
-    }
-
-    public static void main(String arg[]){
-        Dog myDog = new Dog(&quot;花花&quot;, 3);
-        // 访问成员变量
-        String name = myDog.name;
-        int age = myDog.age;
-        System.out.println(&quot;我是一只小狗，我名字叫&quot; + name + &quot;，我&quot; + age + &quot;岁了&quot;);
-        // 访问方法
-        myDog.bark();
-        myDog.hungry();
-    }
-}
-</code></pre><h2 id="2、Java访问修饰符（访问控制符）"><a href="#2、Java访问修饰符（访问控制符）" class="headerlink" title="2、Java访问修饰符（访问控制符）"></a>2、Java访问修饰符（访问控制符）</h2><p>　　Java 通过修饰符来控制类、属性和方法的访问权限和其他功能，通常放在语句的最前端。例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">className</span> </span>&#123;</div><div class="line">    <span class="comment">// body of class</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">private</span> <span class="keyword">boolean</span> myFlag;</div><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">double</span> weeks = <span class="number">9.5</span>;</div><div class="line"><span class="keyword">protected</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> BOXWIDTH = <span class="number">42</span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] arguments)</span> </span>&#123;</div><div class="line">    <span class="comment">// body of method</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　通过已创建的对象来访问成员变量和成员方法，例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 实例化</span></div><div class="line">Dog myDog = <span class="keyword">new</span> Dog(<span class="string">"花花"</span>, <span class="number">3</span>);</div><div class="line"><span class="comment">// 通过点号访问成员变量</span></div><div class="line">myDog.name;</div><div class="line"><span class="comment">// 通过点号访问成员方法</span></div><div class="line">myDog.bark();</div></pre></td></tr></table></figure></p>
+<p>　　下面的例子演示了如何访问成员变量和方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span></span>&#123;</div><div class="line">    String name;</div><div class="line">    <span class="keyword">int</span> age;</div><div class="line">   </div><div class="line">    Dog(String name1, <span class="keyword">int</span> age1)&#123;</div><div class="line">        name = name1;</div><div class="line">        age = age1;</div><div class="line">        System.out.println(<span class="string">"感谢主人领养了我"</span>);</div><div class="line">    &#125;</div><div class="line">   </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">bark</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"汪汪，不要过来"</span>);</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hungry</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"主人，我饿了"</span>);</div><div class="line">    &#125;</div><div class="line">   </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String arg[])</span></span>&#123;</div><div class="line">        Dog myDog = <span class="keyword">new</span> Dog(<span class="string">"花花"</span>, <span class="number">3</span>);</div><div class="line">        <span class="comment">// 访问成员变量</span></div><div class="line">        String name = myDog.name;</div><div class="line">        <span class="keyword">int</span> age = myDog.age;</div><div class="line">        System.out.println(<span class="string">"我是一只小狗，我名字叫"</span> + name + <span class="string">"，我"</span> + age + <span class="string">"岁了"</span>);</div><div class="line">        <span class="comment">// 访问方法</span></div><div class="line">        myDog.bark();</div><div class="line">        myDog.hungry();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="2、Java访问修饰符（访问控制符）"><a href="#2、Java访问修饰符（访问控制符）" class="headerlink" title="2、Java访问修饰符（访问控制符）"></a>2、Java访问修饰符（访问控制符）</h2><p>　　Java 通过修饰符来控制类、属性和方法的访问权限和其他功能，通常放在语句的最前端。例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">className</span> </span>&#123;</div><div class="line">    <span class="comment">// body of class</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">private</span> <span class="keyword">boolean</span> myFlag;</div><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">double</span> weeks = <span class="number">9.5</span>;</div><div class="line"><span class="keyword">protected</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> BOXWIDTH = <span class="number">42</span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] arguments)</span> </span>&#123;</div><div class="line">    <span class="comment">// body of method</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>　　Java 的修饰符很多，分为访问修饰符和非访问修饰符。本节仅介绍访问修饰符，非访问修饰符会在后续介绍。</p>
 <p>　　访问修饰符也叫访问控制符，是指能够控制类、成员变量、方法的使用权限的关键字。</p>
 <p>　　在面向对象编程中，访问控制符是一个很重要的概念，可以使用它来保护对类、变量、方法和构造方法的访问。</p>
@@ -332,82 +260,18 @@ myDog.bark();
 <li>当需要让自己的类只能被自己的包中的类访问时，就可以省略访问控制符。</li>
 <li>当需要控制一个类中的成员数据时，可以将这个类中的成员数据访问控制符设置为 public、protected，或者省略。</li>
 </ul>
-<h2 id="2、this关键字"><a href="#2、this关键字" class="headerlink" title="2、this关键字"></a>2、this关键字</h2><p>　　this 关键字用来表示当前对象本身，或当前类的一个实例，通过 this 可以调用本对象的所有方法和属性。例如：</p>
-<pre><code>public class Demo{
-    public int x = 10;
-    public int y = 15;
-    public void sum(){
-        // 通过 this 点取成员变量
-        int z = this.x + this.y;
-        System.out.println(&quot;x + y = &quot; + z);
-    }
-
-    public static void main(String[] args) {
-        Demo obj = new Demo();
-        obj.sum();
-    }
-}
-</code></pre><p>　　运行结果：<br>x + y = 25</p>
+<h2 id="2、this关键字"><a href="#2、this关键字" class="headerlink" title="2、this关键字"></a>2、this关键字</h2><p>　　this 关键字用来表示当前对象本身，或当前类的一个实例，通过 this 可以调用本对象的所有方法和属性。例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> x = <span class="number">10</span>;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> y = <span class="number">15</span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sum</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="comment">// 通过 this 点取成员变量</span></div><div class="line">        <span class="keyword">int</span> z = <span class="keyword">this</span>.x + <span class="keyword">this</span>.y;</div><div class="line">        System.out.println(<span class="string">"x + y = "</span> + z);</div><div class="line">    &#125;</div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Demo obj = <span class="keyword">new</span> Demo();</div><div class="line">        obj.sum();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　运行结果：<br>x + y = 25</p>
 <p>　　上面的程序中，obj 是 Demo 类的一个实例，this 与 obj 等价，执行 int z = this.x + this.y;，就相当于执行 int z = obj.x + obj.y;</p>
 <p><strong>作为参数传递</strong></p>
-<p>　　需要在某些完全分离的类中调用一个方法，并将当前对象的一个引用作为参数传递时。例如：</p>
-<pre><code>public class Demo{
-    public static void main(String[] args){
-        B b = new B(new A());
-    }
-}
-class A{
-    public A(){
-        new B(this).print();  // 匿名对象
-    }
-    public void print(){
-        System.out.println(&quot;Hello from A!&quot;);
-    }
-}
-class B{
-    A a;
-    public B(A a){
-        this.a = a;
-    }
-    public void print() {
-        a.print();
-        System.out.println(&quot;Hello from B!&quot;);
-    }
-}
-</code></pre><p>　　运行结果：<br>Hello from A!<br>Hello from B!</p>
+<p>　　需要在某些完全分离的类中调用一个方法，并将当前对象的一个引用作为参数传递时。例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        B b = <span class="keyword">new</span> B(<span class="keyword">new</span> A());</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">A</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">new</span> B(<span class="keyword">this</span>).print();  <span class="comment">// 匿名对象</span></div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"Hello from A!"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span>&#123;</div><div class="line">    A a;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">B</span><span class="params">(A a)</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>.a = a;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</div><div class="line">        a.print();</div><div class="line">        System.out.println(<span class="string">"Hello from B!"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　运行结果：<br>Hello from A!<br>Hello from B!</p>
 <p>　　匿名对象就是没有名字的对象。如果对象只使用一次，就可以作为匿名对象，代码中 new B(this).print(); 等价于 ( new B(this) ).print();，先通过 new B(this) 创建一个没有名字的对象，再调用它的方法。</p>
 <h2 id="3、Java方法重载"><a href="#3、Java方法重载" class="headerlink" title="3、Java方法重载"></a>3、Java方法重载</h2><p>　　在Java中，同一个类中的多个方法可以有相同的名字，只要它们的参数列表不同就可以，这被称为方法重载(method overloading)。</p>
 <p>　　参数列表又叫参数签名，包括参数的类型、参数的个数和参数的顺序，只要有一个不同就叫做参数列表不同。</p>
 <p>　　重载是面向对象的一个基本特性。</p>
-<p>　　下面看一个详细的实例。</p>
-<pre><code>public class Demo{
-    // 一个普通的方法，不带参数
-    void test(){
-        System.out.println(&quot;No parameters&quot;);
-    }
-    // 重载上面的方法，并且带了一个整型参数
-    void test(int a){
-        System.out.println(&quot;a: &quot; + a);
-    }
-    // 重载上面的方法，并且带了两个参数
-    void test(int a,int b){
-        System.out.println(&quot;a and b: &quot; + a + &quot; &quot; + b);
-    }
-    // 重载上面的方法，并且带了一个双精度参数
-    double test(double a){
-        System.out.println(&quot;double a: &quot; + a);
-        return a*a;
-    }
-
-    public static void main(String args[]){
-        Demo obj= new Demo();
-        obj.test();
-        obj.test(2);
-        obj.test(2,3);
-        obj.test(2.0);
-    }
-}
-</code></pre><p>　　运行结果：<br>No parameters<br>a: 2<br>a and b: 2 3<br>double a: 2.0</p>
+<p>　　下面看一个详细的实例。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</div><div class="line">    <span class="comment">// 一个普通的方法，不带参数</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"No parameters"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 重载上面的方法，并且带了一个整型参数</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"a: "</span> + a);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 重载上面的方法，并且带了两个参数</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"a and b: "</span> + a + <span class="string">" "</span> + b);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 重载上面的方法，并且带了一个双精度参数</span></div><div class="line">    <span class="function"><span class="keyword">double</span> <span class="title">test</span><span class="params">(<span class="keyword">double</span> a)</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"double a: "</span> + a);</div><div class="line">        <span class="keyword">return</span> a*a;</div><div class="line">    &#125;</div><div class="line">   </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">        Demo obj= <span class="keyword">new</span> Demo();</div><div class="line">        obj.test();</div><div class="line">        obj.test(<span class="number">2</span>);</div><div class="line">        obj.test(<span class="number">2</span>,<span class="number">3</span>);</div><div class="line">        obj.test(<span class="number">2.0</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　运行结果：<br>No parameters<br>a: 2<br>a and b: 2 3<br>double a: 2.0</p>
 <p>　　通过上面的实例，读者可以看出，重载就是在一个类中，有相同的函数名称，但形参不同的函数。重载的结果，可以让一个程序段尽量减少代码和方法的种类。</p>
 <p><strong>说明：</strong></p>
 <ul>

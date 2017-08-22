@@ -204,28 +204,29 @@
 <p>　　但是Python的yield不但可以返回一个值，它还可以接收调用者发出的参数。</p>
 <p>　　传统的生产者-消费者模型是一个线程写消息，一个线程取消息，通过锁机制控制队列和等待，但一不小心就可能死锁。</p>
 <p>　　如果改用协程，生产者生产消息后，直接通过yield跳转到消费者开始执行，待消费者执行完毕后，切换回生产者继续生产，效率极高：</p>
-<pre><code>def consumer():
-    r = &apos;&apos;
-    while True:
-        n = yield r
-        if not n:
-            return
-        print(&apos;[CONSUMER] Consuming %s...&apos; % n)
-        r = &apos;200 OK&apos;
+<pre><code class="python"><span class="function"><span class="keyword">def</span> <span class="title">consumer</span><span class="params">()</span>:</span>
+    r = <span class="string">''</span>
+    <span class="keyword">while</span> <span class="keyword">True</span>:
+        n = <span class="keyword">yield</span> r
+        <span class="keyword">if</span> <span class="keyword">not</span> n:
+            <span class="keyword">return</span>
+        print(<span class="string">'[CONSUMER] Consuming %s...'</span> % n)
+        r = <span class="string">'200 OK'</span>
 
-def produce(c):
-    c.send(None)
-    n = 0
-    while n &lt; 5:
-        n = n + 1
-        print(&apos;[PRODUCER] Producing %s...&apos; % n)
+<span class="function"><span class="keyword">def</span> <span class="title">produce</span><span class="params">(c)</span>:</span>
+    c.send(<span class="keyword">None</span>)
+    n = <span class="number">0</span>
+    <span class="keyword">while</span> n &lt; <span class="number">5</span>:
+        n = n + <span class="number">1</span>
+        print(<span class="string">'[PRODUCER] Producing %s...'</span> % n)
         r = c.send(n)
-        print(&apos;[PRODUCER] Consumer return: %s&apos; % r)
+        print(<span class="string">'[PRODUCER] Consumer return: %s'</span> % r)
     c.close()
 
 c = consumer()
 produce(c)
-</code></pre><p>　　注意到consumer函数是一个generator，把一个consumer传入produce后：</p>
+</code></pre>
+<p>　　注意到consumer函数是一个generator，把一个consumer传入produce后：</p>
 <ul>
 <li><p>首先调用c.send(None)启动生成器；</p>
 </li>
@@ -239,54 +240,58 @@ produce(c)
 <h4 id="asyncio"><a href="#asyncio" class="headerlink" title="asyncio"></a>asyncio</h4><p>　　asyncio是Python 3.4版本引入的标准库，直接内置了对异步IO的支持。</p>
 <p>　　asyncio的编程模型就是一个消息循环。我们从asyncio模块中直接获取一个EventLoop的引用，然后把需要执行的协程扔到EventLoop中执行，就实现了异步IO。</p>
 <p>　　用asyncio实现Hello world代码如下：</p>
-<pre><code>import asyncio
+<pre><code class="python"><span class="keyword">import</span> asyncio
 
-@asyncio.coroutine
-def hello():
-    print(&quot;Hello world!&quot;)
-    # 异步调用asyncio.sleep(1):
-    r = yield from asyncio.sleep(1)
-    print(&quot;Hello again!&quot;)
+<span class="meta">@asyncio.coroutine</span>
+<span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span>
+    print(<span class="string">"Hello world!"</span>)
+    <span class="comment"># 异步调用asyncio.sleep(1):</span>
+    r = <span class="keyword">yield</span> <span class="keyword">from</span> asyncio.sleep(<span class="number">1</span>)
+    print(<span class="string">"Hello again!"</span>)
 
-# 获取EventLoop:
+<span class="comment"># 获取EventLoop:</span>
 loop = asyncio.get_event_loop()
-# 执行coroutine
+<span class="comment"># 执行coroutine</span>
 loop.run_until_complete(hello())
 loop.close()
-</code></pre><p>　　@asyncio.coroutine把一个generator标记为coroutine类型，然后，我们就把这个coroutine扔到EventLoop中执行。</p>
+</code></pre>
+<p>　　@asyncio.coroutine把一个generator标记为coroutine类型，然后，我们就把这个coroutine扔到EventLoop中执行。</p>
 <p>　　hello()会首先打印出Hello world!，然后，yield from语法可以让我们方便地调用另一个generator。由于asyncio.sleep()也是一个coroutine，所以线程不会等待asyncio.sleep()，而是直接中断并执行下一个消息循环。当asyncio.sleep()返回时，线程就可以从yield from拿到返回值（此处是None），然后接着执行下一行语句。</p>
 <p>　　把asyncio.sleep(1)看成是一个耗时1秒的IO操作，在此期间，主线程并未等待，而是去执行EventLoop中其他可以执行的coroutine了，因此可以实现并发执行。</p>
-<pre><code>import threading
-import asyncio
+<pre><code class="python"><span class="keyword">import</span> threading
+<span class="keyword">import</span> asyncio
 
-@asyncio.coroutine
-def hello():
-    print(&apos;Hello world! (%s)&apos; % threading.currentThread())
-    yield from asyncio.sleep(1)
-    print(&apos;Hello again! (%s)&apos; % threading.currentThread())
+<span class="meta">@asyncio.coroutine</span>
+<span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span>
+    print(<span class="string">'Hello world! (%s)'</span> % threading.currentThread())
+    <span class="keyword">yield</span> <span class="keyword">from</span> asyncio.sleep(<span class="number">1</span>)
+    print(<span class="string">'Hello again! (%s)'</span> % threading.currentThread())
 
 loop = asyncio.get_event_loop()
 tasks = [hello(), hello()]
 loop.run_until_complete(asyncio.wait(tasks))
 loop.close()
-</code></pre><hr>
+</code></pre>
+<hr>
 <h4 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h4><p>　　用asyncio提供的@asyncio.coroutine可以把一个generator标记为coroutine类型，然后在coroutine内部用yield from调用另一个coroutine实现异步操作。</p>
 <p>　　为了简化并更好地标识异步IO，从Python 3.5开始引入了新的语法async和await，可以让coroutine的代码更简洁易读。</p>
 <p>　　请注意，async和await是针对coroutine的新语法，要使用新的语法，只需要做两步简单的替换：</p>
 <pre><code>把@asyncio.coroutine替换为async；
 把yield from替换为await。
 </code></pre><p>　　让我们对比一下上一节的代码：</p>
-<pre><code>@asyncio.coroutine
-def hello():
-    print(&quot;Hello world!&quot;)
-    r = yield from asyncio.sleep(1)
-    print(&quot;Hello again!&quot;)
-</code></pre><p>　　用新语法重新编写如下：</p>
-<pre><code>async def hello():
-    print(&quot;Hello world!&quot;)
-    r = await asyncio.sleep(1)
-    print(&quot;Hello again!&quot;)
-</code></pre><p>　　剩下的代码保持不变。</p>
+<pre><code class="python"><span class="meta">@asyncio.coroutine</span>
+<span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span>
+    print(<span class="string">"Hello world!"</span>)
+    r = <span class="keyword">yield</span> <span class="keyword">from</span> asyncio.sleep(<span class="number">1</span>)
+    print(<span class="string">"Hello again!"</span>)
+</code></pre>
+<p>　　用新语法重新编写如下：</p>
+<pre><code class="python"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span>
+    print(<span class="string">"Hello world!"</span>)
+    r = <span class="keyword">await</span> asyncio.sleep(<span class="number">1</span>)
+    print(<span class="string">"Hello again!"</span>)
+</code></pre>
+<p>　　剩下的代码保持不变。</p>
 <hr>
 <h4 id="aiohttp"><a href="#aiohttp" class="headerlink" title="aiohttp"></a>aiohttp</h4><p>　　asyncio可以实现单线程并发IO操作。如果仅用在客户端，发挥的威力不大。如果把asyncio用在服务器端，例如Web服务器，由于HTTP连接就是IO操作，因此可以用单线程+coroutine实现多用户的高并发支持。</p>
 <p>　　asyncio实现了TCP、UDP、SSL等协议，aiohttp则是基于asyncio实现的HTTP框架。</p>
@@ -295,31 +300,32 @@ def hello():
 
 /hello/{name} - 根据URL参数返回文本hello, %s!。
 </code></pre><p>　　代码如下：</p>
-<pre><code>import asyncio
+<pre><code class="python"><span class="keyword">import</span> asyncio
 
-from aiohttp import web
+<span class="keyword">from</span> aiohttp <span class="keyword">import</span> web
 
-async def index(request):
-    await asyncio.sleep(0.5)
-    return web.Response(body=b&apos;&lt;h1&gt;Index&lt;/h1&gt;&apos;)
+<span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span>
+    <span class="keyword">await</span> asyncio.sleep(<span class="number">0.5</span>)
+    <span class="keyword">return</span> web.Response(body=<span class="string">b'&lt;h1&gt;Index&lt;/h1&gt;'</span>)
 
-async def hello(request):
-    await asyncio.sleep(0.5)
-    text = &apos;&lt;h1&gt;hello, %s!&lt;/h1&gt;&apos; % request.match_info[&apos;name&apos;]
-    return web.Response(body=text.encode(&apos;utf-8&apos;))
+<span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(request)</span>:</span>
+    <span class="keyword">await</span> asyncio.sleep(<span class="number">0.5</span>)
+    text = <span class="string">'&lt;h1&gt;hello, %s!&lt;/h1&gt;'</span> % request.match_info[<span class="string">'name'</span>]
+    <span class="keyword">return</span> web.Response(body=text.encode(<span class="string">'utf-8'</span>))
 
-async def init(loop):
+<span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">init</span><span class="params">(loop)</span>:</span>
     app = web.Application(loop=loop)
-    app.router.add_route(&apos;GET&apos;, &apos;/&apos;, index)
-    app.router.add_route(&apos;GET&apos;, &apos;/hello/{name}&apos;, hello)
-    srv = await loop.create_server(app.make_handler(), &apos;127.0.0.1&apos;, 8000)
-    print(&apos;Server started at http://127.0.0.1:8000...&apos;)
-    return srv
+    app.router.add_route(<span class="string">'GET'</span>, <span class="string">'/'</span>, index)
+    app.router.add_route(<span class="string">'GET'</span>, <span class="string">'/hello/{name}'</span>, hello)
+    srv = <span class="keyword">await</span> loop.create_server(app.make_handler(), <span class="string">'127.0.0.1'</span>, <span class="number">8000</span>)
+    print(<span class="string">'Server started at http://127.0.0.1:8000...'</span>)
+    <span class="keyword">return</span> srv
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(init(loop))
 loop.run_forever()
-</code></pre><p>　　注意aiohttp的初始化函数init()也是一个coroutine，loop.create_server()则利用asyncio创建TCP服务。</p>
+</code></pre>
+<p>　　注意aiohttp的初始化函数init()也是一个coroutine，loop.create_server()则利用asyncio创建TCP服务。</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
