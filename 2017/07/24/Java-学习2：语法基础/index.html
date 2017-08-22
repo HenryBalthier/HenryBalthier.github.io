@@ -203,32 +203,18 @@
 <p>　　八进制有一个前缀 0，例如 010 对应十进制中的 8；十六进制有一个前缀 0x，例如 0xCAFE；从 Java 7 开始，可以使用前缀 0b 来表示二进制数据，例如 0b1001 对应十进制中的 9。同样从 Java 7 开始，可以使用下划线来分隔数字，类似英文数字写法，例如 1_000_000 表示 1,000,000，也就是一百万。下划线只是为了让代码更加易读，编译器会删除这些下划线。</p>
 <p>　　另外，不像 C/C++，Java 不支持无符号类型(unsigned)。</p>
 <p>　　float 类型有效数字最长为 7 位，有效数字长度包括了整数部分和小数部分。例如：</p>
-<pre><code>float x = 223.56F;
-float y = 100.00f;
-</code></pre><p>　　注意：每个float类型后面都有一个标志“F”或“f”，有这个标志就代表是float类型。</p>
-<p>　　double 类型有效数字最长为 15 位。与 float 类型一样，double 后面也带有标志“D”或“d”。例如：</p>
-<pre><code>double x = 23.45D;
-double y = 422.22d;
-double z = 562.234;
-</code></pre><p>　　注意：不带任何标志的浮点型数据，系统默认是 double 类型。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">float</span> x = <span class="number">223.56F</span>;</div><div class="line"><span class="keyword">float</span> y = <span class="number">100.00f</span>;</div></pre></td></tr></table></figure>
+<p>　　注意：每个float类型后面都有一个标志“F”或“f”，有这个标志就代表是float类型。</p>
+<p>　　double 类型有效数字最长为 15 位。与 float 类型一样，double 后面也带有标志“D”或“d”。例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">double</span> x = <span class="number">23.45</span>D;</div><div class="line"><span class="keyword">double</span> y = <span class="number">422.22</span>d;</div><div class="line"><span class="keyword">double</span> z = <span class="number">562.234</span>;</div></pre></td></tr></table></figure></p>
+<p>　　注意：不带任何标志的浮点型数据，系统默认是 double 类型。</p>
 <p>　　大多数情况下都是用 double 类型，float 的精度很难满足需求。</p>
 <p><strong>自动数据类型转换</strong></p>
 <p>　　自动转换按从低到高的顺序转换。不同类型数据间的优先关系如下：</p>
 <pre><code>低---------------------------------------------&gt;高
 byte,short,char-&gt; int -&gt; long -&gt; float -&gt; double
 </code></pre><p><strong>强制数据类型转换</strong></p>
-<p>　　强制转换的格式是在需要转型的数据前加上“( )”，然后在括号内加入需要转化的数据类型。有的数据经过转型运算后，精度会丢失，而有的会更加精确，下面的例子可以说明这个问题。</p>
-<pre><code>public class Demo {
-    public static void main(String[] args){
-        int x;
-        double y;
-        x = (int)34.56 + (int)11.2;  // 丢失精度
-        y = (double)x + (double)10 + 1;  // 提高精度
-        System.out.println(&quot;x=&quot; + x);
-        System.out.println(&quot;y=&quot; + y);
-    }
-}
-</code></pre><p>　　运行结果：<br>x=45<br>y=56.0</p>
+<p>　　强制转换的格式是在需要转型的数据前加上“( )”，然后在括号内加入需要转化的数据类型。有的数据经过转型运算后，精度会丢失，而有的会更加精确，下面的例子可以说明这个问题。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        <span class="keyword">int</span> x;</div><div class="line">        <span class="keyword">double</span> y;</div><div class="line">        x = (<span class="keyword">int</span>)<span class="number">34.56</span> + (<span class="keyword">int</span>)<span class="number">11.2</span>;  <span class="comment">// 丢失精度</span></div><div class="line">        y = (<span class="keyword">double</span>)x + (<span class="keyword">double</span>)<span class="number">10</span> + <span class="number">1</span>;  <span class="comment">// 提高精度</span></div><div class="line">        System.out.println(<span class="string">"x="</span> + x);</div><div class="line">        System.out.println(<span class="string">"y="</span> + y);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　运行结果：<br>x=45<br>y=56.0</p>
 <p>　　仔细分析上面程序段：由于在 34.56 前有一个 int 的强制类型转化，所以 34.56 就变成了 34。同样 11.2 就变成了 11 了，所以 x 的结果就是 45。在 x 前有一个 double 类型的强制转换，所以 x 的值变为 45.0，而 10 的前面也被强制成 double 类型，所以也变成 10.0，所以最后 y 的值变为 56。</p>
 <h2 id="2、Java数组的定义和使用"><a href="#2、Java数组的定义和使用" class="headerlink" title="2、Java数组的定义和使用"></a>2、Java数组的定义和使用</h2><p>　　Java 中定义数组的语法有两种：<br>    type arrayName[];<br>    type[] arrayName;<br>　　type 为Java中的任意数据类型，包括基本类型和组合类型，arrayName为数组名，必须是一个合法的标识符，[ ] 指明该变量是一个数组类型变量。例如：</p>
 <pre><code>int demoArray[];
@@ -278,12 +264,8 @@ public class Demo {
 }
 </code></pre><p>　　运行结果：<br>请输入5个整数，以空格为分隔：10 20 15 25 50<br>所有数组元素的和为：120</p>
 <p><strong>数组的遍历</strong></p>
-<p>　　实际开发中，经常需要遍历数组以获取数组中的每一个元素。最容易想到的方法是for循环，例如：</p>
-<pre><code>int arrayDemo[] = {1, 2, 4, 7, 9, 192, 100};
-for(int i=0,len=arrayDemo.length; i&lt;len; i++){
-    System.out.println(arrayDemo[i] + &quot;, &quot;);
-} 
-</code></pre><p>　　输出结果：<br>1, 2, 4, 7, 9, 192, 100,</p>
+<p>　　实际开发中，经常需要遍历数组以获取数组中的每一个元素。最容易想到的方法是for循环，例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> arrayDemo[] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">192</span>, <span class="number">100</span>&#125;;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,len=arrayDemo.length; i&lt;len; i++)&#123;</div><div class="line">    System.out.println(arrayDemo[i] + <span class="string">", "</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　输出结果：<br>1, 2, 4, 7, 9, 192, 100,</p>
 <p>　　不过，Java提供了”增强版“的for循环，专门用来遍历数组，语法为：</p>
 <pre><code>for( arrayType varName: arrayName ){
     // Some Code
@@ -351,7 +333,7 @@ a[1] = new int[5];
 <h2 id="2、Java字符串操作"><a href="#2、Java字符串操作" class="headerlink" title="2、Java字符串操作"></a>2、Java字符串操作</h2><p>　　String对象有很多方法，可以方便的操作字符串。</p>
 <p><strong>1) length() 方法</strong></p>
 <p>　　length() 返回字符串的长度，例如：</p>
-<pre><code>String str1 = &quot;微学苑&quot;;
+<pre><code>String str1 = &quot;ABC&quot;;
 String str2 = &quot;weixueyuan&quot;;
 System.out.println(&quot;The lenght of str1 is &quot; + str1.length());
 System.out.println(&quot;The lenght of str2 is &quot; + str2.length());
