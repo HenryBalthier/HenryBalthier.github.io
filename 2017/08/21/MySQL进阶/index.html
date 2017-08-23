@@ -184,18 +184,18 @@
 </ul>
 <a id="more"></a>
 <hr>
-<h4 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h4><p>　　使用普通用户，你可能需要特定的权限来创建或者删除 MySQL 数据库。所以我们这边使用root用户登录，root用户拥有最高权限，可以使用 mysql mysqladmin 命令来创建数据库。</p>
+<h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>　　使用普通用户，你可能需要特定的权限来创建或者删除 MySQL 数据库。所以我们这边使用root用户登录，root用户拥有最高权限，可以使用 mysql mysqladmin 命令来创建数据库。</p>
 <p>　　以下命令简单的演示了创建数据库的过程，数据名为 RUNOOB:</p>
 <pre><code>[root@host]# mysqladmin -u root -p create RUNOOB
 Enter password:******
 </code></pre><p>　　以上命令执行成功后会创建 MySQL 数据库 RUNOOB。</p>
-<h4 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h4><p>　　在删除数据库过程中，务必要十分谨慎，因为在执行删除命令后，所有数据将会消失。</p>
+<h2 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h2><p>　　在删除数据库过程中，务必要十分谨慎，因为在执行删除命令后，所有数据将会消失。</p>
 <p>　　以下实例删除数据库RUNOOB(该数据库在前一章节已创建)：</p>
 <pre><code>[root@host]# mysqladmin -u root -p drop RUNOOB
 Enter password:******
-</code></pre><h4 id="选择数据库"><a href="#选择数据库" class="headerlink" title="选择数据库"></a>选择数据库</h4><pre><code>mysql&gt; use RUNOOB;
+</code></pre><h2 id="选择数据库"><a href="#选择数据库" class="headerlink" title="选择数据库"></a>选择数据库</h2><pre><code>mysql&gt; use RUNOOB;
 Database changed
-</code></pre><h4 id="创建数据表"><a href="#创建数据表" class="headerlink" title="创建数据表"></a>创建数据表</h4><p>　　以下为创建MySQL数据表的SQL通用语法：</p>
+</code></pre><h2 id="创建数据表"><a href="#创建数据表" class="headerlink" title="创建数据表"></a>创建数据表</h2><p>　　以下为创建MySQL数据表的SQL通用语法：</p>
 <pre><code>CREATE TABLE table_name (column_name column_type);
 </code></pre><p>　　以下例子中我们将在 RUNOOB 数据库中创建数据表runoob_tbl：</p>
 <pre><code>CREATE TABLE IF NOT EXISTS `runoob_tbl`(
@@ -212,11 +212,11 @@ Database changed
 <li>PRIMARY KEY关键字用于定义列为主键。 您可以使用多列来定义主键，列间以逗号分隔。</li>
 <li>ENGINE 设置存储引擎，CHARSET 设置编码。</li>
 </ul>
-<h4 id="删除数据表"><a href="#删除数据表" class="headerlink" title="删除数据表"></a>删除数据表</h4><pre><code>DROP TABLE table_name ;
-</code></pre><h4 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h4><pre><code>INSERT INTO table_name ( field1, field2,...fieldN )
+<h2 id="删除数据表"><a href="#删除数据表" class="headerlink" title="删除数据表"></a>删除数据表</h2><pre><code>DROP TABLE table_name ;
+</code></pre><h2 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h2><pre><code>INSERT INTO table_name ( field1, field2,...fieldN )
                        VALUES
                        ( value1, value2,...valueN );
-</code></pre><h4 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h4><p>　　以下为在MySQL数据库中查询数据通用的 SELECT 语法：</p>
+</code></pre><h2 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h2><p>　　以下为在MySQL数据库中查询数据通用的 SELECT 语法：</p>
 <pre><code>SELECT column_name,column_name
 FROM table_name
 [WHERE Clause]
@@ -230,7 +230,7 @@ FROM table_name
 <li>你可以使用 LIMIT 属性来设定返回的记录数。</li>
 </ul>
 <hr>
-<h4 id="WHERE-子句"><a href="#WHERE-子句" class="headerlink" title="WHERE 子句"></a>WHERE 子句</h4><pre><code>SELECT field1, field2,...fieldN FROM table_name1, table_name2...
+<h2 id="WHERE-子句"><a href="#WHERE-子句" class="headerlink" title="WHERE 子句"></a>WHERE 子句</h2><pre><code>SELECT field1, field2,...fieldN FROM table_name1, table_name2...
 [WHERE condition1 [AND [OR]] condition2.....
 </code></pre><ul>
 <li>查询语句中你可以使用一个或者多个表，表之间使用逗号, 分割，并使用WHERE语句来设定查询条件。</li>
@@ -239,7 +239,7 @@ FROM table_name
 <li>WHERE 子句也可以运用于 SQL 的 DELETE 或者 UPDATE 命令。</li>
 <li>WHERE 子句类似于程序语言中的 if 条件，根据 MySQL 表中的字段值来读取指定的数据。</li>
 </ul>
-<h4 id="UPDATE-查询"><a href="#UPDATE-查询" class="headerlink" title="UPDATE 查询"></a>UPDATE 查询</h4><p>　　以下是 UPDATE 命令修改 MySQL 数据表数据的通用 SQL 语法：</p>
+<h2 id="UPDATE-查询"><a href="#UPDATE-查询" class="headerlink" title="UPDATE 查询"></a>UPDATE 查询</h2><p>　　以下是 UPDATE 命令修改 MySQL 数据表数据的通用 SQL 语法：</p>
 <pre><code>UPDATE table_name SET field1=new-value1, field2=new-value2
 [WHERE Clause]
 </code></pre><ul>
@@ -253,7 +253,7 @@ FROM table_name
 <li>你可以在 WHERE 子句中指定任何条件</li>
 <li>您可以在单个表中一次性删除记录。</li>
 </ul>
-<h4 id="LIKE-子句"><a href="#LIKE-子句" class="headerlink" title="LIKE 子句"></a>LIKE 子句</h4><p>　　我们知道在 MySQL 中使用 SQL SELECT 命令来读取数据， 同时我们可以在 SELECT 语句中使用 WHERE 子句来获取指定的记录。</p>
+<h2 id="LIKE-子句"><a href="#LIKE-子句" class="headerlink" title="LIKE 子句"></a>LIKE 子句</h2><p>　　我们知道在 MySQL 中使用 SQL SELECT 命令来读取数据， 同时我们可以在 SELECT 语句中使用 WHERE 子句来获取指定的记录。</p>
 <p>　　WHERE 子句中可以使用等号 = 来设定获取数据的条件，如 “runoob_author = ‘RUNOOB.COM’”。但是有时候我们需要获取 runoob_author 字段含有 “COM” 字符的所有记录，这时我们就需要在 WHERE 子句中使用 SQL LIKE 子句。</p>
 <p>　　SQL LIKE 子句中使用百分号 %字符来表示任意字符，类似于UNIX或正则表达式中的星号 *。如果没有使用百分号 %, LIKE 子句与等号 = 的效果是一样的。</p>
 <p>　　以下是 SQL SELECT 语句使用 LIKE 子句从数据表中读取数据的通用语法：</p>
@@ -268,7 +268,7 @@ WHERE field1 LIKE condition1 [AND [OR]] filed2 = &apos;somevalue&apos;
 <li>你可以使用 AND 或者 OR 指定一个或多个条件。</li>
 <li>你可以在 DELETE 或 UPDATE 命令中使用 WHERE…LIKE 子句来指定条件。</li>
 </ul>
-<h4 id="UNION-操作符"><a href="#UNION-操作符" class="headerlink" title="UNION 操作符"></a>UNION 操作符</h4><p>　　MySQL UNION 操作符用于连接两个以上的 SELECT 语句的结果组合到一个结果集合中。多个 SELECT 语句会删除重复的数据。</p>
+<h2 id="UNION-操作符"><a href="#UNION-操作符" class="headerlink" title="UNION 操作符"></a>UNION 操作符</h2><p>　　MySQL UNION 操作符用于连接两个以上的 SELECT 语句的结果组合到一个结果集合中。多个 SELECT 语句会删除重复的数据。</p>
 <pre><code>SELECT expression1, expression2, ... expression_n
 FROM tables
 [WHERE conditions]
@@ -284,7 +284,7 @@ FROM tables
 <li>ALL: 可选，返回所有结果集，包含重复数据。</li>
 </ul>
 <hr>
-<h4 id="ORDER-BY-排序"><a href="#ORDER-BY-排序" class="headerlink" title="ORDER BY 排序"></a>ORDER BY 排序</h4><pre><code>SELECT field1, field2,...fieldN table_name1, table_name2...
+<h2 id="ORDER-BY-排序"><a href="#ORDER-BY-排序" class="headerlink" title="ORDER BY 排序"></a>ORDER BY 排序</h2><pre><code>SELECT field1, field2,...fieldN table_name1, table_name2...
 ORDER BY field1, [field2...] [ASC [DESC]]
 </code></pre><ul>
 <li>你可以使用任何字段来作为排序的条件，从而返回排序后的查询结果。</li>
@@ -292,18 +292,18 @@ ORDER BY field1, [field2...] [ASC [DESC]]
 <li>你可以使用 ASC 或 DESC 关键字来设置查询结果是按升序或降序排列。 默认情况下，它是按升序排列。</li>
 <li>你可以添加 WHERE…LIKE 子句来设置条件。</li>
 </ul>
-<h4 id="GROUP-BY-分组"><a href="#GROUP-BY-分组" class="headerlink" title="GROUP BY 分组"></a>GROUP BY 分组</h4><pre><code>SELECT column_name, function(column_name)
+<h2 id="GROUP-BY-分组"><a href="#GROUP-BY-分组" class="headerlink" title="GROUP BY 分组"></a>GROUP BY 分组</h2><pre><code>SELECT column_name, function(column_name)
 FROM table_name
 WHERE column_name operator value
 GROUP BY column_name;
-</code></pre><h4 id="INNER-JOIN-连接"><a href="#INNER-JOIN-连接" class="headerlink" title="INNER JOIN 连接"></a>INNER JOIN 连接</h4><p>　　JOIN 按照功能大致分为如下三类：</p>
+</code></pre><h2 id="INNER-JOIN-连接"><a href="#INNER-JOIN-连接" class="headerlink" title="INNER JOIN 连接"></a>INNER JOIN 连接</h2><p>　　JOIN 按照功能大致分为如下三类：</p>
 <ul>
 <li>INNER JOIN（内连接,或等值连接）：获取两个表中字段匹配关系的记录。</li>
 <li>LEFT JOIN（左连接）：获取左表所有记录，即使右表没有对应匹配的记录。</li>
 <li>RIGHT JOIN（右连接）： 与 LEFT JOIN 相反，用于获取右表所有记录，即使左表没有对应匹配的记录。</li>
 </ul>
 <p><img src="/2017/08/21/MySQL进阶/MySQL扩展/innerjoin.gif" alt="innerjoin.gif"><br><img src="/2017/08/21/MySQL进阶/MySQL扩展/img_leftjoin.gif" alt="img_leftjoin.gif"><br><img src="/2017/08/21/MySQL进阶/MySQL扩展/img_rightjoin.gif" alt="img_rightjoin.gif"></p>
-<h4 id="NULL-值处理"><a href="#NULL-值处理" class="headerlink" title="NULL 值处理"></a>NULL 值处理</h4><p>　　我们已经知道 MySQL 使用 SQL SELECT 命令及 WHERE 子句来读取数据表中的数据,但是当提供的查询条件字段为 NULL 时，该命令可能就无法正常工作。</p>
+<h2 id="NULL-值处理"><a href="#NULL-值处理" class="headerlink" title="NULL 值处理"></a>NULL 值处理</h2><p>　　我们已经知道 MySQL 使用 SQL SELECT 命令及 WHERE 子句来读取数据表中的数据,但是当提供的查询条件字段为 NULL 时，该命令可能就无法正常工作。</p>
 <p>　　为了处理这种情况，MySQL提供了三大运算符:</p>
 <ul>
 <li>IS NULL: 当列的值是 NULL,此运算符返回 true。</li>
@@ -311,7 +311,7 @@ GROUP BY column_name;
 <li>&lt;=&gt;: 比较操作符（不同于=运算符），当比较的的两个值为 NULL 时返回 true。</li>
 </ul>
 <p>　　关于 NULL 的条件比较运算是比较特殊的。你不能使用 = NULL 或 != NULL 在列中查找 NULL 值。在 MySQL 中，NULL 值与任何其它值的比较（即使是 NULL）永远返回 false，即 NULL = NULL 返回false。MySQL 中处理 NULL 使用 IS NULL 和 IS NOT NULL 运算符。</p>
-<h4 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h4><p>　　在前面的章节我们已经了解到MySQL可以通过 LIKE …% 来进行模糊匹配。MySQL 同样也支持其他正则表达式的匹配， MySQL中使用 REGEXP 操作符来进行正则表达式匹配。如果您了解PHP或Perl，那么操作起来就非常简单，因为MySQL的正则表达式匹配与这些脚本的类似。</p>
+<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p>　　在前面的章节我们已经了解到MySQL可以通过 LIKE …% 来进行模糊匹配。MySQL 同样也支持其他正则表达式的匹配， MySQL中使用 REGEXP 操作符来进行正则表达式匹配。如果您了解PHP或Perl，那么操作起来就非常简单，因为MySQL的正则表达式匹配与这些脚本的类似。</p>
 <p>　　下表中的正则模式可应用于 REGEXP 操作符中。</p>
 <p><img src="/2017/08/21/MySQL进阶/MySQL扩展/re.png" alt="re.png"></p>
 <p>　　查找name字段中以’st’为开头的所有数据：</p>

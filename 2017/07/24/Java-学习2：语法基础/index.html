@@ -273,7 +273,7 @@ a[1] = new int[5];
 <p><strong>1) length() 方法</strong></p>
 <p>　　length() 返回字符串的长度，例如：</p>
 <pre><code>String str1 = &quot;ABC&quot;;
-String str2 = &quot;weixueyuan&quot;;
+String str2 = &quot;AAA&quot;;
 System.out.println(&quot;The lenght of str1 is &quot; + str1.length());
 System.out.println(&quot;The lenght of str2 is &quot; + str2.length());
 </code></pre><p>　　输出结果：<br>The lenght of str1 is 3<br>The lenght of str2 is 10</p>
@@ -285,12 +285,12 @@ System.out.println(str.charAt(0) + &quot;    &quot; + str.charAt(5) + &quot;    
 </code></pre><p>　　输出结果：<br>1    6    9</p>
 <p><strong>3) contains() 方法</strong></p>
 <p>　　contains() 方法用来检测字符串是否包含某个子串，例如：</p>
-<pre><code>String str = &quot;weixueyuan&quot;;
+<pre><code>String str = &quot;AAA&quot;;
 System.out.println(str.contains(&quot;yuan&quot;));
 </code></pre><p>输出结果：<br>true</p>
 <p><strong>4) replace() 方法</strong></p>
-<p>　　字符串替换，用来替换字符串中所有指定的子串，例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">String str1 = <span class="string">"The url of weixueyuan is www.weixueyuan.net!"</span>;</div><div class="line">String str2 = str1.replace(<span class="string">"weixueyuan"</span>, <span class="string">"微学苑"</span>);</div><div class="line">System.out.println(str1);</div><div class="line">System.out.println(str2);</div></pre></td></tr></table></figure></p>
-<p>　　输出结果：<br>The url of weixueyuan is www.weixueyuan.net!<br>The url of 微学苑 is www.微学苑.net!</p>
+<p>　　字符串替换，用来替换字符串中所有指定的子串，例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">String str1 = <span class="string">"The url of AAA is www.AAA.net!"</span>;</div><div class="line">String str2 = str1.replace(<span class="string">"AAA"</span>, <span class="string">"AAA"</span>);</div><div class="line">System.out.println(str1);</div><div class="line">System.out.println(str2);</div></pre></td></tr></table></figure></p>
+<p>　　输出结果：<br>The url of AAA is www.AAA.net!<br>The url of AAA is www.AAA.net!</p>
 <p>　　注意：replace() 方法不会改变原来的字符串，而是生成一个新的字符串。</p>
 <p><strong>5) split() 方法</strong></p>
 <p>　　以指定字符串作为分隔符，对当前字符串进行分割，分割的结果是一个数组，例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.*;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        String str = <span class="string">"wei_xue_yuan_is_good"</span>;</div><div class="line">        String strArr[] = str.split(<span class="string">"_"</span>);</div><div class="line">        System.out.println(Arrays.toString(strArr));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>

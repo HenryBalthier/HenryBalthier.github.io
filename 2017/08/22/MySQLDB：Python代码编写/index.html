@@ -184,7 +184,7 @@
 </ul>
 <a id="more"></a>
 <hr>
-<h4 id="Python环境下MySQLDB简单操作"><a href="#Python环境下MySQLDB简单操作" class="headerlink" title="Python环境下MySQLDB简单操作"></a>Python环境下MySQLDB简单操作</h4><ul>
+<h2 id="Python环境下MySQLDB简单操作"><a href="#Python环境下MySQLDB简单操作" class="headerlink" title="Python环境下MySQLDB简单操作"></a>Python环境下MySQLDB简单操作</h2><ul>
 <li>连接数据库</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python</span></div><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> MySQLdb</div><div class="line"></div><div class="line">db = MySQLdb.connect(host=<span class="string">"localhost"</span>,user=<span class="string">"testuser"</span>,passwd=<span class="string">"test123"</span>,db=<span class="string">"TESTDB"</span> )</div><div class="line">cursor = db.cursor()</div><div class="line">cursor.execute(<span class="string">"SELECT VERSION()"</span>)</div><div class="line">data = cursor.fetchone()</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">"Database version : %s "</span> % data</div><div class="line"></div><div class="line">db.close()</div></pre></td></tr></table></figure>
@@ -212,7 +212,7 @@ rowcount: 这是一个只读属性，并返回执行execute()方法后影响的�
 <li>删除操作</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sql = <span class="string">"DELETE FROM EMPLOYEE WHERE AGE &gt; '%d'"</span> % (<span class="number">20</span>)</div></pre></td></tr></table></figure>
-<h4 id="执行事务"><a href="#执行事务" class="headerlink" title="执行事务"></a>执行事务</h4><p>　　事务机制可以确保数据一致性。</p>
+<h2 id="执行事务"><a href="#执行事务" class="headerlink" title="执行事务"></a>执行事务</h2><p>　　事务机制可以确保数据一致性。</p>
 <p>　　事务应该具有4个属性：原子性、一致性、隔离性、持久性。这四个属性通常称为ACID特性。</p>
 <pre><code>原子性（atomicity）。一个事务是一个不可分割的工作单位，事务中包括的诸操作要么都做，要么都不做。
 一致性（consistency）。事务必须是使数据库从一个一致性状态变到另一个一致性状态。一致性与原子性是密切相关的。
@@ -226,6 +226,10 @@ rowcount: 这是一个只读属性，并返回执行execute()方法后影响的�
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/HenryBalthier.github.io/2017/08/23/【Python系列】5、网络编程/" style="float: left;">
+        ← 【Python系列】5、网络编程
+    </a>
     
     
     <a class="pull-right" href="/HenryBalthier.github.io/2017/08/21/MySQL高级/">

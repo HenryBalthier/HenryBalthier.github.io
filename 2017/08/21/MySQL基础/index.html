@@ -186,7 +186,7 @@
 </ul>
 <a id="more"></a>
 <hr>
-<h4 id="SQLite"><a href="#SQLite" class="headerlink" title="SQLite"></a>SQLite</h4><p>　　SQLite是一种嵌入式数据库，它的数据库就是一个文件。由于SQLite本身是C写的，而且体积很小，所以，经常被集成到各种应用程序中，甚至在iOS和Android的App中都可以集成。</p>
+<h2 id="SQLite"><a href="#SQLite" class="headerlink" title="SQLite"></a>SQLite</h2><p>　　SQLite是一种嵌入式数据库，它的数据库就是一个文件。由于SQLite本身是C写的，而且体积很小，所以，经常被集成到各种应用程序中，甚至在iOS和Android的App中都可以集成。</p>
 <pre><code># 导入SQLite驱动:
 &gt;&gt;&gt; import sqlite3
 # 连接到SQLite数据库
@@ -225,7 +225,7 @@
 </code></pre><p>　　使用Cursor对象执行insert，update，delete语句时，执行结果由rowcount返回影响的行数，就可以拿到执行结果。使用Cursor对象执行select语句时，通过featchall()可以拿到结果集。结果集是一个list，每个元素都是一个tuple，对应一行记录。如果SQL语句带有参数，那么需要把参数按照位置传递给execute()方法，有几个?占位符就必须对应几个参数，例如：</p>
 <pre><code>cursor.execute(&apos;select * from user where name=? and pwd=?&apos;, (&apos;abc&apos;, &apos;password&apos;))
 </code></pre><hr>
-<h4 id="MySQL用户管理"><a href="#MySQL用户管理" class="headerlink" title="MySQL用户管理"></a>MySQL用户管理</h4><p><strong><a href="http://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="external">MySQL 教程</a></strong></p>
+<h2 id="MySQL用户管理"><a href="#MySQL用户管理" class="headerlink" title="MySQL用户管理"></a>MySQL用户管理</h2><p><strong><a href="http://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="external">MySQL 教程</a></strong></p>
 <p>1.新建用户</p>
 <p>　　1.1 登录MYSQL：</p>
 <pre><code>　　@&gt;mysql -u root -p
@@ -289,7 +289,7 @@ mysql&gt;flush privileges;
 <pre><code>　　mysql&gt;drop database 数据库名;
 　　mysql&gt;drop table 数据表名;
 </code></pre><hr>
-<h4 id="MySQL指令"><a href="#MySQL指令" class="headerlink" title="MySQL指令"></a>MySQL指令</h4><p>　　MySQL 为关系型数据库(Relational Database Management System), 这种所谓的”关系型”可以理解为”表格”的概念, 一个关系型数据库由一个或数个表格组成</p>
+<h2 id="MySQL指令"><a href="#MySQL指令" class="headerlink" title="MySQL指令"></a>MySQL指令</h2><p>　　MySQL 为关系型数据库(Relational Database Management System), 这种所谓的”关系型”可以理解为”表格”的概念, 一个关系型数据库由一个或数个表格组成</p>
 <ul>
 <li>表头(header): 每一列的名称;</li>
 <li>列(row): 具有相同数据类型的数据的集合;</li>
@@ -410,7 +410,7 @@ mysql&gt;
 </ul>
 <p>　　示例: 删除 samp_db 数据库: drop database samp_db;</p>
 <hr>
-<h4 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h4><p>####Q:报错1044 access denied for user @localhost</p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p>####Q:报错1044 access denied for user @localhost</p>
 <p>　　因为mysql数据库的user表里，存在用户名为空的账户即匿名账户，导致登录的时候是虽然用的是root，但实际是匿名登录的，通过错误提示里的’’@’localhost’可以看出来，于是解决办法见方法二。</p>
 <p>方法一：<br>1.关闭mysql</p>
 <pre><code># service mysqld stop
